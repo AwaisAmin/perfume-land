@@ -5,7 +5,9 @@ export type Product = {
   kicker?: string;
   price: number;
   compareAtPrice?: number;
-  accent: "forest" | "gold" | "cream";
+  /** Path to real product photography (e.g. "/products/oud-maracuja.jpg").
+   *  Leave unset to fall back to the illustrated placeholder bottle. */
+  image?: string;
 };
 
 export type Collection = {

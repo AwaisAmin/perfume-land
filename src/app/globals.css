@@ -107,19 +107,12 @@ h6 {
   display: none;
 }
 
+/* Matches the original theme's default container: no max-width cap, just a
+   responsive gutter (content runs edge-to-edge on wide screens, same as the
+   live site) — not a narrow centered reading column. */
 .container-app {
   width: 100%;
-  max-width: 1400px;
-  margin-inline: auto;
-  padding-inline: clamp(1rem, 1rem + 2vw, 3rem);
-}
-
-/* Same responsive gutter as .container-app, but no max-width — the header
-   spans the full viewport edge-to-edge like the original site, instead of
-   being capped and centered on wide screens. */
-.container-header {
-  width: 100%;
-  padding-inline: clamp(1rem, 1rem + 2vw, 3rem);
+  padding-inline: clamp(1.25rem, 1.25rem + 2vw, 3rem);
 }
 
 .text-fluid-h1 {

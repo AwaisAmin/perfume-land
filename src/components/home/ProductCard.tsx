@@ -1,41 +1,37 @@
-"use client";
-
 import Link from "next/link";
 import { Plus } from "lucide-react";
-import PerfumeBottle from "@/components/ui/PerfumeBottle";
-import { accentStyles } from "@/lib/accent";
+import ProductImage from "@/components/ui/ProductImage";
 import type { Product } from "@/lib/types";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const accent = accentStyles[product.accent];
-
   return (
-    <div className="group w-[74vw] shrink-0 snap-start sm:w-[38vw] md:w-auto">
+    <div className="group">
       <Link
         href={`/products/${product.handle}`}
-        className={`relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-md ${accent.bg}`}
+        className="relative flex aspect-3/4 items-center justify-center overflow-hidden rounded-md bg-cream-100"
       >
-        <PerfumeBottle
-          className={`h-2/3 w-auto transition-transform duration-500 ease-out group-hover:scale-105 ${accent.fg}`}
+        <ProductImage
+          product={product}
+          bottleClassName="h-4/5 w-auto transition-transform duration-500 ease-out group-hover:scale-105"
         />
         <button
           type="button"
           aria-label="Quick add"
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-cream-50 text-forest-900 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="absolute bottom-0 right-0 flex h-9 w-9 cursor-pointer items-center justify-center bg-cream-50 text-ink opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100"
         >
-          <Plus size={14} />
+          <Plus size={16} />
         </button>
       </Link>
 
-      <div className="mt-3 flex flex-col items-center gap-1 text-center">
+      <div className="mt-5 flex flex-col items-center gap-3 text-center">
         <Link
           href={`/products/${product.handle}`}
-          className="text-sm font-semibold tracking-wide hover:text-forest-700"
+          className="font-heading text-xs uppercase tracking-[0.18em] hover:text-forest-700"
         >
           {product.title}
         </Link>
-        <div className="flex items-baseline gap-2 text-sm">
-          <span className="font-semibold">
+        <div className="font-heading flex items-baseline gap-2 text-xs uppercase tracking-[0.18em]">
+          <span className="text-gold-600">
             {product.compareAtPrice ? "From " : ""}Dhs. {product.price.toFixed(2)}
           </span>
           {product.compareAtPrice && (

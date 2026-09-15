@@ -1,7 +1,6 @@
 import type { Collection, Product } from "@/lib/types";
 
 let autoId = 0;
-const accents: Product["accent"][] = ["forest", "gold", "cream"];
 
 function product(
   title: string,
@@ -17,7 +16,6 @@ function product(
     kicker,
     price,
     compareAtPrice,
-    accent: accents[autoId % accents.length],
   };
 }
 

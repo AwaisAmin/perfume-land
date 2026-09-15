@@ -97,7 +97,7 @@ export default function Header() {
       onMouseLeave={closeMenus}
     >
       {/* Row 1: spacer / logo / account icons */}
-      <div className="container-header grid grid-cols-3 items-center py-5">
+      <div className="container-app grid grid-cols-3 items-center py-5">
         <div />
 
         <Link
@@ -189,7 +189,7 @@ export default function Header() {
       </div>
 
       {/* Row 2: primary navigation */}
-      <div className="container-header hidden items-center justify-center gap-8 pb-1 lg:flex">
+      <div className="container-app hidden items-center justify-center gap-8 pb-1 lg:flex">
         {primaryNavStart.map((link) => (
           <NavItem key={link.href} href={link.href} onMouseEnter={() => setOpenMenu(null)}>
             {link.label}
@@ -313,7 +313,7 @@ export default function Header() {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden border-t border-cream-50/10 bg-forest-900"
           >
-            <div className="container-header flex items-center gap-3 py-5">
+            <div className="container-app flex items-center gap-3 py-5">
               <Search size={18} className="shrink-0 opacity-50" />
               <input
                 autoFocus

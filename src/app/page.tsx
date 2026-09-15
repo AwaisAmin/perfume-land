@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <FeaturedCollection collection={signature} />
+      <FeaturedCollection collection={standard} />
       <Marquee text="Luxury Scents" tone="gold" direction="left" />
       <Marquee text="Honest Prices" tone="forest" direction="right" />
-      <FeaturedCollection collection={standard} />
+      <FeaturedCollection collection={signature} />
       <MediaGrid />
       <FeaturedCollection collection={oil} />
       <BeforeAfter />
