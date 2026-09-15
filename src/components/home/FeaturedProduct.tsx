@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import PerfumeBottle from "@/components/ui/PerfumeBottle";
+import ProductImage from "@/components/ui/ProductImage";
 import Reveal from "@/components/ui/Reveal";
 import type { Product } from "@/lib/types";
 
@@ -15,8 +15,8 @@ export default function FeaturedProduct({ product }: { product: Product }) {
         </Reveal>
 
         <div className="mt-10 grid items-center gap-10 md:grid-cols-2">
-          <Reveal className="flex aspect-square items-center justify-center rounded-md bg-forest-900">
-            <PerfumeBottle className="h-2/3 w-auto text-gold-400" />
+          <Reveal className="relative flex aspect-square items-center justify-center overflow-hidden rounded-md bg-cream-200">
+            <ProductImage product={product} bottleClassName="h-2/3 w-auto" />
           </Reveal>
 
           <Reveal delay={0.1} className="flex flex-col items-start gap-5">

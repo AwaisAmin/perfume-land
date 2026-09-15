@@ -2,12 +2,27 @@ import type { Collection, Product } from "@/lib/types";
 
 let autoId = 0;
 
-function product(
-  title: string,
-  price: number,
-  compareAtPrice: number,
-  kicker?: string,
-): Product {
+// DEV-ONLY placeholders — hotlinked from the reference site's own CDN so we
+// have real product photos to check layout/spacing against locally. Swap
+// every product's `image` for your own photography before this ever ships.
+const CDN = "https://amanzadaperfumes.com/cdn/shop/files";
+const DEV_IMAGE = {
+  impression: `${CDN}/Impressions_Perfume_Bottle_Main.png?width=1124`,
+  signature: `${CDN}/CannabisWeb.png?width=1124`,
+  backToBlackOud: `${CDN}/BackToBlackOudWeb.png?width=1124`,
+  oil: `${CDN}/Perfume_Oil_Main.jpg?width=1124`,
+  interior: `${CDN}/Interior_Perfume_Bottle_MAIN.jpg?width=1124`,
+};
+
+type ProductInput = {
+  title: string;
+  price: number;
+  compareAtPrice: number;
+  kicker?: string;
+  image?: string;
+};
+
+function product({ title, price, compareAtPrice, kicker, image }: ProductInput): Product {
   autoId += 1;
   return {
     id: `product-${autoId}`,
@@ -16,6 +31,7 @@ function product(
     kicker,
     price,
     compareAtPrice,
+    image,
   };
 }
 
@@ -26,10 +42,10 @@ export const collections: Collection[] = [
     kicker: "made in dubai",
     title: "Signature Fragrances",
     products: [
-      product("Oud Royale", 249, 620),
-      product("Amber Noir", 229, 560),
-      product("Velvet Musk", 259, 640),
-      product("Golden Saffron", 239, 590),
+      product({ title: "Oud Royale", price: 249, compareAtPrice: 620, image: DEV_IMAGE.signature }),
+      product({ title: "Amber Noir", price: 229, compareAtPrice: 560, image: DEV_IMAGE.signature }),
+      product({ title: "Velvet Musk", price: 259, compareAtPrice: 640, image: DEV_IMAGE.signature }),
+      product({ title: "Golden Saffron", price: 239, compareAtPrice: 590, image: DEV_IMAGE.signature }),
     ],
   },
   {
@@ -38,10 +54,30 @@ export const collections: Collection[] = [
     kicker: "brand impressions",
     title: "Standard Collection",
     products: [
-      product("Impression of Oud Maracuja", 80, 744),
-      product("Impression of Vanilla Powder", 80, 754),
-      product("Impression of Blonde Amber", 80, 647),
-      product("Impression of Silver Mountain Water", 80, 684),
+      product({
+        title: "Impression of Oud Maracuja",
+        price: 80,
+        compareAtPrice: 744,
+        image: DEV_IMAGE.impression,
+      }),
+      product({
+        title: "Impression of Vanilla Powder",
+        price: 80,
+        compareAtPrice: 754,
+        image: DEV_IMAGE.impression,
+      }),
+      product({
+        title: "Impression of Blonde Amber",
+        price: 80,
+        compareAtPrice: 647,
+        image: DEV_IMAGE.impression,
+      }),
+      product({
+        title: "Impression of Silver Mountain Water",
+        price: 80,
+        compareAtPrice: 684,
+        image: DEV_IMAGE.impression,
+      }),
     ],
   },
   {
@@ -50,10 +86,10 @@ export const collections: Collection[] = [
     kicker: "concentrated oils",
     title: "Attar & Oil Collection",
     products: [
-      product("Rose Attar Oil", 95, 320),
-      product("Sandalwood Oil", 110, 360),
-      product("Oud Mukhallat", 150, 480),
-      product("Amber Musk Oil", 105, 340),
+      product({ title: "Rose Attar Oil", price: 95, compareAtPrice: 320, image: DEV_IMAGE.oil }),
+      product({ title: "Sandalwood Oil", price: 110, compareAtPrice: 360, image: DEV_IMAGE.oil }),
+      product({ title: "Oud Mukhallat", price: 150, compareAtPrice: 480, image: DEV_IMAGE.oil }),
+      product({ title: "Amber Musk Oil", price: 105, compareAtPrice: 340, image: DEV_IMAGE.oil }),
     ],
   },
   {
@@ -62,17 +98,38 @@ export const collections: Collection[] = [
     kicker: "for your space",
     title: "Interior Perfumes",
     products: [
-      product("Bakhoor Home Mist", 65, 180),
-      product("Oud Room Spray", 70, 190),
-      product("Jasmine Air Diffuser", 75, 210),
-      product("Amber Linen Spray", 68, 185),
+      product({
+        title: "Bakhoor Home Mist",
+        price: 65,
+        compareAtPrice: 180,
+        image: DEV_IMAGE.interior,
+      }),
+      product({
+        title: "Oud Room Spray",
+        price: 70,
+        compareAtPrice: 190,
+        image: DEV_IMAGE.interior,
+      }),
+      product({
+        title: "Jasmine Air Diffuser",
+        price: 75,
+        compareAtPrice: 210,
+        image: DEV_IMAGE.interior,
+      }),
+      product({
+        title: "Amber Linen Spray",
+        price: 68,
+        compareAtPrice: 185,
+        image: DEV_IMAGE.interior,
+      }),
     ],
   },
 ];
 
-export const featuredProduct: Product = product(
-  "Amanzada Back to Black Oud",
-  185,
-  460,
-  "Our selection",
-);
+export const featuredProduct: Product = product({
+  title: "Amanzada Back to Black Oud",
+  price: 185,
+  compareAtPrice: 460,
+  kicker: "Our selection",
+  image: DEV_IMAGE.backToBlackOud,
+});

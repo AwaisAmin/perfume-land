@@ -20,7 +20,7 @@ export default function FeaturedCollection({ collection }: { collection: Collect
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-14 flex justify-center">
           <Button href={`/collections/${collection.handle}`} variant="outline">
             View all
           </Button>
