@@ -7,7 +7,10 @@ type MarqueeProps = {
 };
 
 export default function Marquee({ text, tone = "gold", direction = "left" }: MarqueeProps) {
-  const items = Array.from({ length: 8 }, (_, i) => i);
+  // Generous repeat count so both scrolling halves stay wider than the
+  // viewport on very wide screens too — otherwise a gap flashes at the loop
+  // seam once the content runs out before the translate completes.
+  const items = Array.from({ length: 20 }, (_, i) => i);
 
   return (
     <div

@@ -38,38 +38,43 @@ export default function AnnouncementBar() {
   return (
     <div
       ref={barRef}
-      className="relative flex h-10 items-center justify-center gap-4 bg-cream-50 px-12 text-ink"
+      className="flex h-10 items-center justify-center bg-cream-50 px-4 text-ink"
     >
-      <button
-        type="button"
-        aria-label="Previous announcement"
-        onClick={() => go(-1)}
-        className="absolute left-4 flex h-6 w-6 items-center justify-center text-ink/60 transition hover:text-ink"
-      >
-        <ChevronLeft size={16} />
-      </button>
-
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={index}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.35 }}
-          className="text-xs font-semibold uppercase tracking-[0.12em]"
+      {/* A fixed-width box, not the message text, defines where the arrows
+          sit — so they stay put at the same distance apart no matter how
+          long or short the current message is. */}
+      <div className="relative flex w-full max-w-sm items-center justify-center">
+        <button
+          type="button"
+          aria-label="Previous announcement"
+          onClick={() => go(-1)}
+          className="absolute -left-14 top-1/2 flex h-6 w-6 -translate-y-1/2 cursor-pointer items-center justify-center text-ink/60 transition hover:text-ink"
         >
-          {messages[index]}
-        </motion.p>
-      </AnimatePresence>
+          <ChevronLeft size={16} />
+        </button>
 
-      <button
-        type="button"
-        aria-label="Next announcement"
-        onClick={() => go(1)}
-        className="absolute right-4 flex h-6 w-6 items-center justify-center text-ink/60 transition hover:text-ink"
-      >
-        <ChevronRight size={16} />
-      </button>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={index}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35 }}
+            className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.12em]"
+          >
+            {messages[index]}
+          </motion.p>
+        </AnimatePresence>
+
+        <button
+          type="button"
+          aria-label="Next announcement"
+          onClick={() => go(1)}
+          className="absolute -right-14 top-1/2 flex h-6 w-6 -translate-y-1/2 cursor-pointer items-center justify-center text-ink/60 transition hover:text-ink"
+        >
+          <ChevronRight size={16} />
+        </button>
+      </div>
     </div>
   );
 }

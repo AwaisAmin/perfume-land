@@ -35,8 +35,8 @@
   --font-heading: var(--font-nunito-sans);
   --font-body: var(--font-montserrat);
 
-  --animate-marquee: marquee 22s linear infinite;
-  --animate-marquee-reverse: marquee-reverse 26s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 33s linear infinite;
   --animate-icon-block: icon-block 0.35s ease-in-out forwards;
 }
 
