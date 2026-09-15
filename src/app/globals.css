@@ -115,14 +115,16 @@ h6 {
   padding-inline: clamp(1.25rem, 1.25rem + 2vw, 3rem);
 }
 
+/* Matches the original theme's --text-h1 / --text-h2 clamp formulas exactly
+   (factor 1) — its heading scale is much more compact than typical defaults. */
 .text-fluid-h1 {
-  font-size: clamp(2.25rem, 1.7rem + 2.5vw, 4.25rem);
-  line-height: 1.05;
+  font-size: clamp(1.375rem, 1.1463rem + 0.9756vw, 2rem);
+  line-height: 1.15;
 }
 
 .text-fluid-h2 {
-  font-size: clamp(1.6rem, 1.4rem + 1.2vw, 2.5rem);
-  line-height: 1.1;
+  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  line-height: 1.2;
 }
 
 .text-fluid-section-gap {

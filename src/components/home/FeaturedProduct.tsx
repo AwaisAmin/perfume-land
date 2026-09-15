@@ -11,7 +11,7 @@ export default function FeaturedProduct({ product }: { product: Product }) {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-forest-700">
             Our Selection
           </p>
-          <h2 className="text-fluid-h2 mt-2 font-extrabold">Product of the Week</h2>
+          <h2 className="text-fluid-h2 mt-2 font-normal">Product of the Week</h2>
         </Reveal>
 
         <div className="mt-10 grid items-center gap-10 md:grid-cols-2">
@@ -20,7 +20,7 @@ export default function FeaturedProduct({ product }: { product: Product }) {
           </Reveal>
 
           <Reveal delay={0.1} className="flex flex-col items-start gap-5">
-            <h3 className="text-fluid-h2 font-bold">{product.title}</h3>
+            <h3 className="text-fluid-h2 font-normal">{product.title}</h3>
             <p className="max-w-md text-ink/70">
               A rich, smoky oud wrapped in dark berries and warm amber — bold,
               intense, and unmistakably Amanzada.

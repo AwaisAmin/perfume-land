@@ -8,10 +8,10 @@ export default function FeaturedCollection({ collection }: { collection: Collect
     <section className="text-fluid-section-gap">
       <div className="container-app">
         <Reveal className="flex flex-col items-center gap-3 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-forest-700">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-forest-700">
             {collection.kicker}
           </p>
-          <h2 className="text-fluid-h2 font-extrabold">{collection.title}</h2>
+          <h2 className="text-fluid-h2 font-normal">{collection.title}</h2>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6 lg:gap-8">

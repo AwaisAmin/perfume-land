@@ -14,7 +14,7 @@ export default function Newsletter() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em]">
             Keep me updated
           </p>
-          <h2 className="text-fluid-h2 font-extrabold">Newsletter</h2>
+          <h2 className="text-fluid-h2 font-normal">Newsletter</h2>
           <p className="max-w-md text-cream-50/90">
             Subscribe to receive exclusive previews, private releases, and the
             art of fragrance.
