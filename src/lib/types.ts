@@ -10,6 +10,21 @@ export type Product = {
   image?: string;
 };
 
+export type ProductVariant = {
+  size: string;
+  price: number;
+  compareAtPrice?: number;
+};
+
+export type FeaturedProductData = {
+  handle: string;
+  title: string;
+  description: string;
+  /** Leave unset to fall back to the illustrated placeholder bottle. */
+  image?: string;
+  variants: ProductVariant[];
+};
+
 export type Collection = {
   id: string;
   handle: string;

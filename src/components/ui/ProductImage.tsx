@@ -6,6 +6,8 @@ type ProductImageProps = {
   product: Pick<Product, "title" | "image">;
   /** Sizing classes for the illustrated bottle (ignored once a real photo is set). */
   bottleClassName?: string;
+  /** Overrides the real photo's classes — e.g. to drop the grid cards' matting/padding for a plain full-bleed hero shot. */
+  imageClassName?: string;
   priority?: boolean;
 };
 
@@ -18,6 +20,7 @@ type ProductImageProps = {
 export default function ProductImage({
   product,
   bottleClassName,
+  imageClassName = "object-contain p-8 transition-transform duration-500 ease-out group-hover:scale-105",
   priority,
 }: ProductImageProps) {
   if (product.image) {
@@ -28,7 +31,7 @@ export default function ProductImage({
         fill
         priority={priority}
         sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, 25vw"
-        className="object-contain p-8 transition-transform duration-500 ease-out group-hover:scale-105"
+        className={imageClassName}
       />
     );
   }

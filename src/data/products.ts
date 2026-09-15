@@ -1,4 +1,4 @@
-import type { Collection, Product } from "@/lib/types";
+import type { Collection, FeaturedProductData, Product } from "@/lib/types";
 
 export type ShopTheLookItem = {
   handle: string;
@@ -230,10 +230,14 @@ export const collections: Collection[] = [
   },
 ];
 
-export const featuredProduct: Product = product({
-  title: "Amanzada Back to Black Oud",
-  price: 185,
-  compareAtPrice: 460,
-  kicker: "Our selection",
-  image: DEV_IMAGE.backToBlackOud,
-});
+export const featuredProduct: FeaturedProductData = {
+  handle: "impression-of-imagination",
+  title: "Impression of Imagination",
+  description:
+    "A dreamy, vibrant fragrance blending orange, rose, jasmine, musk, and woods, creating a playful, uplifting aroma.",
+  image: DEV_IMAGE.impression,
+  variants: [
+    { size: "50ml", price: 140, compareAtPrice: 775 },
+    { size: "100ml", price: 180, compareAtPrice: 840 },
+  ],
+};
