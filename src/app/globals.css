@@ -98,6 +98,13 @@ body {
   background: var(--color-cream-50);
   color: var(--color-ink);
   font-family: var(--font-body), sans-serif;
+  /* The reference theme's entire type scale runs smaller than Tailwind's
+     defaults (its --text-base is 0.875rem, not 1rem) — this is why plain
+     text without an explicit size utility was rendering visibly larger
+     than the original everywhere. Elements using an explicit Tailwind
+     text-* utility are unaffected, since those are set in rem off the
+     root, not inherited from here. */
+  font-size: 0.875rem;
 }
 
 h1,
@@ -143,8 +150,18 @@ h6 {
   letter-spacing: 0.18em;
 }
 
+/* Matches the reference theme's actual --section-vertical-spacing exactly:
+   it's a two-step value (4rem, then 7rem from 1000px up), not a smooth
+   fluid clamp — confirmed via the live site's resolved custom property at
+   several viewports, not guessed. */
 .text-fluid-section-gap {
-  padding-block: clamp(3rem, 2.5rem + 3vw, 6rem);
+  padding-block: 4rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .text-fluid-section-gap {
+    padding-block: 7rem;
+  }
 }
 
 /* Matches the original marquee band's exact fluid values (scaling between
