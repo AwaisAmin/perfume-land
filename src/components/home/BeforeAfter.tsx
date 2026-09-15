@@ -25,7 +25,7 @@ export default function BeforeAfter() {
       <div className="container-app mx-auto max-w-315">
         <Reveal
           ref={containerRef}
-          className="relative aspect-5094/2842 select-none overflow-hidden rounded-md"
+          className="relative aspect-5094/2842 select-none"
           onPointerDown={(e: React.PointerEvent<HTMLDivElement>) => {
             dragging.current = true;
             e.currentTarget.setPointerCapture(e.pointerId);
@@ -40,7 +40,7 @@ export default function BeforeAfter() {
           }}
         >
           {/* For Him (base layer, full width) */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 overflow-hidden rounded-md bg-cream-200">
             <Image
               src={beforeAfterImages.him}
               alt=""
@@ -56,7 +56,7 @@ export default function BeforeAfter() {
 
           {/* For Her (clipped overlay, revealed from the right) */}
           <div
-            className="absolute inset-0 overflow-hidden"
+            className="absolute inset-0 overflow-hidden rounded-md bg-cream-200"
             style={{ clipPath: `inset(0 0 0 ${position}%)` }}
           >
             <Image
@@ -72,12 +72,15 @@ export default function BeforeAfter() {
             </div>
           </div>
 
-          {/* Divider handle */}
+          {/* Divider handle. Deliberately outside the rounded/clipped image
+              layers above (not overflow-hidden itself) so at 0%/100% it
+              sits half off the edge, same as the reference site, instead
+              of being cropped flush with the border. */}
           <div
             className="absolute top-0 bottom-0 w-0.5 bg-cream-50"
             style={{ left: `${position}%` }}
           >
-            <div className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream-50 text-forest-900 shadow-md">
+            <div className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream-50 text-forest-900 shadow-md sm:h-12.5 sm:w-12.5">
               <ChevronLeft size={14} />
               <ChevronRight size={14} />
             </div>
