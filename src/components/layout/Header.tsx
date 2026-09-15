@@ -16,7 +16,7 @@ import MobileDrawer from "./MobileDrawer";
 
 type MenuKey = "brand" | "worldwide" | "country" | null;
 
-const iconButtonClass = "transition-opacity duration-200 hover:opacity-70";
+const iconButtonClass = "cursor-pointer transition-opacity duration-200 hover:opacity-70";
 
 function NavItem({
   href,
@@ -50,7 +50,7 @@ function NavItem({
   }
 
   return (
-    <button type="button" onMouseEnter={onMouseEnter} className={className}>
+    <button type="button" onMouseEnter={onMouseEnter} className={`cursor-pointer ${className}`}>
       {children}
       {underline}
     </button>
@@ -186,8 +186,8 @@ export default function Header() {
                   >
                     <button
                       type="button"
-                      className={`flex w-full items-center justify-between px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest transition-colors ${
-                        activeGroup === group.title ? "bg-cream-50/10" : "hover:bg-cream-50/5"
+                      className={`flex w-full cursor-pointer items-center justify-between px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest transition-colors ${
+                        activeGroup === group.title ? "text-cream-50/50" : "text-cream-50 hover:text-cream-50/50"
                       }`}
                     >
                       {group.title}
@@ -207,7 +207,7 @@ export default function Header() {
                             <li key={link.href}>
                               <Link
                                 href={link.href}
-                                className="block px-5 py-3 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-cream-50/10 hover:text-gold-400"
+                                className="block px-5 py-3 text-xs font-semibold uppercase tracking-widest text-cream-50 transition-colors hover:text-cream-50/50"
                               >
                                 {link.label}
                               </Link>
@@ -252,9 +252,9 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="flex items-center gap-3 px-5 py-2.5 text-sm transition-colors hover:bg-cream-50/10"
+                    className="flex items-baseline gap-1.5 px-5 py-2.5 text-sm text-cream-50 transition-colors hover:text-cream-50/50"
                   >
-                    <span className="w-6 text-xs font-semibold text-gold-400">{link.code}</span>
+                    <span className="text-[10px] font-semibold">{link.code}</span>
                     <span className="uppercase tracking-wide">{link.label}</span>
                   </Link>
                 ))}
@@ -278,7 +278,7 @@ export default function Header() {
               <button
                 key={c.label}
                 type="button"
-                className="block w-full rounded px-3 py-2 text-left text-sm hover:bg-cream-200"
+                className="block w-full cursor-pointer rounded px-3 py-2 text-left text-sm hover:bg-cream-200"
               >
                 {c.label}
               </button>
