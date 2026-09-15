@@ -34,7 +34,7 @@ function NavItem({
   const underline = (
     <span
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-x-3 bottom-0 h-px origin-left bg-cream-50 transition-transform duration-300 ease-out ${
+      className={`pointer-events-none absolute inset-x-3 bottom-0 h-0.5 origin-left bg-cream-50 transition-transform duration-300 ease-out ${
         active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
       }`}
     />
@@ -59,7 +59,7 @@ function NavItem({
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState<MenuKey>(null);
-  const [activeGroup, setActiveGroup] = useState(brandImpressionsGroups[0].title);
+  const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -68,7 +68,7 @@ export default function Header() {
   const closeMenus = () => {
     setOpenMenu(null);
     setHovered(false);
-    setActiveGroup(brandImpressionsGroups[0].title);
+    setActiveGroup(null);
   };
 
   // Publish the header's real (responsive) height so the hero below can pull
@@ -90,13 +90,13 @@ export default function Header() {
     <header
       ref={headerRef}
       className={`relative z-40 w-full text-cream-50 transition-colors duration-300 ${
-        hovered ? "bg-forest-950" : "bg-transparent"
+        hovered ? "bg-forest-900" : "bg-transparent"
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={closeMenus}
     >
       {/* Row 1: spacer / logo / account icons */}
-      <div className="container-app grid grid-cols-3 items-center py-2">
+      <div className="container-app grid grid-cols-3 items-center py-5">
         <div />
 
         <Link href="/" className="justify-self-center" aria-label="Amanzada home">
@@ -148,9 +148,9 @@ export default function Header() {
       </div>
 
       {/* Row 2: primary navigation */}
-      <div className="container-app hidden items-center justify-center gap-2 lg:flex">
+      <div className="container-app hidden items-center justify-center gap-8 lg:flex">
         {primaryNavStart.map((link) => (
-          <NavItem key={link.href} href={link.href}>
+          <NavItem key={link.href} href={link.href} onMouseEnter={() => setOpenMenu(null)}>
             {link.label}
           </NavItem>
         ))}
@@ -160,6 +160,15 @@ export default function Header() {
             Brand Impressions
           </NavItem>
 
+          {/* When the mega-menu is open, the indicator widens to match the
+              first flyout column below it, instead of just the label width. */}
+          {openMenu === "brand" && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-3 bottom-0 h-0.5 w-56 bg-cream-50"
+            />
+          )}
+
           <AnimatePresence>
             {openMenu === "brand" && (
               <motion.ul
@@ -167,7 +176,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className="absolute left-0 top-full z-10 w-56 bg-forest-950 py-3"
+                className="absolute left-3 top-full z-10 w-56 bg-forest-900 py-3"
               >
                 {brandImpressionsGroups.map((group) => (
                   <li
@@ -178,9 +187,7 @@ export default function Header() {
                     <button
                       type="button"
                       className={`flex w-full items-center justify-between px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest transition-colors ${
-                        activeGroup === group.title
-                          ? "bg-cream-50/10 text-gold-400"
-                          : "hover:bg-cream-50/5"
+                        activeGroup === group.title ? "bg-cream-50/10" : "hover:bg-cream-50/5"
                       }`}
                     >
                       {group.title}
@@ -194,7 +201,7 @@ export default function Header() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -6 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute left-full top-0 w-56 border-l border-cream-50/10 bg-forest-950 py-3"
+                          className="absolute left-full top-0 w-56 border-l border-cream-50/10 bg-forest-900 py-3"
                         >
                           {group.links.map((link) => (
                             <li key={link.href}>
@@ -217,13 +224,20 @@ export default function Header() {
         </div>
 
         {primaryNavEnd.map((link) => (
-          <NavItem key={link.href} href={link.href}>
+          <NavItem key={link.href} href={link.href} onMouseEnter={() => setOpenMenu(null)}>
             {link.label}
           </NavItem>
         ))}
 
         <div className="relative" onMouseEnter={() => setOpenMenu("worldwide")}>
           <NavItem active={openMenu === "worldwide"}>World Wide</NavItem>
+
+          {openMenu === "worldwide" && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-3 bottom-0 h-0.5 w-64 bg-cream-50"
+            />
+          )}
 
           <AnimatePresence>
             {openMenu === "worldwide" && (
@@ -232,7 +246,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className="absolute left-0 top-full z-10 flex w-64 flex-col bg-forest-950 py-2"
+                className="absolute left-3 top-full z-10 flex w-64 flex-col bg-forest-900 py-2"
               >
                 {worldwideLinks.map((link) => (
                   <Link
@@ -279,7 +293,7 @@ export default function Header() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t border-cream-50/10 bg-forest-950"
+            className="overflow-hidden border-t border-cream-50/10 bg-forest-900"
           >
             <div className="container-app flex items-center gap-3 py-5">
               <Search size={18} className="shrink-0 opacity-50" />
