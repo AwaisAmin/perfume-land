@@ -48,7 +48,7 @@ export default function AnnouncementBar() {
           type="button"
           aria-label="Previous announcement"
           onClick={() => go(-1)}
-          className="absolute -left-14 top-1/2 flex h-6 w-6 -translate-y-1/2 cursor-pointer items-center justify-center text-ink/60 transition hover:text-ink"
+          className="absolute left-0 top-1/2 flex h-6 w-6 -translate-y-1/2 cursor-pointer items-center justify-center text-ink/60 transition hover:text-ink"
         >
           <ChevronLeft size={16} />
         </button>
@@ -70,7 +70,7 @@ export default function AnnouncementBar() {
           type="button"
           aria-label="Next announcement"
           onClick={() => go(1)}
-          className="absolute -right-14 top-1/2 flex h-6 w-6 -translate-y-1/2 cursor-pointer items-center justify-center text-ink/60 transition hover:text-ink"
+          className="absolute right-0 top-1/2 flex h-6 w-6 -translate-y-1/2 cursor-pointer items-center justify-center text-ink/60 transition hover:text-ink"
         >
           <ChevronRight size={16} />
         </button>

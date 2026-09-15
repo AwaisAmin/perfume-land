@@ -2,14 +2,25 @@ import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
 import FeaturedCollection from "@/components/home/FeaturedCollection";
 import MediaGrid from "@/components/home/MediaGrid";
+import ShopTheLook from "@/components/home/ShopTheLook";
 import BeforeAfter from "@/components/home/BeforeAfter";
 import FeaturedProduct from "@/components/home/FeaturedProduct";
 import AboutValues from "@/components/home/AboutValues";
 import Newsletter from "@/components/home/Newsletter";
 import { collections, featuredProduct } from "@/data/products";
+import type { Collection } from "@/lib/types";
+
+function getCollection(id: Collection["id"]) {
+  const collection = collections.find((c) => c.id === id);
+  if (!collection) throw new Error(`Missing collection: ${id}`);
+  return collection;
+}
 
 export default function Home() {
-  const [signature, standard, oil, interior] = collections;
+  const standard = getCollection("standard");
+  const signature = getCollection("signature");
+  const oil = getCollection("oil");
+  const interior = getCollection("interior");
 
   return (
     <>
@@ -20,9 +31,10 @@ export default function Home() {
       <FeaturedCollection collection={signature} />
       <MediaGrid />
       <FeaturedCollection collection={oil} />
+      <ShopTheLook />
+      <FeaturedCollection collection={interior} />
       <BeforeAfter />
       <FeaturedProduct product={featuredProduct} />
-      <FeaturedCollection collection={interior} />
       <AboutValues />
       <Newsletter />
     </>

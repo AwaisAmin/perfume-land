@@ -24,7 +24,7 @@ export default function MediaGrid() {
     <section className="text-fluid-section-gap">
       <div className="container-app">
         <Reveal className="text-center">
-          <h2 className="text-fluid-h2 font-normal">Curated For You</h2>
+          <h2 className="text-fluid-h2 font-normal text-forest-900">Curated For You</h2>
         </Reveal>
 
         <div className="mt-12 flex flex-wrap items-start justify-center gap-x-6 gap-y-8 sm:gap-x-44">

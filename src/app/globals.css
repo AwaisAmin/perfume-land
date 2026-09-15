@@ -38,6 +38,7 @@
   --animate-marquee: marquee 30s linear infinite;
   --animate-marquee-reverse: marquee-reverse 33s linear infinite;
   --animate-icon-block: icon-block 0.35s ease-in-out forwards;
+  --animate-hot-spot-ping: hot-spot-ping 2s ease-in-out infinite alternate;
 }
 
 @keyframes marquee {
@@ -76,6 +77,16 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* The soft glow ring behind each shop-the-look hot spot, pulsing in place. */
+@keyframes hot-spot-ping {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
   }
 }
 
@@ -122,9 +133,14 @@ h6 {
   line-height: 1.15;
 }
 
+/* Matches the original theme's actual --text-h2 formula exactly, plus its
+   global heading treatment (uppercase, 0.18em tracking) — reverse-engineered
+   from the live site's computed styles, not guessed. */
 .text-fluid-h2 {
-  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  font-size: clamp(1.25rem, 1.0670731707317074rem + 0.7804878048780488vw, 1.75rem);
   line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 .text-fluid-section-gap {

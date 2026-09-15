@@ -1,5 +1,15 @@
 import type { Collection, Product } from "@/lib/types";
 
+export type ShopTheLookItem = {
+  handle: string;
+  title: string;
+  price: number;
+  image: string;
+  /** Hot-spot position on the group photo, as a percentage. */
+  top: number;
+  left: number;
+};
+
 let autoId = 0;
 
 // DEV-ONLY placeholders — hotlinked from the reference site's own CDN so we
@@ -8,7 +18,6 @@ let autoId = 0;
 const CDN = "https://amanzadaperfumes.com/cdn/shop/files";
 const DEV_IMAGE = {
   impression: `${CDN}/Impressions_Perfume_Bottle_Main.png?width=1124`,
-  signature: `${CDN}/CannabisWeb.png?width=1124`,
   backToBlackOud: `${CDN}/BackToBlackOudWeb.png?width=1124`,
   oil: `${CDN}/Perfume_Oil_Main.jpg?width=1124`,
   interior: `${CDN}/Interior_Perfume_Bottle_MAIN.jpg?width=1124`,
@@ -35,19 +44,54 @@ function product({ title, price, compareAtPrice, kicker, image }: ProductInput):
   };
 }
 
-export const collections: Collection[] = [
+// The "Signature Fragrances" section isn't a plain grid on the reference
+// site — it's a shoppable lifestyle photo with hot spots. See ShopTheLook.
+export const shopTheLookImage = `${CDN}/Luxury_Perfume_Collection.png?width=1400`;
+
+export const shopTheLookItems: ShopTheLookItem[] = [
   {
-    id: "signature",
-    handle: "signature-collection",
-    kicker: "made in dubai",
-    title: "Signature Fragrances",
-    products: [
-      product({ title: "Oud Royale", price: 249, compareAtPrice: 620, image: DEV_IMAGE.signature }),
-      product({ title: "Amber Noir", price: 229, compareAtPrice: 560, image: DEV_IMAGE.signature }),
-      product({ title: "Velvet Musk", price: 259, compareAtPrice: 640, image: DEV_IMAGE.signature }),
-      product({ title: "Golden Saffron", price: 239, compareAtPrice: 590, image: DEV_IMAGE.signature }),
-    ],
+    handle: "amanzada-back-to-black-oud",
+    title: "Amanzada - Back To Black Oud",
+    price: 280,
+    image: `${CDN}/BackToBlackOudWeb.png?width=800`,
+    top: 25,
+    left: 40,
   },
+  {
+    handle: "amanzada-cannabis",
+    title: "Amanzada - Cannabis",
+    price: 280,
+    image: `${CDN}/CannabisWeb.png?width=800`,
+    top: 49,
+    left: 72,
+  },
+  {
+    handle: "amanzada-cherry-love",
+    title: "Amanzada - Cherry Love",
+    price: 280,
+    image: `${CDN}/CherryLoveWeb.png?width=800`,
+    top: 49,
+    left: 29,
+  },
+  {
+    handle: "amanzada-oud-absolute",
+    title: "Amanzada - Oud Absolute",
+    price: 280,
+    image: `${CDN}/OudAbsoluteWeb.png?width=800`,
+    top: 25,
+    left: 60,
+  },
+  {
+    handle: "amanzada-heavenly-oud",
+    title: "Amanzada - Heavenly Oud",
+    price: 280,
+    image: `${CDN}/HeavenlyOud.png?width=800`,
+    top: 49,
+    left: 50,
+  },
+];
+
+export const collections: Collection[] = [
   {
     id: "standard",
     handle: "standard-collection",
@@ -77,6 +121,42 @@ export const collections: Collection[] = [
         price: 80,
         compareAtPrice: 684,
         image: DEV_IMAGE.impression,
+      }),
+    ],
+  },
+  {
+    // The reference site shows this same collection twice: once as a plain
+    // grid right after the marquees, and again later as the interactive
+    // ShopTheLook hot-spot component — both share the "made in dubai"
+    // kicker and the same product photography.
+    id: "signature",
+    handle: "amanzada-collection",
+    kicker: "made in dubai",
+    title: "Signature Fragrances",
+    products: [
+      product({
+        title: "Amanzada - Back To Black Oud",
+        price: 280,
+        compareAtPrice: 340,
+        image: `${CDN}/BackToBlackOudWeb.png?width=1124`,
+      }),
+      product({
+        title: "Amanzada - Cannabis",
+        price: 280,
+        compareAtPrice: 340,
+        image: `${CDN}/CannabisWeb.png?width=1124`,
+      }),
+      product({
+        title: "Amanzada - Cherry Love",
+        price: 280,
+        compareAtPrice: 340,
+        image: `${CDN}/CherryLoveWeb.png?width=1124`,
+      }),
+      product({
+        title: "Amanzada - Oud Absolute",
+        price: 280,
+        compareAtPrice: 340,
+        image: `${CDN}/OudAbsoluteWeb.png?width=1124`,
       }),
     ],
   },

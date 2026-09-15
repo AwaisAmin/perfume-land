@@ -11,7 +11,7 @@ export default function Newsletter() {
     <section className="text-fluid-section-gap bg-gold-500 text-cream-50">
       <div className="container-app flex flex-col items-center text-center">
         <Reveal className="flex flex-col items-center gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+          <p className="text-xs font-normal uppercase tracking-[0.18em]">
             Keep me updated
           </p>
           <h2 className="text-fluid-h2 font-normal">Newsletter</h2>
