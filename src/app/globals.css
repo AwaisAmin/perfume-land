@@ -37,7 +37,7 @@
 
   --animate-marquee: marquee 22s linear infinite;
   --animate-marquee-reverse: marquee-reverse 26s linear infinite;
-  --animate-bounce-slow: bounce-slow 2.2s ease-in-out infinite;
+  --animate-icon-block: icon-block 0.35s ease-in-out forwards;
 }
 
 @keyframes marquee {
@@ -58,13 +58,24 @@
   }
 }
 
-@keyframes bounce-slow {
-  0%,
-  100% {
+/* Matches the original theme's circle-button icon hover animation: the icon
+   dips down and fades out, then reappears from above and settles back in. */
+@keyframes icon-block {
+  0% {
+    opacity: 1;
     transform: translateY(0);
   }
   50% {
-    transform: translateY(6px);
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  51% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

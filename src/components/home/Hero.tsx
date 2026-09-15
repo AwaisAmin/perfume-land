@@ -27,7 +27,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex w-full items-center justify-center overflow-hidden bg-forest-950"
+      className="relative flex w-full items-center justify-center bg-forest-950"
       style={{
         height: "calc(100vh - var(--announcement-height, 40px))",
         marginTop: "calc(-1 * var(--header-height, 132px))",
@@ -81,9 +81,9 @@ export default function Hero() {
         type="button"
         onClick={scrollToNext}
         aria-label="Scroll to next section"
-        className="absolute bottom-0 left-1/2 z-10 flex h-11 w-11 -translate-x-1/2 translate-y-1/2 animate-bounce-slow items-center justify-center rounded-full border border-cream-50/30 bg-forest-950 text-cream-50 shadow-lg transition hover:bg-forest-900"
+        className="group absolute bottom-0 left-1/2 z-10 flex h-12.5 w-12.5 -translate-x-1/2 translate-y-1/2 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-cream-50 text-ink shadow-[0_0.125rem_0.625rem_rgba(28,28,26,0.15)]"
       >
-        <ChevronDown size={18} />
+        <ChevronDown size={16} className="group-hover:animate-icon-block" />
       </button>
     </section>
   );
