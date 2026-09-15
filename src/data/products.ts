@@ -35,6 +35,13 @@ const DEV_IMAGE = {
   interior: `${CDN}/Interior_Perfume_Bottle_MAIN.jpg?width=1124`,
 };
 
+// DEV-ONLY: the before/after slider's two photos. Swap for your own shoot
+// before this ships — same 5094x2842 (~16:9) crop keeps the layout intact.
+export const beforeAfterImages = {
+  him: `${CDN}/For_Him.jpg?width=2200`,
+  her: `${CDN}/For_Her.jpg?width=2200`,
+};
+
 type ProductInput = {
   title: string;
   price: number;
