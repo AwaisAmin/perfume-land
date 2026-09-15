@@ -12,10 +12,8 @@ export default function Marquee({ text, tone = "gold", direction = "left" }: Mar
   return (
     <div
       className={clsx(
-        "overflow-hidden border-y py-4",
-        tone === "gold"
-          ? "border-gold-600/40 bg-gold-500 text-cream-50"
-          : "border-forest-700 bg-forest-800 text-cream-100",
+        "marquee-padding overflow-hidden border-y text-cream-100",
+        tone === "gold" ? "border-gold-600/40 bg-gold-500" : "border-forest-700 bg-forest-800",
       )}
     >
       <div
@@ -27,7 +25,7 @@ export default function Marquee({ text, tone = "gold", direction = "left" }: Mar
         {items.map((i) => (
           <span
             key={i}
-            className="text-fluid-h2 mx-6 font-extrabold uppercase tracking-wide"
+            className="marquee-text marquee-gap font-heading font-normal uppercase"
           >
             {text}
           </span>

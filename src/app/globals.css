@@ -130,3 +130,18 @@ h6 {
 .text-fluid-section-gap {
   padding-block: clamp(3rem, 2.5rem + 3vw, 6rem);
 }
+
+/* Matches the original marquee band's exact fluid values (scaling between
+   a 375px and 1400px viewport): font-size 14px→34px, the gap between
+   repeated items 25px→50px, and the band's vertical padding 10px→30px. */
+.marquee-text {
+  font-size: clamp(14px, 6.68px + 1.951vw, 34px);
+}
+
+.marquee-gap {
+  margin-inline: clamp(12.5px, 7.93px + 1.22vw, 25px);
+}
+
+.marquee-padding {
+  padding-block: clamp(10px, 2.68px + 1.951vw, 30px);
+}
