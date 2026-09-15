@@ -13,6 +13,7 @@ const HERO_POSTER =
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
+  const [videoReady, setVideoReady] = useState(false);
 
   const scrollToNext = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
@@ -32,16 +33,27 @@ export default function Hero() {
         marginTop: "calc(-1 * var(--header-height, 132px))",
       }}
     >
+      {/* Poster is a plain CSS background so it always paints instantly,
+          independent of whether the (large) video has buffered yet. */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${HERO_POSTER})` }}
+      />
+
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          videoReady ? "opacity-100" : "opacity-0"
+        }`}
         src={HERO_VIDEO_SRC}
         poster={HERO_POSTER}
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
+        onCanPlay={() => setVideoReady(true)}
+        onError={() => setVideoReady(false)}
       />
       <div className="absolute inset-0 bg-linear-to-t from-forest-950/80 via-forest-950/10 to-forest-950/30" />
 
