@@ -103,6 +103,14 @@ h6 {
   padding-inline: clamp(1rem, 1rem + 2vw, 3rem);
 }
 
+/* Same responsive gutter as .container-app, but no max-width — the header
+   spans the full viewport edge-to-edge like the original site, instead of
+   being capped and centered on wide screens. */
+.container-header {
+  width: 100%;
+  padding-inline: clamp(1rem, 1rem + 2vw, 3rem);
+}
+
 .text-fluid-h1 {
   font-size: clamp(2.25rem, 1.7rem + 2.5vw, 4.25rem);
   line-height: 1.05;

@@ -11,6 +11,7 @@ import {
   primaryNavStart,
   worldwideLinks,
 } from "@/data/nav";
+import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
 import MobileDrawer from "./MobileDrawer";
 
@@ -96,59 +97,99 @@ export default function Header() {
       onMouseLeave={closeMenus}
     >
       {/* Row 1: spacer / logo / account icons */}
-      <div className="container-app grid grid-cols-3 items-center py-5">
+      <div className="container-header grid grid-cols-3 items-center py-5">
         <div />
 
-        <Link href="/" className="justify-self-center" aria-label="Amanzada home">
+        <Link
+          href="/"
+          onMouseEnter={() => setOpenMenu(null)}
+          className="justify-self-center"
+          aria-label="Amanzada home"
+        >
           <Logo className="border-cream-50/40" />
         </Link>
 
-        <div className="flex items-end justify-self-end gap-4 sm:gap-5">
+        <div className="flex items-center justify-self-end gap-5 sm:gap-6">
           <div className="relative hidden sm:block">
             <button
               type="button"
               onClick={() => setOpenMenu((m) => (m === "country" ? null : "country"))}
-              className={`flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest ${iconButtonClass}`}
+              className={`flex items-center gap-1.5 text-sm font-semibold uppercase tracking-widest ${iconButtonClass}`}
             >
-              🇦🇪 AED
-              <ChevronDown size={12} />
+              <Flag code="ae" className="h-4 w-5.5 shrink-0 rounded-[1px]" />
+              AED
+              <span className="text-xs opacity-60">د.إ</span>
+              <ChevronDown size={13} />
             </button>
+
+            <AnimatePresence>
+              {openMenu === "country" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.18 }}
+                  className="absolute right-0 top-full z-10 mt-2 max-h-80 w-64 overflow-y-auto rounded-md border border-cream-50/10 bg-forest-900 p-2 shadow-lg"
+                >
+                  {countrySelector.map((c) => (
+                    <button
+                      key={c.code}
+                      type="button"
+                      className="flex w-full cursor-pointer items-center gap-2.5 rounded px-3 py-2 text-left text-sm text-cream-50/50 transition-colors hover:text-cream-50"
+                    >
+                      <Flag code={c.code} className="h-3.5 w-5 shrink-0 rounded-[1px]" />
+                      <span>
+                        {c.label} <span className="whitespace-nowrap">(AED د.إ)</span>
+                      </span>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <Link
             href="/account"
-            className={`hidden flex-col items-center gap-0.5 text-[10px] font-semibold uppercase tracking-widest md:flex ${iconButtonClass}`}
+            onMouseEnter={() => setOpenMenu(null)}
+            className={`hidden flex-col items-center gap-0.5 text-xs font-semibold uppercase tracking-widest md:flex ${iconButtonClass}`}
           >
-            <User size={17} />
+            <User size={19} />
             <span>Login</span>
           </Link>
 
           <button
             type="button"
             aria-label="Search"
+            onMouseEnter={() => setOpenMenu(null)}
             onClick={() => setSearchOpen((s) => !s)}
             className={iconButtonClass}
           >
-            <Search size={18} />
+            <Search size={20} />
           </button>
 
-          <Link href="/cart" aria-label="Cart" className={iconButtonClass}>
-            <ShoppingBag size={18} />
+          <Link
+            href="/cart"
+            aria-label="Cart"
+            onMouseEnter={() => setOpenMenu(null)}
+            className={iconButtonClass}
+          >
+            <ShoppingBag size={20} />
           </Link>
 
           <button
             type="button"
             aria-label="Open menu"
+            onMouseEnter={() => setOpenMenu(null)}
             className={`lg:hidden ${iconButtonClass}`}
             onClick={() => setMobileOpen(true)}
           >
-            <Menu size={22} />
+            <Menu size={24} />
           </button>
         </div>
       </div>
 
       {/* Row 2: primary navigation */}
-      <div className="container-app hidden items-center justify-center gap-8 pb-1 lg:flex">
+      <div className="container-header hidden items-center justify-center gap-8 pb-1 lg:flex">
         {primaryNavStart.map((link) => (
           <NavItem key={link.href} href={link.href} onMouseEnter={() => setOpenMenu(null)}>
             {link.label}
@@ -265,29 +306,6 @@ export default function Header() {
       </div>
 
       <AnimatePresence>
-        {openMenu === "country" && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
-            className="absolute right-0 top-full z-10 w-64 rounded-md border border-ink/10 bg-cream-50 p-2 text-ink shadow-lg"
-            style={{ insetInlineEnd: "clamp(1rem, 1rem + 2vw, 3rem)" }}
-          >
-            {countrySelector.map((c) => (
-              <button
-                key={c.label}
-                type="button"
-                className="block w-full cursor-pointer rounded px-3 py-2 text-left text-sm hover:bg-cream-200"
-              >
-                {c.label}
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
         {searchOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
@@ -295,7 +313,7 @@ export default function Header() {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden border-t border-cream-50/10 bg-forest-900"
           >
-            <div className="container-app flex items-center gap-3 py-5">
+            <div className="container-header flex items-center gap-3 py-5">
               <Search size={18} className="shrink-0 opacity-50" />
               <input
                 autoFocus
