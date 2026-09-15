@@ -147,6 +147,9 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
                               onClick={onClose}
                               className="text-sm text-cream-100/70"
                             >
+                              <span className="mr-2 text-xs font-semibold text-gold-400">
+                                {link.code}
+                              </span>
                               {link.label}
                             </Link>
                           </li>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, User, X } from "lucide-react";
@@ -16,19 +16,60 @@ import MobileDrawer from "./MobileDrawer";
 
 type MenuKey = "brand" | "worldwide" | "country" | null;
 
-const navLinkClass =
-  "rounded-md px-3 py-2 text-xs font-semibold uppercase tracking-widest transition-colors duration-200 hover:bg-cream-50/10";
+const iconButtonClass = "transition-opacity duration-200 hover:opacity-70";
+
+function NavItem({
+  href,
+  children,
+  active = false,
+  onMouseEnter,
+}: {
+  href?: string;
+  children: ReactNode;
+  active?: boolean;
+  onMouseEnter?: () => void;
+}) {
+  const className =
+    "group relative px-3 py-2 text-xs font-semibold uppercase tracking-widest";
+  const underline = (
+    <span
+      aria-hidden="true"
+      className={`pointer-events-none absolute inset-x-3 -bottom-0.5 h-px origin-left bg-cream-50 transition-transform duration-300 ease-out ${
+        active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+      }`}
+    />
+  );
+
+  if (href) {
+    return (
+      <Link href={href} onMouseEnter={onMouseEnter} className={className}>
+        {children}
+        {underline}
+      </Link>
+    );
+  }
+
+  return (
+    <button type="button" onMouseEnter={onMouseEnter} className={className}>
+      {children}
+      {underline}
+    </button>
+  );
+}
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState<MenuKey>(null);
   const [activeGroup, setActiveGroup] = useState(brandImpressionsGroups[0].title);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
-  const closeMenus = () => setOpenMenu(null);
-  const activeLinks =
-    brandImpressionsGroups.find((g) => g.title === activeGroup)?.links ?? [];
+  const closeMenus = () => {
+    setOpenMenu(null);
+    setHovered(false);
+    setActiveGroup(brandImpressionsGroups[0].title);
+  };
 
   // Publish the header's real (responsive) height so the hero below can pull
   // itself up underneath it and overlay it transparently, instead of the
@@ -48,7 +89,10 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className="relative z-40 w-full bg-transparent text-cream-50"
+      className={`relative z-40 w-full text-cream-50 transition-colors duration-300 ${
+        hovered ? "bg-forest-950" : "bg-transparent"
+      }`}
+      onMouseEnter={() => setHovered(true)}
       onMouseLeave={closeMenus}
     >
       {/* Row 1: spacer / logo / account icons */}
@@ -59,12 +103,12 @@ export default function Header() {
           <Logo className="border-cream-50/40" />
         </Link>
 
-        <div className="flex items-center justify-self-end gap-4 sm:gap-5">
+        <div className="flex items-end justify-self-end gap-4 sm:gap-5">
           <div className="relative hidden sm:block">
             <button
               type="button"
               onClick={() => setOpenMenu((m) => (m === "country" ? null : "country"))}
-              className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold uppercase tracking-widest transition hover:bg-cream-50/10"
+              className={`flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest ${iconButtonClass}`}
             >
               🇦🇪 AED
               <ChevronDown size={12} />
@@ -73,7 +117,7 @@ export default function Header() {
 
           <Link
             href="/account"
-            className="hidden items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold uppercase tracking-widest transition hover:bg-cream-50/10 md:flex"
+            className={`hidden flex-col items-center gap-0.5 text-[10px] font-semibold uppercase tracking-widest md:flex ${iconButtonClass}`}
           >
             <User size={17} />
             <span>Login</span>
@@ -83,19 +127,19 @@ export default function Header() {
             type="button"
             aria-label="Search"
             onClick={() => setSearchOpen((s) => !s)}
-            className="rounded-md p-1.5 transition hover:bg-cream-50/10"
+            className={iconButtonClass}
           >
             <Search size={18} />
           </button>
 
-          <Link href="/cart" aria-label="Cart" className="rounded-md p-1.5 transition hover:bg-cream-50/10">
+          <Link href="/cart" aria-label="Cart" className={iconButtonClass}>
             <ShoppingBag size={18} />
           </Link>
 
           <button
             type="button"
             aria-label="Open menu"
-            className="rounded-md p-1.5 transition hover:bg-cream-50/10 lg:hidden"
+            className={`lg:hidden ${iconButtonClass}`}
             onClick={() => setMobileOpen(true)}
           >
             <Menu size={22} />
@@ -106,71 +150,80 @@ export default function Header() {
       {/* Row 2: primary navigation */}
       <div className="container-app hidden items-center justify-center gap-2 pb-3 lg:flex">
         {primaryNavStart.map((link) => (
-          <Link key={link.href} href={link.href} className={navLinkClass}>
+          <NavItem key={link.href} href={link.href}>
             {link.label}
-          </Link>
+          </NavItem>
         ))}
 
         <div className="relative" onMouseEnter={() => setOpenMenu("brand")}>
-          <Link href="/collections/standard-collection" className={navLinkClass}>
+          <NavItem href="/collections/standard-collection" active={openMenu === "brand"}>
             Brand Impressions
-          </Link>
+          </NavItem>
 
           <AnimatePresence>
             {openMenu === "brand" && (
-              <motion.div
+              <motion.ul
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className="absolute left-1/2 top-full z-10 flex -translate-x-1/2 overflow-hidden rounded-md border border-cream-50/10 bg-forest-950 shadow-xl"
+                className="absolute left-0 top-full z-10 w-56 border-t border-cream-50 bg-forest-950 py-3"
               >
-                <ul className="w-56 py-3">
-                  {brandImpressionsGroups.map((group) => (
-                    <li key={group.title}>
-                      <button
-                        type="button"
-                        onMouseEnter={() => setActiveGroup(group.title)}
-                        className={`flex w-full items-center justify-between px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest transition-colors ${
-                          activeGroup === group.title
-                            ? "bg-cream-50/10 text-gold-400"
-                            : "hover:bg-cream-50/5"
-                        }`}
-                      >
-                        {group.title}
-                        <ChevronRight size={13} />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+                {brandImpressionsGroups.map((group) => (
+                  <li
+                    key={group.title}
+                    className="relative"
+                    onMouseEnter={() => setActiveGroup(group.title)}
+                  >
+                    <button
+                      type="button"
+                      className={`flex w-full items-center justify-between px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest transition-colors ${
+                        activeGroup === group.title
+                          ? "bg-cream-50/10 text-gold-400"
+                          : "hover:bg-cream-50/5"
+                      }`}
+                    >
+                      {group.title}
+                      <ChevronRight size={13} />
+                    </button>
 
-                <ul className="w-56 border-l border-cream-50/10 py-3">
-                  {activeLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="block px-5 py-3 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-cream-50/10 hover:text-gold-400"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+                    <AnimatePresence>
+                      {activeGroup === group.title && (
+                        <motion.ul
+                          initial={{ opacity: 0, x: -6 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -6 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute left-full top-0 w-56 border-l border-cream-50/10 bg-forest-950 py-3"
+                        >
+                          {group.links.map((link) => (
+                            <li key={link.href}>
+                              <Link
+                                href={link.href}
+                                className="block px-5 py-3 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-cream-50/10 hover:text-gold-400"
+                              >
+                                {link.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                ))}
+              </motion.ul>
             )}
           </AnimatePresence>
         </div>
 
         {primaryNavEnd.map((link) => (
-          <Link key={link.href} href={link.href} className={navLinkClass}>
+          <NavItem key={link.href} href={link.href}>
             {link.label}
-          </Link>
+          </NavItem>
         ))}
 
         <div className="relative" onMouseEnter={() => setOpenMenu("worldwide")}>
-          <button type="button" className={navLinkClass}>
-            World Wide
-          </button>
+          <NavItem active={openMenu === "worldwide"}>World Wide</NavItem>
 
           <AnimatePresence>
             {openMenu === "worldwide" && (
@@ -179,15 +232,16 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className="absolute right-0 top-full z-10 grid w-72 grid-cols-2 gap-1 rounded-md border border-cream-50/10 bg-forest-950 p-3 shadow-xl"
+                className="absolute left-0 top-full z-10 flex w-64 flex-col border-t border-cream-50 bg-forest-950 py-2"
               >
                 {worldwideLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded px-3 py-2 text-xs font-semibold uppercase tracking-wide transition hover:bg-cream-50/10"
+                    className="flex items-center gap-3 px-5 py-2.5 text-sm transition-colors hover:bg-cream-50/10"
                   >
-                    {link.label}
+                    <span className="w-6 text-xs font-semibold text-gold-400">{link.code}</span>
+                    <span className="uppercase tracking-wide">{link.label}</span>
                   </Link>
                 ))}
               </motion.div>

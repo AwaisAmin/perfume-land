@@ -27,15 +27,17 @@ export const brandImpressionsGroups: NavGroup[] = [
   },
 ];
 
-export const worldwideLinks: NavLink[] = [
-  { label: "🇦🇪 United Arab Emirates", href: "/pages/united-arab-emirates" },
-  { label: "🇿🇦 South Africa", href: "/pages/south-africa" },
-  { label: "🇲🇾 Malaysia", href: "/pages/malaysia" },
-  { label: "🇸🇪 Sweden", href: "/pages/sweden" },
-  { label: "🇲🇺 Mauritius", href: "/pages/mauritius" },
-  { label: "🇬🇧 United Kingdom", href: "/pages/united-kingdom" },
-  { label: "🇨🇦 Canada", href: "/pages/canada" },
-  { label: "🇴🇲 Oman", href: "/pages/oman" },
+export const worldwideLinks: { code: string; label: string; href: string }[] = [
+  { code: "AE", label: "United Arab Emirates", href: "/pages/united-arab-emirates" },
+  { code: "ZA", label: "South Africa", href: "/pages/south-africa" },
+  { code: "MY", label: "Malaysia", href: "/pages/malaysia" },
+  { code: "SE", label: "Sweden", href: "/pages/sweden" },
+  { code: "MU", label: "Mauritius", href: "/pages/mauritius" },
+  { code: "GB", label: "United Kingdom", href: "/pages/united-kingdom" },
+  { code: "CA", label: "Canada", href: "/pages/canada" },
+  { code: "OM", label: "Oman", href: "/pages/oman" },
+  { code: "LK", label: "Sri Lanka", href: "/pages/sri-lanka" },
+  { code: "MV", label: "Maldives", href: "/pages/maldives" },
 ];
 
 export const countrySelector: NavLink[] = [
