@@ -10,6 +10,18 @@ export type ShopTheLookItem = {
   left: number;
 };
 
+/**
+ * A single "look" — one lifestyle photo plus the hot-spotted products shown
+ * on it. The reference theme supports multiple looks (its markup literally
+ * IDs them "look-1", "look-2", ...), so this is an array, not one hardcoded
+ * image: adding a second look (e.g. your own custom photography) later is
+ * just another entry here, no component changes needed.
+ */
+export type ShopTheLookGroup = {
+  image: string;
+  items: ShopTheLookItem[];
+};
+
 let autoId = 0;
 
 // DEV-ONLY placeholders — hotlinked from the reference site's own CDN so we
@@ -46,48 +58,53 @@ function product({ title, price, compareAtPrice, kicker, image }: ProductInput):
 
 // The "Signature Fragrances" section isn't a plain grid on the reference
 // site — it's a shoppable lifestyle photo with hot spots. See ShopTheLook.
-export const shopTheLookImage = `${CDN}/Luxury_Perfume_Collection.png?width=1400`;
-
-export const shopTheLookItems: ShopTheLookItem[] = [
+// DEV-ONLY: swap `image` (the group photo) and each item's `image` for your
+// own photography before this ships — nothing else needs to change.
+export const shopTheLookGroups: ShopTheLookGroup[] = [
   {
-    handle: "amanzada-back-to-black-oud",
-    title: "Amanzada - Back To Black Oud",
-    price: 280,
-    image: `${CDN}/BackToBlackOudWeb.png?width=800`,
-    top: 25,
-    left: 40,
-  },
-  {
-    handle: "amanzada-cannabis",
-    title: "Amanzada - Cannabis",
-    price: 280,
-    image: `${CDN}/CannabisWeb.png?width=800`,
-    top: 49,
-    left: 72,
-  },
-  {
-    handle: "amanzada-cherry-love",
-    title: "Amanzada - Cherry Love",
-    price: 280,
-    image: `${CDN}/CherryLoveWeb.png?width=800`,
-    top: 49,
-    left: 29,
-  },
-  {
-    handle: "amanzada-oud-absolute",
-    title: "Amanzada - Oud Absolute",
-    price: 280,
-    image: `${CDN}/OudAbsoluteWeb.png?width=800`,
-    top: 25,
-    left: 60,
-  },
-  {
-    handle: "amanzada-heavenly-oud",
-    title: "Amanzada - Heavenly Oud",
-    price: 280,
-    image: `${CDN}/HeavenlyOud.png?width=800`,
-    top: 49,
-    left: 50,
+    image: `${CDN}/Luxury_Perfume_Collection.png?width=1400`,
+    items: [
+      {
+        handle: "amanzada-back-to-black-oud",
+        title: "Amanzada - Back To Black Oud",
+        price: 280,
+        image: `${CDN}/BackToBlackOudWeb.png?width=800`,
+        top: 25,
+        left: 40,
+      },
+      {
+        handle: "amanzada-cannabis",
+        title: "Amanzada - Cannabis",
+        price: 280,
+        image: `${CDN}/CannabisWeb.png?width=800`,
+        top: 49,
+        left: 72,
+      },
+      {
+        handle: "amanzada-cherry-love",
+        title: "Amanzada - Cherry Love",
+        price: 280,
+        image: `${CDN}/CherryLoveWeb.png?width=800`,
+        top: 49,
+        left: 29,
+      },
+      {
+        handle: "amanzada-oud-absolute",
+        title: "Amanzada - Oud Absolute",
+        price: 280,
+        image: `${CDN}/OudAbsoluteWeb.png?width=800`,
+        top: 25,
+        left: 60,
+      },
+      {
+        handle: "amanzada-heavenly-oud",
+        title: "Amanzada - Heavenly Oud",
+        price: 280,
+        image: `${CDN}/HeavenlyOud.png?width=800`,
+        top: 49,
+        left: 50,
+      },
+    ],
   },
 ];
 

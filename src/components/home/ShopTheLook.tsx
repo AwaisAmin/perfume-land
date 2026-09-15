@@ -4,11 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
-import { shopTheLookImage, shopTheLookItems } from "@/data/products";
+import { shopTheLookGroups } from "@/data/products";
 
 export default function ShopTheLook() {
   const [active, setActive] = useState(0);
-  const item = shopTheLookItems[active];
+  // Only one look exists today, but the data is an array so a second one
+  // (e.g. your own custom photo) is just another entry — see products.ts.
+  const { image: groupImage, items } = shopTheLookGroups[0];
+  const item = items[active];
 
   return (
     <section className="text-fluid-section-gap border-y border-ink/10">
@@ -28,13 +31,13 @@ export default function ShopTheLook() {
           {/* Lifestyle photo with clickable hot spots */}
           <Reveal className="relative aspect-2752/1536 overflow-hidden rounded-md bg-cream-100">
             <Image
-              src={shopTheLookImage}
+              src={groupImage}
               alt=""
               fill
               className="object-cover"
               sizes="(max-width: 767px) 100vw, 550px"
             />
-            {shopTheLookItems.map((hotspot, i) => (
+            {items.map((hotspot, i) => (
               <button
                 key={hotspot.handle}
                 type="button"
@@ -60,18 +63,19 @@ export default function ShopTheLook() {
             ))}
           </Reveal>
 
-          {/* Selected product panel — a plain product photo (no background
-              tile), capped to the reference site's fixed 270px card width
-              so it reads as a compact card next to the wide photo, not a
-              proportional column. */}
+          {/* Selected product panel, capped to the reference site's fixed
+              270px card width so it reads as a compact card next to the
+              wide photo. The cream tile behind the image is fixed — same
+              as every other product card on the site — so only the bottle
+              itself changes when a hot spot is clicked, not the backdrop. */}
           <Reveal delay={0.1} className="mx-auto flex w-full max-w-67.5 flex-col items-center gap-6 text-center">
-            <div className="relative aspect-1125/1398 w-full">
+            <div className="relative aspect-1125/1398 w-full overflow-hidden rounded-md bg-cream-100">
               <Image
                 key={item.handle}
                 src={item.image}
                 alt={item.title}
                 fill
-                className="object-contain"
+                className="object-contain p-8"
                 sizes="270px"
               />
             </div>
@@ -82,7 +86,7 @@ export default function ShopTheLook() {
             <Button href={`/products/${item.handle}`}>View Product</Button>
 
             <div className="mt-1 flex items-center gap-2">
-              {shopTheLookItems.map((hotspot, i) => (
+              {items.map((hotspot, i) => (
                 <button
                   key={hotspot.handle}
                   type="button"
