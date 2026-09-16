@@ -1,18 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState, type ReactNode } from "react";
 import Reveal from "@/components/ui/Reveal";
 
 type ContactFormProps = {
-  kicker?: string;
+  kicker?: ReactNode;
   title?: string;
-  description?: string;
+  description?: ReactNode;
 };
 
 /**
- * The "Suggest a Fragrance" contact form — a standalone, page-agnostic
- * section (no home-specific assumptions), so it can be dropped onto any
- * page via a plain import, optionally overriding its copy via props.
+ * A reusable contact-form section (kicker + heading + description + Name/
+ * E-mail/Message form) — page-agnostic, so it can be dropped onto any page
+ * via a plain import. Used as-is for "Suggest a Fragrance" and with
+ * overridden copy for the general "Contact Us" page; `useId` keeps field
+ * ids unique even when both instances render on the same page.
  */
 export default function ContactForm({
   kicker = "Can't find your perfect scent? Tell us what you're looking for and we'll bring it to you.",
@@ -20,6 +22,7 @@ export default function ContactForm({
   description = "Please include your WhatsApp number in your message so we can reach out to you with personalized fragrance recommendations.",
 }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const id = useId();
 
   return (
     <section className="text-fluid-section-gap border-y border-ink/10 bg-cream-50">
@@ -32,7 +35,7 @@ export default function ContactForm({
           <p className="text-xs font-normal uppercase tracking-[0.18em] text-forest-900">
             {kicker}
           </p>
-          <h2 className="text-fluid-h2 mt-5 font-bold text-forest-900">{title}</h2>
+          <h2 className="text-fluid-h2 mt-4.5 font-semibold text-forest-900">{title}</h2>
           <p className="mt-8 text-ink/70">{description}</p>
         </Reveal>
 
@@ -45,11 +48,11 @@ export default function ContactForm({
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="contact-name" className="sr-only">
+              <label htmlFor={`${id}-name`} className="sr-only">
                 Name
               </label>
               <input
-                id="contact-name"
+                id={`${id}-name`}
                 type="text"
                 required
                 placeholder="Name"
@@ -58,11 +61,11 @@ export default function ContactForm({
               />
             </div>
             <div>
-              <label htmlFor="contact-email" className="sr-only">
+              <label htmlFor={`${id}-email`} className="sr-only">
                 E-mail
               </label>
               <input
-                id="contact-email"
+                id={`${id}-email`}
                 type="email"
                 required
                 placeholder="E-mail"
@@ -73,11 +76,11 @@ export default function ContactForm({
           </div>
 
           <div>
-            <label htmlFor="contact-message" className="sr-only">
+            <label htmlFor={`${id}-message`} className="sr-only">
               Message
             </label>
             <textarea
-              id="contact-message"
+              id={`${id}-message`}
               required
               placeholder="Message"
               rows={4}
