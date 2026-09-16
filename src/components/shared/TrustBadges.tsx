@@ -42,12 +42,16 @@ const badges: Badge[] = [
 export default function TrustBadges() {
   return (
     <section className="text-fluid-section-gap-tight border-y border-ink/10 bg-cream-50">
-      <div className="container-app grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {/* The reference site doesn't stretch these across 3 equal columns —
+          each item is capped at 300px (min(18.75rem, ...)) and the row is
+          centered with a fixed gap, so the badges group together instead
+          of spreading edge to edge on a wide screen. */}
+      <div className="container-app flex flex-wrap justify-center gap-x-15 gap-y-10">
         {badges.map((badge, i) => (
           <Reveal
             key={badge.title}
             delay={i * 0.05}
-            className="flex flex-col items-center gap-3 text-center"
+            className="flex basis-75 grow-0 shrink flex-col items-center gap-3 text-center"
           >
             <badge.icon size={24} strokeWidth={1.5} />
             <div className="flex flex-col gap-1.5">
