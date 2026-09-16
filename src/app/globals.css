@@ -164,6 +164,19 @@ h6 {
   }
 }
 
+/* The reference theme's --section-vertical-spacing-tight variant — used by
+   the trust-badges row, which sits closer to its neighbors than a regular
+   section. */
+.text-fluid-section-gap-tight {
+  padding-block: 2.5rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .text-fluid-section-gap-tight {
+    padding-block: 4rem;
+  }
+}
+
 /* Matches the original marquee band's exact fluid values (scaling between
    a 375px and 1400px viewport): font-size 14px→34px, the gap between
    repeated items 25px→50px, and the band's vertical padding 10px→30px. */

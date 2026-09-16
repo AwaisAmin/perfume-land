@@ -7,6 +7,8 @@ import BeforeAfter from "@/components/home/BeforeAfter";
 import FeaturedProduct from "@/components/home/FeaturedProduct";
 import AboutValues from "@/components/home/AboutValues";
 import Newsletter from "@/components/home/Newsletter";
+import ContactForm from "@/components/shared/ContactForm";
+import TrustBadges from "@/components/shared/TrustBadges";
 import { collections, featuredProduct } from "@/data/products";
 import type { Collection } from "@/lib/types";
 
@@ -37,6 +39,8 @@ export default function Home() {
       <FeaturedProduct product={featuredProduct} />
       <AboutValues />
       <Newsletter />
+      <ContactForm />
+      <TrustBadges />
     </>
   );
 }
