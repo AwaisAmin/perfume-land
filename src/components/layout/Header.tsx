@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import {
@@ -65,6 +66,11 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  // Only the homepage has a dark hero image directly beneath the header for
+  // it to overlay transparently — every other page needs the solid
+  // background by default, or the cream text/logo is invisible against the
+  // plain page background.
+  const isHome = usePathname() === "/";
 
   const closeMenus = () => {
     setOpenMenu(null);
@@ -91,7 +97,7 @@ export default function Header() {
     <header
       ref={headerRef}
       className={`relative z-40 w-full text-cream-50 transition-colors duration-300 ${
-        hovered ? "bg-forest-900" : "bg-transparent"
+        hovered || !isHome ? "bg-forest-900" : "bg-transparent"
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={closeMenus}
@@ -271,7 +277,9 @@ export default function Header() {
         ))}
 
         <div className="relative" onMouseEnter={() => setOpenMenu("worldwide")}>
-          <NavItem active={openMenu === "worldwide"}>World Wide</NavItem>
+          <NavItem href="/pages/world-wide" active={openMenu === "worldwide"}>
+            World Wide
+          </NavItem>
 
           {openMenu === "worldwide" && (
             <span

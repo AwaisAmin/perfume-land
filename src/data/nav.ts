@@ -27,17 +27,16 @@ export const brandImpressionsGroups: NavGroup[] = [
   },
 ];
 
-export const worldwideLinks: { code: string; label: string; href: string }[] = [
-  { code: "AE", label: "United Arab Emirates", href: "/pages/united-arab-emirates" },
-  { code: "ZA", label: "South Africa", href: "/pages/south-africa" },
-  { code: "MY", label: "Malaysia", href: "/pages/malaysia" },
-  { code: "SE", label: "Sweden", href: "/pages/sweden" },
-  { code: "MU", label: "Mauritius", href: "/pages/mauritius" },
-  { code: "GB", label: "United Kingdom", href: "/pages/united-kingdom" },
-  { code: "CA", label: "Canada", href: "/pages/canada" },
-  { code: "OM", label: "Oman", href: "/pages/oman" },
-  { code: "LK", label: "Sri Lanka", href: "/pages/sri-lanka" },
-  { code: "MV", label: "Maldives", href: "/pages/maldives" },
+export const worldwideLinks: { code: string; label: string; slug: string; href: string }[] = [
+  { code: "ZA", label: "South Africa", slug: "south-africa", href: "/pages/world-wide/south-africa" },
+  { code: "MY", label: "Malaysia", slug: "malaysia", href: "/pages/world-wide/malaysia" },
+  { code: "SE", label: "Sweden", slug: "sweden", href: "/pages/world-wide/sweden" },
+  { code: "MU", label: "Mauritius", slug: "mauritius", href: "/pages/world-wide/mauritius" },
+  { code: "GB", label: "United Kingdom", slug: "united-kingdom", href: "/pages/world-wide/united-kingdom" },
+  { code: "CA", label: "Canada", slug: "canada", href: "/pages/world-wide/canada" },
+  { code: "OM", label: "Oman", slug: "oman", href: "/pages/world-wide/oman" },
+  { code: "LK", label: "Sri Lanka", slug: "sri-lanka", href: "/pages/world-wide/sri-lanka" },
+  { code: "MV", label: "Maldives", slug: "maldives", href: "/pages/world-wide/maldives" },
 ];
 
 // The store only settles in AED, so every market shows the same currency —
