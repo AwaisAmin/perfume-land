@@ -9,7 +9,11 @@
   --color-gold-500: #c29c6d;
   --color-gold-400: #d6b78d;
   --color-gold-100: #f1e6d6;
-  --color-cream-50: #faf8f4;
+  /* The reference site's light sections/surfaces are literal white
+     (color-scheme--scheme-1 --background: 255 255 255), not an off-white —
+     this token is used as "white" everywhere (body bg, header, buttons,
+     text-on-dark), so it needs to be true white, not cream-tinted. */
+  --color-cream-50: #ffffff;
   --color-cream-100: #f1ece4;
   --color-cream-200: #e8e1d4;
   --color-ink: #1c1c1a;
