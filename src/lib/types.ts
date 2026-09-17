@@ -12,6 +12,12 @@ export type Product = {
   gender?: "unisex" | "women" | "men";
   /** Drives the collection page's "In stock only" filter. */
   inStock?: boolean;
+  /** Shown on the product detail page. */
+  description?: string;
+  /** The single size shown on the product detail page (e.g. "50ml"). */
+  size?: string;
+  /** Feeds the product detail page's stock progress bar. */
+  stockCount?: number;
 };
 
 export type ProductVariant = {

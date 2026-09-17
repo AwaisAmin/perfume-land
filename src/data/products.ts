@@ -55,6 +55,9 @@ type ProductInput = {
   image?: string;
   gender?: Product["gender"];
   inStock?: boolean;
+  description?: string;
+  size?: string;
+  stockCount?: number;
 };
 
 function product({
@@ -65,6 +68,9 @@ function product({
   image,
   gender = "unisex",
   inStock = true,
+  description,
+  size = "50ml",
+  stockCount = 85,
 }: ProductInput): Product {
   autoId += 1;
   return {
@@ -77,6 +83,9 @@ function product({
     image,
     gender,
     inStock,
+    description,
+    size,
+    stockCount,
   };
 }
 
@@ -149,7 +158,14 @@ export const collections: Collection[] = [
     heroImage: `${CDN_COLLECTIONS}/Home_Page_Impression_Perfume.jpg?width=3000`,
     products: [
       product({ title: "Impression of Oud Maracuja", price: 80, compareAtPrice: 744, image: DEV_IMAGE.impression }),
-      product({ title: "Impression of Vanilla Powder", price: 80, compareAtPrice: 754, image: DEV_IMAGE.impression }),
+      product({
+        title: "Impression of Vanilla Powder",
+        price: 80,
+        compareAtPrice: 754,
+        image: DEV_IMAGE.impression,
+        description:
+          "Vanilla Powder is a soft, comforting fragrance featuring creamy vanilla, tonka bean, heliotrope, and subtle musks, creating a warm, powdery, and elegantly sweet aroma.",
+      }),
       product({ title: "Impression of Blonde Amber", price: 80, compareAtPrice: 647, image: DEV_IMAGE.impression }),
       product({ title: "Impression of Silver Mountain Water", price: 80, compareAtPrice: 684, image: DEV_IMAGE.impression }),
       product({ title: "Impression of Aventus", price: 80, compareAtPrice: 622, image: DEV_IMAGE.impression }),
