@@ -207,11 +207,17 @@ export default function Header() {
             </AnimatePresence>
           </div>
 
-          <div className="relative hidden md:block">
+          {/* This wrapper itself stays rendered on mobile (unlike the
+              country selector, whose whole trigger+popover the live site
+              drops below `sm`) — only the visible desktop button hides —
+              so the mobile drawer's own Login row can open the same
+              popover via the same `openMenu` state instead of needing a
+              second, mobile-only copy of it. */}
+          <div className="relative">
             <button
               type="button"
               onClick={() => setOpenMenu((m) => (m === "login" ? null : "login"))}
-              className={`flex flex-col items-center gap-0.5 text-xs font-semibold uppercase tracking-widest ${iconButtonClass}`}
+              className={`hidden flex-col items-center gap-0.5 text-xs font-semibold uppercase tracking-widest md:flex ${iconButtonClass}`}
             >
               <User size={19} />
               <span>Login</span>
@@ -224,7 +230,12 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.18 }}
-                  className="absolute right-0 top-full z-10 mt-2 w-90 rounded-md border border-cream-50/10 bg-forest-900 p-5 shadow-lg"
+                  // The desktop trigger button (and its `relative` anchor)
+                  // is hidden below `md`, so anchoring this to it there
+                  // pushes the popover off-screen — below `md` it's fixed
+                  // and centered on the viewport instead of positioned
+                  // relative to that invisible anchor.
+                  className="fixed inset-x-4 top-24 z-50 mx-auto w-auto max-w-90 rounded-md border border-cream-50/10 bg-forest-900 p-5 shadow-lg md:absolute md:inset-x-auto md:top-full md:right-0 md:z-10 md:mt-2 md:w-90 md:max-w-none"
                 >
                   <div className="flex items-center justify-between">
                     <p className="text-base font-normal text-cream-50">Sign in or create account</p>
@@ -495,7 +506,14 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileDrawer
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        onLoginClick={() => {
+          setMobileOpen(false);
+          setOpenMenu("login");
+        }}
+      />
     </header>
   );
 }

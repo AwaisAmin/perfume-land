@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, User, X } from "lucide-react";
 import { useState } from "react";
 import {
   brandImpressionsGroups,
@@ -15,9 +15,13 @@ import Logo from "@/components/ui/Logo";
 type MobileDrawerProps = {
   open: boolean;
   onClose: () => void;
+  /** Closes the drawer and opens the header's Login popover — the live
+   *  site drops the desktop header's Login button below `md`, moving it
+   *  into this drawer's own footer instead. */
+  onLoginClick: () => void;
 };
 
-export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
+export default function MobileDrawer({ open, onClose, onLoginClick }: MobileDrawerProps) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   return (
@@ -158,6 +162,15 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
                 </AnimatePresence>
               </div>
             </nav>
+
+            <button
+              type="button"
+              onClick={onLoginClick}
+              className="mt-auto flex cursor-pointer items-center gap-2.5 border-t border-cream-50/10 px-6 py-5 text-sm font-semibold uppercase tracking-widest"
+            >
+              <User size={18} />
+              Login
+            </button>
           </motion.div>
         </>
       )}
