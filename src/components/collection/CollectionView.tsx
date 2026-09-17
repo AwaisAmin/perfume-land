@@ -91,7 +91,10 @@ export default function CollectionView({ products }: { products: Product[] }) {
   }, [products, inStockOnly, priceRange, selectedGenders, sort]);
 
   return (
-    <div className="text-fluid-section-gap-tight">
+    // Bottom-only spacing (before Newsletter/ContactForm/TrustBadges below)
+    // — no top padding, since the live site's toolbar sits flush against
+    // the hero banner with zero gap between them.
+    <div className="pb-10 lg:pb-16">
       {/* The toolbar's border-bottom is full-bleed (edge to edge of the
           viewport) on the live site — only its content is inset to the
           container width — so the border lives on this outer wrapper, not
@@ -112,10 +115,12 @@ export default function CollectionView({ products }: { products: Product[] }) {
       </div>
 
       <div className="container-app">
-        {/* Matches the live site's `.collection` grid exactly: a fixed
-            240px sidebar column, 50px gap, sidebar wrapper stretched
-            (default align-items) so the sticky child has room to move. */}
-        <div className="mt-8 grid gap-10 md:grid-cols-[240px_1fr] md:gap-12.5">
+        {/* Matches the live site's `.collection` grid exactly: flush
+            against the toolbar above (no top margin — confirmed 0 on the
+            live site too), a fixed 240px sidebar column, 50px gap, sidebar
+            wrapper stretched (default align-items) so the sticky child has
+            room to move. */}
+        <div className="grid gap-10 md:grid-cols-[240px_1fr] md:gap-12.5">
           <div>
             <CollectionFilters
               inStockOnly={inStockOnly}
