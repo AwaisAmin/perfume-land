@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import CollectionToolbar, { type SortOption } from "./CollectionToolbar";
 import CollectionFilters from "./CollectionFilters";
 import ProductGrid, { type GridLayout } from "./ProductGrid";
@@ -30,6 +30,24 @@ export default function CollectionView({ products }: { products: Product[] }) {
   const [selectedGenders, setSelectedGenders] = useState<string[]>([]);
   const [layout, setLayout] = useState<GridLayout>("medium");
   const [sort, setSort] = useState<SortOption>("featured");
+
+  // The toolbar is pinned to the very top of the viewport while scrolling
+  // (matching the live site's own sticky toolbar), and the filters sidebar
+  // pins itself just below it — so its real height is published as a CSS
+  // var the same way Header.tsx publishes --header-height, instead of a
+  // guessed fixed offset.
+  const toolbarRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = toolbarRef.current;
+    if (!el) return;
+    const publishHeight = () => {
+      document.documentElement.style.setProperty("--toolbar-height", `${el.offsetHeight}px`);
+    };
+    publishHeight();
+    const observer = new ResizeObserver(publishHeight);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const genderCounts = useMemo(() => {
     const counts = new Map<string, number>();
@@ -73,41 +91,51 @@ export default function CollectionView({ products }: { products: Product[] }) {
   }, [products, inStockOnly, priceRange, selectedGenders, sort]);
 
   return (
-    <div className="container-app text-fluid-section-gap-tight">
-      <CollectionToolbar
-        count={visibleProducts.length}
-        layout={layout}
-        onLayoutChange={setLayout}
-        sort={sort}
-        onSortChange={setSort}
-      />
-
-      {/* Deliberately no items-start here: the sidebar wrapper needs to
-          stay stretched (the default) to the row's full height so its
-          sticky child has room to move within it — with items-start the
-          wrapper shrinks to the sidebar's own short content height and
-          position:sticky has nowhere to "stick" (confirmed by isolating
-          this exact class against a live scroll test). */}
-      <div className="mt-8 flex flex-col gap-10 md:flex-row">
-        <div className="md:w-55 md:shrink-0 lg:w-65">
-          <CollectionFilters
-            inStockOnly={inStockOnly}
-            onInStockChange={setInStockOnly}
-            priceBounds={priceBounds}
-            priceRange={priceRange}
-            onPriceChange={setPriceRange}
-            genders={genderCounts}
-            selectedGenders={selectedGenders}
-            onGenderToggle={(value) =>
-              setSelectedGenders((current) =>
-                current.includes(value) ? current.filter((g) => g !== value) : [...current, value],
-              )
-            }
+    <div className="text-fluid-section-gap-tight">
+      {/* The toolbar's border-bottom is full-bleed (edge to edge of the
+          viewport) on the live site — only its content is inset to the
+          container width — so the border lives on this outer wrapper, not
+          inside CollectionToolbar itself. It's also pinned to the very top
+          of the viewport while scrolling, same as the live site: this is
+          what makes the whole controls+filters area read as "staying at
+          the top" while only the product grid scrolls. */}
+      <div ref={toolbarRef} className="sticky top-0 z-30 border-b border-ink/10 bg-cream-50">
+        <div className="container-app">
+          <CollectionToolbar
+            count={visibleProducts.length}
+            layout={layout}
+            onLayoutChange={setLayout}
+            sort={sort}
+            onSortChange={setSort}
           />
         </div>
+      </div>
 
-        <div className="min-w-0 flex-1">
-          <ProductGrid products={visibleProducts} layout={layout} />
+      <div className="container-app">
+        {/* Matches the live site's `.collection` grid exactly: a fixed
+            240px sidebar column, 50px gap, sidebar wrapper stretched
+            (default align-items) so the sticky child has room to move. */}
+        <div className="mt-8 grid gap-10 md:grid-cols-[240px_1fr] md:gap-12.5">
+          <div>
+            <CollectionFilters
+              inStockOnly={inStockOnly}
+              onInStockChange={setInStockOnly}
+              priceBounds={priceBounds}
+              priceRange={priceRange}
+              onPriceChange={setPriceRange}
+              genders={genderCounts}
+              selectedGenders={selectedGenders}
+              onGenderToggle={(value) =>
+                setSelectedGenders((current) =>
+                  current.includes(value) ? current.filter((g) => g !== value) : [...current, value],
+                )
+              }
+            />
+          </div>
+
+          <div className="min-w-0">
+            <ProductGrid products={visibleProducts} layout={layout} />
+          </div>
         </div>
       </div>
     </div>

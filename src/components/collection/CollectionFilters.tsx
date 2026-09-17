@@ -46,7 +46,10 @@ export default function CollectionFilters({
   const [min, max] = priceBounds;
 
   return (
-    <div className="md:sticky md:top-24">
+    <div
+      className="md:sticky"
+      style={{ top: "calc(var(--toolbar-height, 65px) + 1rem)" }}
+    >
       <FilterSection title="Availability">
         <label className="flex cursor-pointer items-center gap-3 text-sm text-ink/70">
           <span

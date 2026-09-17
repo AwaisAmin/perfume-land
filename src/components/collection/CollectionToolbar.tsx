@@ -33,7 +33,7 @@ export default function CollectionToolbar({
   const [sortOpen, setSortOpen] = useState(false);
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 border-b border-ink/10 py-4">
+    <div className="flex flex-wrap items-center justify-between gap-4 py-4">
       <div className="flex items-center gap-1">
         {(
           [
