@@ -42,15 +42,19 @@ export default function CartDrawer() {
               </button>
             </div>
 
-            <p className="border-b border-ink/10 px-6 py-4 text-[13px] text-ink/60">
-              {remaining > 0
-                ? `Spend AED ${remaining.toFixed(2)} more and get free shipping!`
-                : "You are eligible for free shipping."}
-            </p>
+            {items.length > 0 && (
+              <p className="border-b border-ink/10 px-6 py-4 text-[13px] text-ink/60">
+                {remaining > 0
+                  ? `Spend AED ${remaining.toFixed(2)} more and get free shipping!`
+                  : "You are eligible for free shipping."}
+              </p>
+            )}
 
             <div className="flex-1 overflow-y-auto px-6">
               {items.length === 0 ? (
-                <p className="py-10 text-center text-ink/60">Your cart is empty</p>
+                <div className="flex h-full items-center justify-center">
+                  <p className="text-ink/60">Your cart is empty</p>
+                </div>
               ) : (
                 items.map((item) => (
                   <div key={item.handle} className="flex gap-4 border-b border-ink/10 py-5 last:border-b-0">
