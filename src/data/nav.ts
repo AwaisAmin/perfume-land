@@ -20,9 +20,9 @@ export const brandImpressionsGroups: NavGroup[] = [
   {
     title: "Interior Perfumes",
     links: [
-      { label: "Standard Collection Interior", href: "/collections/standard-collection-interior" },
-      { label: "Premium Collection Interior", href: "/collections/premium-collection-interior" },
-      { label: "Exclusive Collection Interior", href: "/collections/exclusive-collection-interior" },
+      { label: "Standard Collection Interior", href: "/collections/standard-collection-interior-perfumes" },
+      { label: "Premium Collection Interior", href: "/collections/premium-collection-interior-perfumes" },
+      { label: "Exclusive Collection Interior", href: "/collections/exclusive-collection-interior-perfumes" },
     ],
   },
 ];
