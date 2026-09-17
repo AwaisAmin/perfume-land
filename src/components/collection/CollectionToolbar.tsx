@@ -34,7 +34,10 @@ export default function CollectionToolbar({
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 py-4">
-      <div className="flex items-center gap-1">
+      {/* Matches the live site's icon group exactly: a 1px right border
+          with 30px of padding before it, separating it from the product
+          count and sort controls. */}
+      <div className="flex items-center gap-1 border-r border-ink/10 pr-7.5">
         {(
           [
             { value: "large", icon: Grid2x2, label: "Switch to larger product images" },

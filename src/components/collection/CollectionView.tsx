@@ -115,12 +115,15 @@ export default function CollectionView({ products }: { products: Product[] }) {
       </div>
 
       <div className="container-app">
-        {/* Matches the live site's `.collection` grid exactly: flush
-            against the toolbar above (no top margin — confirmed 0 on the
-            live site too), a fixed 240px sidebar column, 50px gap, sidebar
-            wrapper stretched (default align-items) so the sticky child has
-            room to move. */}
-        <div className="grid gap-10 md:grid-cols-[240px_1fr] md:gap-12.5">
+        {/* Matches the live site's `.collection` grid exactly: a fixed
+            240px sidebar column, 50px gap, sidebar wrapper stretched
+            (default align-items) so the sticky child has room to move.
+            The `.collection` element itself has no top margin/padding on
+            the live site — the visible gap under the toolbar actually
+            comes from its parent's own gap (a "v-stack gap-6 sm:gap-12"
+            wrapper, confirmed via live measurement), reproduced here as a
+            top margin instead since this component has no such wrapper. */}
+        <div className="mt-6 grid gap-10 sm:mt-12 md:grid-cols-[240px_1fr] md:gap-12.5">
           <div>
             <CollectionFilters
               inStockOnly={inStockOnly}
