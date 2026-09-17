@@ -19,12 +19,19 @@ export default function ProductCard({ product }: { product: Product }) {
           product={product}
           bottleClassName="h-4/5 w-auto transition-transform duration-500 ease-out group-hover:scale-105"
         />
+        {/* Opacity reacts to the whole card being hovered (outer `group`),
+            but the rotation should only play when the button itself is
+            hovered — a separate named group (`group/quickadd`) scoped to
+            just this button keeps the two independent. */}
         <button
           type="button"
           aria-label="Quick add"
-          className="absolute bottom-2 right-2 flex h-8 w-8 cursor-pointer items-center justify-center bg-cream-50 text-ink opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"
+          className="group/quickadd absolute bottom-2 right-2 flex h-8 w-8 cursor-pointer items-center justify-center bg-cream-50 text-ink opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"
         >
-          <Plus size={12} className="transition-transform duration-200 ease-in-out group-hover:rotate-90" />
+          <Plus
+            size={12}
+            className="transition-transform duration-200 ease-in-out group-hover/quickadd:rotate-90"
+          />
         </button>
       </Link>
 
