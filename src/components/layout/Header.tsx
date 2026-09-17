@@ -53,7 +53,7 @@ function NavItem({
   const underline = (
     <span
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-x-3 -bottom-1 h-0.5 origin-left bg-cream-50 transition-transform duration-300 ease-out ${
+      className={`pointer-events-none absolute inset-x-3 -bottom-2 h-0.5 origin-left bg-cream-50 transition-transform duration-300 ease-out ${
         active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
       }`}
     />
@@ -229,7 +229,7 @@ export default function Header() {
       </div>
 
       {/* Row 2: primary navigation */}
-      <div className="container-app hidden items-center justify-center gap-8 pb-1 lg:flex">
+      <div className="container-app hidden items-center justify-center gap-8 pb-2 lg:flex">
         {primaryNavStart.map((link) => (
           <NavItem
             key={link.href}
@@ -259,7 +259,7 @@ export default function Header() {
           {openMenu === "brand" && (
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-3 -bottom-1 h-0.5 w-56 bg-cream-50"
+              className="pointer-events-none absolute inset-x-3 -bottom-2 h-0.5 w-56 bg-cream-50"
             />
           )}
 
@@ -270,7 +270,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className="absolute left-3 top-full z-10 mt-1 w-56 bg-forest-900 py-3"
+                className="absolute left-3 top-full z-10 mt-2 w-56 bg-forest-900 py-3"
               >
                 {brandImpressionsGroups.map((group) => (
                   <li
@@ -336,7 +336,7 @@ export default function Header() {
           {openMenu === "worldwide" && (
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-3 -bottom-1 h-0.5 w-64 bg-cream-50"
+              className="pointer-events-none absolute inset-x-3 -bottom-2 h-0.5 w-64 bg-cream-50"
             />
           )}
 
@@ -347,7 +347,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className="absolute left-3 top-full z-10 mt-1 flex w-64 flex-col bg-forest-900 py-2"
+                className="absolute left-3 top-full z-10 mt-2 flex w-64 flex-col bg-forest-900 py-2"
               >
                 {worldwideLinks.map((link) => (
                   <Link
