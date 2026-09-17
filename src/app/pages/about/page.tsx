@@ -12,7 +12,13 @@ export default function AboutPage() {
           below it is reused (About Us' values pattern, Suggest a Fragrance,
           trust badges). */}
       <section className="text-fluid-section-gap border-y border-cream-50/10 bg-forest-900 text-cream-100">
-        <div className="container-app grid items-center gap-10 md:grid-cols-[1fr_375px] md:gap-16">
+        {/* Capped to the reference site's container--md (1150px content),
+            same compensation pattern as BeforeAfter/ContactForm: the cap
+            has to include container-app's own gutter (2×48px), otherwise
+            this renders far wider (and the image far taller) than the
+            original — confirmed by measuring both sites at 1440px: their
+            image was 655×814, ours was 905×1131 before this fix. */}
+        <div className="container-app mx-auto grid max-w-311.5 items-center gap-10 md:grid-cols-[1fr_375px] md:gap-30">
           <Reveal className="relative aspect-4/5 overflow-hidden rounded-md">
             <Image
               src={journeyImage}
