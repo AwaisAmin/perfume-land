@@ -96,6 +96,14 @@ export default function Header() {
     setActiveGroup(null);
   };
 
+  // Header persists across client-side navigations (it lives in the root
+  // layout), so this runs once per visit, well before any collection page
+  // is actually reached — covering every entry point (menu clicks, "View
+  // all" buttons, back/forward, a pasted link), not just menu hovers.
+  useEffect(() => {
+    preloadCollectionHeroes();
+  }, []);
+
   // Publish the header's real (responsive) height so the hero below can pull
   // itself up underneath it and overlay it transparently, instead of the
   // header pushing page content down.

@@ -6,9 +6,14 @@ import type { Product } from "@/lib/types";
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="group">
+      {/* No rounding/clipping here — the live site's product image box has
+          sharp corners and doesn't clip its contents (confirmed via
+          computed style: border-radius 0, overflow visible), which is why
+          its quick-add button sits flush in the corner instead of looking
+          inset. */}
       <Link
         href={`/products/${product.handle}`}
-        className="relative flex aspect-3/4 items-center justify-center overflow-hidden rounded-md bg-cream-100"
+        className="relative flex aspect-3/4 items-center justify-center bg-cream-100"
       >
         <ProductImage
           product={product}
@@ -17,9 +22,9 @@ export default function ProductCard({ product }: { product: Product }) {
         <button
           type="button"
           aria-label="Quick add"
-          className="absolute bottom-0 right-0 flex h-9 w-9 cursor-pointer items-center justify-center bg-cream-50 text-ink opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100"
+          className="absolute bottom-2 right-2 flex h-8 w-8 cursor-pointer items-center justify-center bg-cream-50 text-ink opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"
         >
-          <Plus size={16} />
+          <Plus size={12} className="transition-transform duration-200 ease-in-out group-hover:rotate-90" />
         </button>
       </Link>
 

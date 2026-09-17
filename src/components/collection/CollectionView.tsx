@@ -97,11 +97,17 @@ export default function CollectionView({ products }: { products: Product[] }) {
   }, [products, inStockOnly, priceRange, selectedGenders, sort]);
 
   const totalPages = Math.max(1, Math.ceil(visibleProducts.length / PAGE_SIZE));
-  // Filters/sort changing the result set can leave `page` pointing past
-  // the new last page — reset instead of rendering an empty grid.
-  useEffect(() => {
+
+  // Filters/sort changing the result set can leave `page` pointing past the
+  // new last page — reset it during render (React's documented pattern for
+  // adjusting state when an input changes) rather than in an effect, which
+  // would cause an extra visible render of the stale, out-of-range page.
+  const filterSignature = JSON.stringify([inStockOnly, priceRange, selectedGenders, sort]);
+  const [lastFilterSignature, setLastFilterSignature] = useState(filterSignature);
+  if (filterSignature !== lastFilterSignature) {
+    setLastFilterSignature(filterSignature);
     setPage(1);
-  }, [inStockOnly, priceRange, selectedGenders, sort]);
+  }
 
   const pagedProducts = useMemo(
     () => visibleProducts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),

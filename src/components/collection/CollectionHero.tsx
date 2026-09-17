@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 type CollectionHeroProps = {
@@ -12,6 +15,14 @@ type CollectionHeroProps = {
  * collection, current or future.
  */
 export default function CollectionHero({ title, image }: CollectionHeroProps) {
+  // These banners are large hotlinked images with no local caching, so how
+  // long they take to arrive varies — sometimes near-instant (already
+  // cached from a hover-preload), sometimes not. Rather than chase that
+  // timing, fade the image in once it actually finishes loading: fast
+  // loads fade too quickly to notice, slow ones read as an intentional
+  // reveal instead of a flash of the plain forest-900 fallback.
+  const [loaded, setLoaded] = useState(false);
+
   return (
     // Pulled up by the header's own height (same technique as the homepage
     // Hero) so the banner starts at the very top of the page and the
@@ -30,8 +41,9 @@ export default function CollectionHero({ title, image }: CollectionHeroProps) {
           alt={title}
           fill
           priority
-          className="object-cover"
+          className={`object-cover transition-opacity duration-700 ease-out ${loaded ? "opacity-100" : "opacity-0"}`}
           sizes="100vw"
+          onLoad={() => setLoaded(true)}
         />
       )}
       <div className="absolute inset-0 bg-ink/30" />
