@@ -20,7 +20,12 @@ export default function FloatingChat() {
           >
             <div className="flex items-center justify-between bg-forest-900 px-4 py-3 text-cream-50">
               <p className="text-sm font-semibold">Amanzada Assistant</p>
-              <button type="button" aria-label="Close chat" onClick={() => setOpen(false)}>
+              <button
+                type="button"
+                aria-label="Close chat"
+                onClick={() => setOpen(false)}
+                className="cursor-pointer"
+              >
                 <X size={16} />
               </button>
             </div>
@@ -35,7 +40,7 @@ export default function FloatingChat() {
         type="button"
         aria-label="Open chat"
         onClick={() => setOpen((o) => !o)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-forest-900 text-gold-400 shadow-lg transition hover:bg-forest-950"
+        className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-forest-900 text-gold-400 shadow-lg transition hover:bg-forest-950"
       >
         {open ? <X size={22} /> : <MessageCircle size={22} />}
       </button>
