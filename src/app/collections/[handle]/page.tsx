@@ -3,7 +3,6 @@ import CollectionHero from "@/components/collection/CollectionHero";
 import CollectionView from "@/components/collection/CollectionView";
 import ContactForm from "@/components/shared/ContactForm";
 import TrustBadges from "@/components/shared/TrustBadges";
-import Newsletter from "@/components/home/Newsletter";
 import { collections } from "@/data/products";
 
 export function generateStaticParams() {
@@ -27,7 +26,6 @@ export default async function CollectionPage({
       <CollectionHero title={collection.pageTitle ?? collection.title} image={collection.heroImage} />
       <CollectionView products={collection.products} />
 
-      <Newsletter />
       <ContactForm />
       <TrustBadges />
     </>

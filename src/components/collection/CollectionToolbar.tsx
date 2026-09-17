@@ -98,7 +98,7 @@ export default function CollectionToolbar({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 8 }}
                 transition={{ duration: 0.18 }}
-                className="absolute top-full right-0 z-20 mt-2 w-56 rounded-md border border-ink/10 bg-cream-50 p-2 shadow-lg"
+                className="absolute top-full right-0 z-20 grid w-48 gap-3 bg-forest-900 p-6"
               >
                 {(Object.keys(sortLabels) as SortOption[]).map((option) => (
                   <button
@@ -108,8 +108,8 @@ export default function CollectionToolbar({
                       onSortChange(option);
                       setSortOpen(false);
                     }}
-                    className={`flex w-full cursor-pointer items-center rounded px-3 py-2 text-left text-sm transition-colors hover:bg-ink/5 ${
-                      sort === option ? "text-ink font-semibold" : "text-ink/70"
+                    className={`cursor-pointer text-left text-sm transition-colors hover:text-cream-50 ${
+                      sort === option ? "text-cream-50" : "text-cream-50/65"
                     }`}
                   >
                     {sortLabels[option]}
