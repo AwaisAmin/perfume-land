@@ -14,6 +14,7 @@ import {
   worldwideLinks,
 } from "@/data/nav";
 import { collections } from "@/data/products";
+import { useCart } from "@/lib/cart-context";
 import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
 import MobileDrawer from "./MobileDrawer";
@@ -82,6 +83,7 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const { itemCount, openCart } = useCart();
   // Only pages with a dark hero banner directly beneath the header (the
   // homepage, and every collection page's CollectionHero) can have it
   // overlay transparently — every other page needs the solid background
@@ -199,14 +201,20 @@ export default function Header() {
             <Search size={20} />
           </button>
 
-          <Link
-            href="/cart"
+          <button
+            type="button"
             aria-label="Cart"
             onMouseEnter={() => setOpenMenu(null)}
-            className={iconButtonClass}
+            onClick={openCart}
+            className={`relative ${iconButtonClass}`}
           >
             <ShoppingBag size={20} />
-          </Link>
+            {itemCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-forest-900 px-1 text-[10px] leading-none text-cream-50">
+                {itemCount}
+              </span>
+            )}
+          </button>
 
           <button
             type="button"

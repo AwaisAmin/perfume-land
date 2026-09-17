@@ -5,6 +5,8 @@ import Header from "@/components/layout/Header";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Footer from "@/components/layout/Footer";
 import FloatingChat from "@/components/layout/FloatingChat";
+import CartDrawer from "@/components/cart/CartDrawer";
+import { CartProvider } from "@/lib/cart-context";
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -31,11 +33,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${nunitoSans.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-cream-50 text-ink">
-        <AnnouncementBar />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <FloatingChat />
+        <CartProvider>
+          <AnnouncementBar />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <FloatingChat />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );
