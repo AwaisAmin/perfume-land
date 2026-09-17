@@ -5,7 +5,7 @@ import { preload } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { ChevronDown, ChevronRight, CircleUserRound, Menu, Package, Search, ShoppingBag, User, X } from "lucide-react";
 import {
   brandImpressionsGroups,
   countrySelector,
@@ -19,7 +19,32 @@ import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
 import MobileDrawer from "./MobileDrawer";
 
-type MenuKey = "brand" | "worldwide" | "country" | null;
+type MenuKey = "brand" | "worldwide" | "country" | "login" | null;
+
+// Google's official four-color "G" mark, inlined so the button doesn't need
+// an external logo asset.
+function GoogleIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+      <path
+        fill="#4285F4"
+        d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.87 2.7-6.62Z"
+      />
+      <path
+        fill="#34A853"
+        d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.95v2.33A9 9 0 0 0 9 18Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.17.28-1.7V4.97H.95A9 9 0 0 0 0 9c0 1.45.35 2.83.95 4.03l3-2.33Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M9 3.58c1.32 0 2.51.46 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .95 4.97l3 2.33C4.66 5.17 6.65 3.58 9 3.58Z"
+      />
+    </svg>
+  );
+}
 
 // Every collection page's hero banner is a large hotlinked image with no
 // local caching, so navigating straight to it shows a flash of the hero's
@@ -182,14 +207,95 @@ export default function Header() {
             </AnimatePresence>
           </div>
 
-          <Link
-            href="/account"
-            onMouseEnter={() => setOpenMenu(null)}
-            className={`hidden flex-col items-center gap-0.5 text-xs font-semibold uppercase tracking-widest md:flex ${iconButtonClass}`}
-          >
-            <User size={19} />
-            <span>Login</span>
-          </Link>
+          <div className="relative hidden md:block">
+            <button
+              type="button"
+              onClick={() => setOpenMenu((m) => (m === "login" ? null : "login"))}
+              className={`flex flex-col items-center gap-0.5 text-xs font-semibold uppercase tracking-widest ${iconButtonClass}`}
+            >
+              <User size={19} />
+              <span>Login</span>
+            </button>
+
+            <AnimatePresence>
+              {openMenu === "login" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.18 }}
+                  className="absolute right-0 top-full z-10 mt-2 w-90 rounded-md border border-cream-50/10 bg-forest-900 p-5 shadow-lg"
+                >
+                  <div className="flex items-center justify-between">
+                    <p className="text-base font-normal text-cream-50">Sign in or create account</p>
+                    <button
+                      type="button"
+                      aria-label="Close"
+                      onClick={() => setOpenMenu(null)}
+                      className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-cream-50/10 text-cream-50 hover:bg-cream-50/20"
+                    >
+                      <X size={14} />
+                    </button>
+                  </div>
+
+                  {/* No real auth backend — this is a design placeholder for
+                      the Google sign-in that's planned for later, not a
+                      working login. */}
+                  <button
+                    type="button"
+                    className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-sm bg-cream-50 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream-50/90"
+                  >
+                    <GoogleIcon />
+                    Sign in with Google
+                  </button>
+
+                  <div className="my-4 flex items-center gap-3">
+                    <hr className="flex-1 border-cream-50/15" />
+                    <span className="text-xs text-cream-50/50">OR</span>
+                    <hr className="flex-1 border-cream-50/15" />
+                  </div>
+
+                  <label className="relative block">
+                    <span className="sr-only">Email</span>
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      className="w-full rounded-sm border border-cream-50/20 bg-transparent px-4 py-3.5 text-sm text-cream-50 placeholder:text-cream-50/50 focus:border-cream-50/50 focus:outline-none"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Continue with email"
+                      className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-cream-50"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </label>
+
+                  <label className="mt-4 flex cursor-pointer items-center gap-2.5 text-sm text-cream-50">
+                    <input type="checkbox" className="h-4 w-4 cursor-pointer accent-cream-50" />
+                    Email me with news and offers
+                  </label>
+
+                  <div className="mt-5 grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      className="flex cursor-pointer items-center justify-center gap-2 rounded-sm border border-cream-50/20 py-3 text-sm text-cream-50 hover:bg-cream-50/5"
+                    >
+                      <Package size={16} />
+                      Orders
+                    </button>
+                    <button
+                      type="button"
+                      className="flex cursor-pointer items-center justify-center gap-2 rounded-sm border border-cream-50/20 py-3 text-sm text-cream-50 hover:bg-cream-50/5"
+                    >
+                      <CircleUserRound size={16} />
+                      Profile
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           <button
             type="button"
