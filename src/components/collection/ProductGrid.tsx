@@ -3,10 +3,14 @@ import type { Product } from "@/lib/types";
 
 export type GridLayout = "large" | "medium" | "compact";
 
+// Column counts and gaps measured directly off the live site at each
+// breakpoint (700px / 1000px are its own breakpoints, not Tailwind's
+// defaults) — all three layouts share the same responsive gap scale, only
+// the column count changes between them.
 const layoutClasses: Record<GridLayout, string> = {
-  large: "grid-cols-1 sm:grid-cols-2",
-  medium: "grid-cols-2 sm:grid-cols-3 xl:grid-cols-4",
-  compact: "grid-cols-1",
+  large: "grid-cols-1 min-[700px]:grid-cols-2 min-[1000px]:grid-cols-3",
+  medium: "grid-cols-2 min-[700px]:grid-cols-3 min-[1000px]:grid-cols-4",
+  compact: "grid-cols-2 min-[700px]:grid-cols-4 min-[1000px]:grid-cols-6",
 };
 
 type ProductGridProps = {
@@ -30,20 +34,10 @@ export default function ProductGrid({ products, layout = "medium" }: ProductGrid
     );
   }
 
-  if (layout === "compact") {
-    return (
-      <div className="flex flex-col divide-y divide-ink/10">
-        {products.map((product) => (
-          <div key={product.id} className="py-4 first:pt-0 last:pb-0">
-            <ProductCard product={product} />
-          </div>
-        ))}
-      </div>
-    );
-  }
-
   return (
-    <div className={`grid gap-x-4 gap-y-10 sm:gap-x-6 lg:gap-x-8 ${layoutClasses[layout]}`}>
+    <div
+      className={`grid gap-x-2.5 gap-y-9 min-[700px]:gap-x-6 min-[700px]:gap-y-12 min-[1000px]:gap-x-15 min-[1000px]:gap-y-16 ${layoutClasses[layout]}`}
+    >
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
