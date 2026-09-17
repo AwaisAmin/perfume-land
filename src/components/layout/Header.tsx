@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { preload } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,11 +13,26 @@ import {
   primaryNavStart,
   worldwideLinks,
 } from "@/data/nav";
+import { collections } from "@/data/products";
 import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
 import MobileDrawer from "./MobileDrawer";
 
 type MenuKey = "brand" | "worldwide" | "country" | null;
+
+// Every collection page's hero banner is a large hotlinked image with no
+// local caching, so navigating straight to it shows a flash of the hero's
+// plain forest-900 fallback background before the real photo loads. Kicking
+// off the fetch as soon as the user hovers the nav link (well before the
+// click/route-change) gives it a head start so it's usually already in the
+// browser cache by the time the new page mounts.
+function preloadCollectionHeroes() {
+  for (const collection of collections) {
+    if (collection.heroImage) {
+      preload(collection.heroImage, { as: "image" });
+    }
+  }
+}
 
 const iconButtonClass = "cursor-pointer transition-opacity duration-200 hover:opacity-70";
 
@@ -199,12 +215,25 @@ export default function Header() {
       {/* Row 2: primary navigation */}
       <div className="container-app hidden items-center justify-center gap-8 pb-1 lg:flex">
         {primaryNavStart.map((link) => (
-          <NavItem key={link.href} href={link.href} onMouseEnter={() => setOpenMenu(null)}>
+          <NavItem
+            key={link.href}
+            href={link.href}
+            onMouseEnter={() => {
+              setOpenMenu(null);
+              if (link.href === "/collections/signature-collection") preloadCollectionHeroes();
+            }}
+          >
             {link.label}
           </NavItem>
         ))}
 
-        <div className="relative" onMouseEnter={() => setOpenMenu("brand")}>
+        <div
+          className="relative"
+          onMouseEnter={() => {
+            setOpenMenu("brand");
+            preloadCollectionHeroes();
+          }}
+        >
           <NavItem href="/collections/standard-collection" active={openMenu === "brand"}>
             Brand Impressions
           </NavItem>
@@ -233,15 +262,20 @@ export default function Header() {
                     className="relative"
                     onMouseEnter={() => setActiveGroup(group.title)}
                   >
-                    <button
-                      type="button"
-                      className={`flex w-full cursor-pointer items-center justify-between px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest transition-colors ${
+                    {/* The group heading is itself a link on the live site —
+                        clicking "Perfumes" (not just its Standard/Premium/
+                        Exclusive sub-items) navigates to that group's
+                        Standard tier collection, confirmed by clicking it
+                        directly on the reference site. */}
+                    <Link
+                      href={group.links[0].href}
+                      className={`flex w-full items-center justify-between px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest transition-colors ${
                         activeGroup === group.title ? "text-cream-50/50" : "text-cream-50 hover:text-cream-50/50"
                       }`}
                     >
                       {group.title}
                       <ChevronRight size={13} />
-                    </button>
+                    </Link>
 
                     <AnimatePresence>
                       {activeGroup === group.title && (

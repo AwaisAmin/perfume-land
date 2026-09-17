@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import CollectionToolbar, { type SortOption } from "./CollectionToolbar";
 import CollectionFilters from "./CollectionFilters";
 import ProductGrid, { type GridLayout } from "./ProductGrid";
+import Pagination from "./Pagination";
 import type { Product } from "@/lib/types";
 
 const genderLabels: Record<string, string> = {
@@ -11,6 +12,10 @@ const genderLabels: Record<string, string> = {
   women: "Women",
   men: "Men",
 };
+
+// Matches the live site's own page size (confirmed from a 388-product
+// collection paginating into exactly 9 pages: ceil(388 / 48) = 9).
+const PAGE_SIZE = 48;
 
 /**
  * Owns all interactive collection-page state (filters, sort, layout) and
@@ -30,6 +35,7 @@ export default function CollectionView({ products }: { products: Product[] }) {
   const [selectedGenders, setSelectedGenders] = useState<string[]>([]);
   const [layout, setLayout] = useState<GridLayout>("medium");
   const [sort, setSort] = useState<SortOption>("featured");
+  const [page, setPage] = useState(1);
 
   // The toolbar is pinned to the very top of the viewport while scrolling
   // (matching the live site's own sticky toolbar), and the filters sidebar
@@ -90,6 +96,18 @@ export default function CollectionView({ products }: { products: Product[] }) {
     return list;
   }, [products, inStockOnly, priceRange, selectedGenders, sort]);
 
+  const totalPages = Math.max(1, Math.ceil(visibleProducts.length / PAGE_SIZE));
+  // Filters/sort changing the result set can leave `page` pointing past
+  // the new last page — reset instead of rendering an empty grid.
+  useEffect(() => {
+    setPage(1);
+  }, [inStockOnly, priceRange, selectedGenders, sort]);
+
+  const pagedProducts = useMemo(
+    () => visibleProducts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+    [visibleProducts, page],
+  );
+
   return (
     // Bottom-only spacing (before Newsletter/ContactForm/TrustBadges below)
     // — no top padding, since the live site's toolbar sits flush against
@@ -142,7 +160,8 @@ export default function CollectionView({ products }: { products: Product[] }) {
           </div>
 
           <div className="min-w-0">
-            <ProductGrid products={visibleProducts} layout={layout} />
+            <ProductGrid products={pagedProducts} layout={layout} />
+            <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
           </div>
         </div>
       </div>
