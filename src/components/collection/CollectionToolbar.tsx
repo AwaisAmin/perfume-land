@@ -33,11 +33,16 @@ export default function CollectionToolbar({
   const [sortOpen, setSortOpen] = useState(false);
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 py-4">
-      {/* Matches the live site's icon group exactly: a 1px right border
-          with 30px of padding before it, separating it from the product
-          count and sort controls. */}
-      <div className="flex items-center gap-1 border-r border-ink/10 pr-7.5">
+    // No items-center / no vertical padding on the row itself — matches
+    // the live site exactly: each section below stretches to the row's
+    // full height (via flex's default stretch) and centers its own
+    // content internally, so a section's border-x spans truly edge to
+    // edge (top to bottom) instead of just the height of its content.
+    <div className="flex flex-wrap justify-between gap-4">
+      {/* Matches the live site's icon group exactly: 30px of padding on
+          both sides, with a 1px right border separating it from the
+          product count and sort controls. */}
+      <div className="flex items-center gap-3 border-r border-ink/10 px-7.5">
         {(
           [
             { value: "large", icon: Grid2x2, label: "Switch to larger product images" },
@@ -51,28 +56,32 @@ export default function CollectionToolbar({
             aria-label={option.label}
             aria-pressed={layout === option.value}
             onClick={() => onLayoutChange(option.value)}
-            className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-sm transition-colors ${
+            className={`flex cursor-pointer items-center justify-center rounded-sm py-4.5 transition-colors ${
               layout === option.value ? "text-ink" : "text-ink/35 hover:text-ink/70"
             }`}
           >
-            <option.icon size={18} strokeWidth={1.5} />
+            <option.icon size={20} strokeWidth={1.5} />
           </button>
         ))}
       </div>
 
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/50">
+      <p className="flex items-center text-xs font-normal uppercase tracking-[2.16px] text-ink/65">
         {count} {count === 1 ? "product" : "products"}
       </p>
 
-      <div className="relative">
+      {/* Matches the live site's sort control exactly: a 1px left border
+          with 46px of horizontal / 18px of vertical padding, 11px text at
+          normal weight (the rest of the toolbar's controls are heavier
+          and slightly larger — this one is genuinely smaller). */}
+      <div className="relative flex items-center border-l border-ink/10 px-11.5 py-4.5">
         <button
           type="button"
           onClick={() => setSortOpen((open) => !open)}
           aria-expanded={sortOpen}
-          className="flex cursor-pointer items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink"
+          className="flex cursor-pointer items-center gap-2.5 text-[11px] font-normal uppercase tracking-[1.98px] text-ink"
         >
           Sort by
-          <ChevronDown size={12} className={sortOpen ? "rotate-180 transition-transform" : "transition-transform"} />
+          <ChevronDown size={10} className={sortOpen ? "rotate-180 transition-transform" : "transition-transform"} />
         </button>
 
         <AnimatePresence>

@@ -95,23 +95,23 @@ export default function CollectionView({ products }: { products: Product[] }) {
     // — no top padding, since the live site's toolbar sits flush against
     // the hero banner with zero gap between them.
     <div className="pb-10 lg:pb-16">
-      {/* The toolbar's border-bottom is full-bleed (edge to edge of the
-          viewport) on the live site — only its content is inset to the
-          container width — so the border lives on this outer wrapper, not
-          inside CollectionToolbar itself. It's also pinned to the very top
-          of the viewport while scrolling, same as the live site: this is
-          what makes the whole controls+filters area read as "staying at
-          the top" while only the product grid scrolls. */}
+      {/* The toolbar is genuinely edge-to-edge on the live site — not just
+          its border, but its content too (confirmed via direct
+          measurement: the icon group and sort control provide their own
+          30px/46px padding instead of sitting inside the page's usual
+          48px container inset) — so it's deliberately NOT wrapped in
+          container-app. It's also pinned to the very top of the viewport
+          while scrolling, same as the live site: this is what makes the
+          whole controls+filters area read as "staying at the top" while
+          only the product grid scrolls. */}
       <div ref={toolbarRef} className="sticky top-0 z-30 border-b border-ink/10 bg-cream-50">
-        <div className="container-app">
-          <CollectionToolbar
-            count={visibleProducts.length}
-            layout={layout}
-            onLayoutChange={setLayout}
-            sort={sort}
-            onSortChange={setSort}
-          />
-        </div>
+        <CollectionToolbar
+          count={visibleProducts.length}
+          layout={layout}
+          onLayoutChange={setLayout}
+          sort={sort}
+          onSortChange={setSort}
+        />
       </div>
 
       <div className="container-app">
