@@ -8,6 +8,10 @@ export type Product = {
   /** Path to real product photography (e.g. "/products/oud-maracuja.jpg").
    *  Leave unset to fall back to the illustrated placeholder bottle. */
   image?: string;
+  /** Drives the collection page's gender filter. */
+  gender?: "unisex" | "women" | "men";
+  /** Drives the collection page's "In stock only" filter. */
+  inStock?: boolean;
 };
 
 export type ProductVariant = {
@@ -31,6 +35,13 @@ export type Collection = {
   kicker: string;
   title: string;
   products: Product[];
+  /** Banner image for the collection page hero — leave unset to fall back
+   *  to a plain colored banner. */
+  heroImage?: string;
+  /** The reference site titles this section differently on the homepage
+   *  grid ("Signature Fragrances") vs. its own collection page hero
+   *  ("Signature Collection") — defaults to `title` when unset. */
+  pageTitle?: string;
 };
 
 export type NavLink = {

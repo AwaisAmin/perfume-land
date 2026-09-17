@@ -45,12 +45,22 @@ export const beforeAfterImages = {
 type ProductInput = {
   title: string;
   price: number;
-  compareAtPrice: number;
+  compareAtPrice?: number;
   kicker?: string;
   image?: string;
+  gender?: Product["gender"];
+  inStock?: boolean;
 };
 
-function product({ title, price, compareAtPrice, kicker, image }: ProductInput): Product {
+function product({
+  title,
+  price,
+  compareAtPrice,
+  kicker,
+  image,
+  gender = "unisex",
+  inStock = true,
+}: ProductInput): Product {
   autoId += 1;
   return {
     id: `product-${autoId}`,
@@ -60,6 +70,8 @@ function product({ title, price, compareAtPrice, kicker, image }: ProductInput):
     price,
     compareAtPrice,
     image,
+    gender,
+    inStock,
   };
 }
 
@@ -149,38 +161,50 @@ export const collections: Collection[] = [
     ],
   },
   {
-    // The reference site shows this same collection twice: once as a plain
-    // grid right after the marquees, and again later as the interactive
-    // ShopTheLook hot-spot component — both share the "made in dubai"
-    // kicker and the same product photography.
+    // The reference site shows this same collection three times: as a
+    // plain grid right after the marquees, as the interactive ShopTheLook
+    // hot-spot component, and as its own full collection page — all share
+    // the same 6 products and photography. `handle` matches the live
+    // collection's real URL (/collections/signature-collection) so this
+    // one entry drives the homepage grid, ShopTheLook, and the collection
+    // page's dynamic [handle] route alike.
     id: "signature",
-    handle: "amanzada-collection",
+    handle: "signature-collection",
     kicker: "made in dubai",
     title: "Signature Fragrances",
+    pageTitle: "Signature Collection",
+    heroImage: `${CDN.replace("/files", "/collections")}/Signature_Home_Image.png?width=1942`,
     products: [
-      product({
-        title: "Amanzada - Back To Black Oud",
-        price: 280,
-        compareAtPrice: 340,
-        image: `${CDN}/BackToBlackOudWeb.png?width=1124`,
-      }),
       product({
         title: "Amanzada - Cannabis",
         price: 280,
-        compareAtPrice: 340,
         image: `${CDN}/CannabisWeb.png?width=1124`,
+      }),
+      product({
+        title: "Amanzada - Back To Black Oud",
+        price: 280,
+        image: `${CDN}/BackToBlackOudWeb.png?width=1124`,
       }),
       product({
         title: "Amanzada - Cherry Love",
         price: 280,
-        compareAtPrice: 340,
         image: `${CDN}/CherryLoveWeb.png?width=1124`,
+        gender: "women",
+      }),
+      product({
+        title: "Amanzada - Heavenly Oud",
+        price: 280,
+        image: `${CDN}/HeavenlyOud.png?width=1124`,
       }),
       product({
         title: "Amanzada - Oud Absolute",
         price: 280,
-        compareAtPrice: 340,
         image: `${CDN}/OudAbsoluteWeb.png?width=1124`,
+      }),
+      product({
+        title: "Amanzada - Back To Black",
+        price: 280,
+        image: `${CDN}/BackToBlackWeb.png?width=1124`,
       }),
     ],
   },

@@ -66,11 +66,13 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-  // Only the homepage has a dark hero image directly beneath the header for
-  // it to overlay transparently — every other page needs the solid
-  // background by default, or the cream text/logo is invisible against the
-  // plain page background.
-  const isHome = usePathname() === "/";
+  // Only pages with a dark hero banner directly beneath the header (the
+  // homepage, and every collection page's CollectionHero) can have it
+  // overlay transparently — every other page needs the solid background
+  // by default, or the cream text/logo is invisible against the plain
+  // page background.
+  const pathname = usePathname();
+  const hasHeroBanner = pathname === "/" || pathname.startsWith("/collections/");
 
   const closeMenus = () => {
     setOpenMenu(null);
@@ -97,7 +99,7 @@ export default function Header() {
     <header
       ref={headerRef}
       className={`relative z-40 w-full text-cream-50 transition-colors duration-300 ${
-        hovered || !isHome ? "bg-forest-900" : "bg-transparent"
+        hovered || !hasHeroBanner ? "bg-forest-900" : "bg-transparent"
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={closeMenus}
