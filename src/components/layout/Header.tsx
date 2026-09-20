@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { preload } from "react-dom";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, X } from "lucide-react";
 import {
@@ -14,6 +14,9 @@ import {
 } from "@/data/nav";
 import { collections } from "@/data/products";
 import { useCart } from "@/lib/cart-context";
+import { formatPrice } from "@/lib/currency";
+import { searchProducts } from "@/lib/search";
+import ProductImage from "@/components/ui/ProductImage";
 import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
 import MobileDrawer from "./MobileDrawer";
@@ -80,6 +83,7 @@ export default function Header() {
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [hovered, setHovered] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const { itemCount, openCart } = useCart();
@@ -89,12 +93,41 @@ export default function Header() {
   // by default, or the cream text/logo is invisible against the plain
   // page background.
   const pathname = usePathname();
+  const router = useRouter();
+
+  // The header lives in the root layout, so it survives client-side
+  // navigation — without this the search panel would stay open (with its
+  // stale query) on top of the page the searcher just opened. Adjusting
+  // during render rather than in an effect avoids rendering the stale
+  // panel for a frame first.
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (lastPathname !== pathname) {
+    setLastPathname(pathname);
+    setSearchOpen(false);
+    setSearchQuery("");
+  }
   const hasHeroBanner = pathname === "/" || pathname.startsWith("/collections/");
 
   const closeMenus = () => {
     setOpenMenu(null);
     setHovered(false);
     setActiveGroup(null);
+  };
+
+  // Capped so the dropdown stays a preview — the full list lives on
+  // /search, which the form's submit (and "View all results") navigates to.
+  const searchResults = searchQuery.trim() === "" ? [] : searchProducts(searchQuery, 6);
+
+  const closeSearch = () => {
+    setSearchOpen(false);
+    setSearchQuery("");
+  };
+
+  const submitSearch = () => {
+    const query = searchQuery.trim();
+    if (query === "") return;
+    router.push(`/search?q=${encodeURIComponent(query)}`);
+    closeSearch();
   };
 
   // Header persists across client-side navigations (it lives in the root
@@ -327,18 +360,82 @@ export default function Header() {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden border-t border-cream-50/10 bg-forest-900"
           >
-            <div className="container-app flex items-center gap-3 py-5">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                submitSearch();
+              }}
+              className="container-app flex items-center gap-3 py-5"
+            >
               <Search size={18} className="shrink-0 opacity-50" />
               <input
                 autoFocus
                 type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") closeSearch();
+                }}
                 placeholder="Search for..."
+                aria-label="Search products"
                 className="w-full bg-transparent text-lg outline-none placeholder:text-cream-50/40"
               />
-              <button type="button" onClick={() => setSearchOpen(false)} aria-label="Close search">
+              <button type="button" onClick={closeSearch} aria-label="Close search">
                 <X size={18} />
               </button>
-            </div>
+            </form>
+
+            {/* Live results, matched in the browser against the static
+                product data — no backend, so there is nothing to debounce
+                and no loading state to show. */}
+            {searchQuery.trim() !== "" && (
+              <div className="container-app pb-5">
+                {searchResults.length === 0 ? (
+                  <p className="py-4 text-sm text-cream-100/60">
+                    No products match &ldquo;{searchQuery.trim()}&rdquo;.
+                  </p>
+                ) : (
+                  <>
+                    <ul className="flex flex-col">
+                      {searchResults.map(({ product, collection }) => (
+                        <li key={product.id}>
+                          <Link
+                            href={`/products/${product.handle}`}
+                            onClick={closeSearch}
+                            className="flex items-center gap-4 border-t border-cream-50/10 py-3 transition-colors hover:bg-cream-50/5"
+                          >
+                            <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-sm bg-cream-50/5">
+                              <ProductImage
+                                product={product}
+                                imageClassName="object-contain p-1.5"
+                                bottleClassName="h-full w-full p-2"
+                              />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate text-sm text-cream-50">{product.title}</span>
+                              <span className="block text-xs uppercase tracking-widest text-cream-100/50">
+                                {collection.title}
+                              </span>
+                            </span>
+                            <span className="shrink-0 text-sm text-gold-400">
+                              {formatPrice(product.price)}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <button
+                      type="button"
+                      onClick={submitSearch}
+                      className="mt-4 w-full cursor-pointer border-t border-cream-50/10 pt-4 text-sm font-semibold uppercase tracking-widest text-cream-50 hover:text-cream-50/70"
+                    >
+                      View all results
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
