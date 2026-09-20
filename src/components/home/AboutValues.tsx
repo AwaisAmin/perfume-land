@@ -7,7 +7,7 @@ export default function AboutValues() {
       tone="forest"
       heading="About Us"
       intro={[
-        "Amanzada perfumes crafts timeless fragrances with finest ingredients, blending tradition and modern artistry into every scent.",
+        "Haris Bhai Perfumes crafts timeless fragrances with finest ingredients, blending tradition and modern artistry into every scent.",
       ]}
       items={brandValues}
     />

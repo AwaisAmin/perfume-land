@@ -20,6 +20,7 @@ function getCollection(id: Collection["id"]) {
 
 export default function Home() {
   const standard = getCollection("standard");
+  const premium = getCollection("premium");
   const signature = getCollection("signature");
   const oil = getCollection("oil");
   const interior = getCollection("interior");
@@ -28,6 +29,7 @@ export default function Home() {
     <>
       <Hero />
       <FeaturedCollection collection={standard} />
+      <FeaturedCollection collection={premium} />
       <Marquee text="Luxury Scents" tone="gold" direction="left" />
       <Marquee text="Honest Prices" tone="forest" direction="right" />
       <FeaturedCollection collection={signature} />

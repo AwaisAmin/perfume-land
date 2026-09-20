@@ -32,7 +32,7 @@ export default function CollectionHero({ title, image }: CollectionHeroProps) {
     // collection page at two different viewport widths (600px @1440,
     // 833px @2000 — both match width / 2.4 exactly).
     <section
-      className="relative flex w-full aspect-1942/809 items-center justify-center overflow-hidden bg-forest-900"
+      className="relative flex w-full min-h-80 aspect-1942/809 items-center justify-center overflow-hidden bg-forest-900"
       style={{ marginTop: "calc(-1 * var(--header-height, 84px))" }}
     >
       {image && (
@@ -41,13 +41,13 @@ export default function CollectionHero({ title, image }: CollectionHeroProps) {
           alt={title}
           fill
           priority
-          className={`object-cover transition-opacity duration-700 ease-out ${loaded ? "opacity-100" : "opacity-0"}`}
+          className={`object-contain object-right p-8 sm:px-20 transition-opacity duration-700 ease-out ${loaded ? "opacity-100" : "opacity-0"}`}
           sizes="100vw"
           onLoad={() => setLoaded(true)}
         />
       )}
       <div className="absolute inset-0 bg-ink/30" />
-      <h1 className="text-fluid-h1 relative z-10 font-normal text-cream-50">{title}</h1>
+      <h1 className="text-fluid-h1 relative z-10 max-w-[65%] text-center font-normal text-cream-50">{title}</h1>
     </section>
   );
 }

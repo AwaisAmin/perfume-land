@@ -19,7 +19,7 @@ export default function FloatingChat() {
             className="mb-4 w-[300px] overflow-hidden rounded-lg border border-ink/10 bg-cream-50 shadow-xl"
           >
             <div className="flex items-center justify-between bg-forest-900 px-4 py-3 text-cream-50">
-              <p className="text-sm font-semibold">Amanzada Assistant</p>
+              <p className="text-sm font-semibold">Haris Bhai Perfumes Assistant</p>
               <button
                 type="button"
                 aria-label="Close chat"

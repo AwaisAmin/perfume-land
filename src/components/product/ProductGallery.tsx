@@ -9,7 +9,7 @@ import type { Product } from "@/lib/types";
 export default function ProductGallery({ product }: { product: Product }) {
   return (
     <div className="relative aspect-4/5 bg-cream-100">
-      <ProductImage product={product} bottleClassName="h-2/3 w-auto" imageClassName="object-cover" priority />
+      <ProductImage product={product} bottleClassName="h-2/3 w-auto" imageClassName="object-contain p-6 sm:p-10" priority />
     </div>
   );
 }

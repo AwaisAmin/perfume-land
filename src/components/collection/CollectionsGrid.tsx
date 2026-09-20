@@ -22,7 +22,7 @@ export default function CollectionsGrid({ collections }: { collections: Collecti
                     src={collection.products[0].image}
                     alt={collection.pageTitle ?? collection.title}
                     fill
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                    className="object-contain p-6 sm:p-10 transition-transform duration-500 ease-out group-hover:scale-105"
                     sizes="(max-width: 639px) 50vw, 25vw"
                   />
                 )}

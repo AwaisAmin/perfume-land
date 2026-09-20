@@ -43,7 +43,7 @@ export default function MobileDrawer({ open, onClose, onLoginClick }: MobileDraw
             className="fixed inset-y-0 left-0 z-50 flex w-[86vw] max-w-sm flex-col overflow-y-auto bg-forest-900 text-cream-50"
           >
             <div className="flex h-20 items-center justify-between border-b border-cream-50/10 px-6">
-              <Logo className="border-cream-50/40" />
+              <Logo />
               <button type="button" aria-label="Close menu" onClick={onClose}>
                 <X size={20} />
               </button>

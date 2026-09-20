@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { countrySelector } from "@/data/nav";
 import Flag from "@/components/ui/Flag";
+import Logo from "@/components/ui/Logo";
 
 const infoLinks = [
   { label: "FAQ", href: "/pages/faq" },
@@ -88,6 +89,10 @@ export default function Footer() {
           row (columns, social icons, bottom bar) — it has no border
           anywhere in or around it, so none is added here either. */}
       <div className="container-app flex flex-col gap-12 pt-28 pb-12">
+        <Link href="/" aria-label="Haris Bhai Perfumes home" className="flex w-fit items-center gap-4">
+          <Logo />
+          <span className="text-sm font-semibold tracking-wide">Haris Bhai Perfumes</span>
+        </Link>
         {/* Content-sized columns spread with space-between (not a stretched
             50/50 grid) — matches the reference's --footer-content-justify-
             items: space-between, so the gap grows on wide screens instead
@@ -102,7 +107,7 @@ export default function Footer() {
                 href="/pages/amanzada-store-locations-in-uae"
                 className="underline decoration-cream-100/30 underline-offset-2 hover:text-cream-50"
               >
-                Amanzada Perfumes Store Locations UAE
+                Haris Bhai Perfumes Store Locations UAE
               </Link>
               <p>+971 55 187 1965</p>
               <p>info@amanzadaperfumes.com</p>
@@ -181,7 +186,7 @@ export default function Footer() {
           </div>
 
           <p className="text-xs text-cream-100/50">
-            © {new Date().getFullYear()} - Amanzada Perfumes
+            © {new Date().getFullYear()} - Haris Bhai Perfumes
           </p>
 
           <ul className="flex flex-wrap items-center gap-2">

@@ -24,7 +24,7 @@ export default function AboutPage() {
               src={journeyImage}
               alt=""
               fill
-              className="object-cover"
+              className="object-contain p-6 sm:p-10"
               sizes="(max-width: 767px) 100vw, 60vw"
               priority
             />
@@ -42,9 +42,9 @@ export default function AboutPage() {
               Our journey began in Dubai, but our vision has always been global.
             </p>
             <p className="text-cream-100">
-              Our goal is to open Amanzada stores in as many cities and countries as possible,
+              Our goal is to open Haris Bhai Perfumes stores in as many cities and countries as possible,
               making our fragrances easily accessible to people around the world. We want
-              customers everywhere to experience Amanzada, discover our products, and enjoy
+              customers everywhere to experience Haris Bhai Perfumes, discover our products, and enjoy
               quality fragrances at fair prices.
             </p>
             <p className="text-cream-100">
@@ -63,7 +63,7 @@ export default function AboutPage() {
         kicker="Meet Our Leaders"
         heading="Our Leaders"
         intro={[
-          "At Amanzada Perfumes, we believe everyone deserves to experience luxury fragrances at a fair price.",
+          "At Haris Bhai Perfumes, we believe everyone deserves to experience luxury fragrances at a fair price.",
           "Founded by Haseeb Amanzada and later joined by Saleem Amanzada and Rashid Amanzada, our family run brand continues to grow with one mission: to improve our quality and make beautiful fragrances accessible to everyone.",
         ]}
         items={brandLeaders}

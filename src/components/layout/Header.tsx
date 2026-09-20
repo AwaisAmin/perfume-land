@@ -163,9 +163,9 @@ export default function Header() {
           href="/"
           onMouseEnter={() => setOpenMenu(null)}
           className="justify-self-center"
-          aria-label="Amanzada home"
+          aria-label="Haris Bhai Perfumes home"
         >
-          <Logo className="border-cream-50/40" />
+          <Logo />
         </Link>
 
         <div className="flex items-center justify-self-end gap-5 sm:gap-6">

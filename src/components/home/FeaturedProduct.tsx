@@ -39,7 +39,7 @@ export default function FeaturedProduct({ product }: { product: FeaturedProductD
             <ProductImage
               product={product}
               bottleClassName="h-2/3 w-auto"
-              imageClassName="object-cover"
+              imageClassName="object-contain p-6 sm:p-10"
               priority
             />
           </Reveal>

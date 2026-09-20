@@ -3,10 +3,9 @@ export type ColumnItem = {
   body: string;
 };
 
-// DEV-ONLY — hotlinked from the reference site's own CDN, same pattern used
-// throughout src/data/products.ts. Swap for real photography before launch.
-export const journeyImage =
-  "https://amanzadaperfumes.com/cdn/shop/files/Cannabis_Instagram.jpg?width=1546";
+import { bottleImage } from "@/data/products";
+
+export const journeyImage = bottleImage;
 
 // Shared across the homepage "About Us" section and the About page — the
 // reference site repeats this exact content in both places.

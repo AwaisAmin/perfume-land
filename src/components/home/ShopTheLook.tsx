@@ -10,7 +10,7 @@ export default function ShopTheLook() {
   const [active, setActive] = useState(0);
   // Only one look exists today, but the data is an array so a second one
   // (e.g. your own custom photo) is just another entry — see products.ts.
-  const { image: groupImage, items } = shopTheLookGroups[0];
+  const { items } = shopTheLookGroups[0];
   const item = items[active];
 
   return (
@@ -30,13 +30,11 @@ export default function ShopTheLook() {
         <div className="mx-auto mt-10 grid max-w-245 gap-2 md:grid-cols-[min(550px,60%)_1fr] md:items-center">
           {/* Lifestyle photo with clickable hot spots */}
           <Reveal className="relative aspect-2752/1536 overflow-hidden rounded-md bg-cream-100">
-            <Image
-              src={groupImage}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="(max-width: 767px) 100vw, 550px"
-            />
+            {items.map((bottle) => (
+              <div key={bottle.handle} className="absolute h-[60%] w-[22%] -translate-x-1/2 -translate-y-[55%]" style={{ top: `${bottle.top}%`, left: `${bottle.left}%` }}>
+                <Image src={bottle.image} alt="" fill className="object-contain" sizes="120px" />
+              </div>
+            ))}
             {items.map((hotspot, i) => (
               <button
                 key={hotspot.handle}

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { bottleImage, collections } from "@/data/products";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus, X } from "lucide-react";
@@ -9,6 +10,11 @@ import { useCart } from "@/lib/cart-context";
 // Matches the announcement bar's own "Free Delivery Over AED 500" — the
 // live cart drawer's free-shipping message uses the same real threshold.
 const FREE_SHIPPING_THRESHOLD = 500;
+
+// Use current catalogue photography even for carts saved before an image update.
+const productImages = new Map(
+  collections.flatMap((collection) => collection.products.map((product) => [product.handle, product.image] as const)),
+);
 
 export default function CartDrawer() {
   const { items, isOpen, subtotal, closeCart, removeItem, updateQuantity } = useCart();
@@ -64,7 +70,7 @@ export default function CartDrawer() {
                       className="relative h-30 w-24 shrink-0 bg-cream-100"
                     >
                       {item.image && (
-                        <Image src={item.image} alt={item.title} fill className="object-cover" sizes="96px" />
+                        <Image src={productImages.get(item.handle) ?? (item.image?.startsWith("https://amanzadaperfumes.com/") ? bottleImage : item.image)} alt={item.title} fill className="object-contain p-2" sizes="96px" />
                       )}
                     </Link>
 

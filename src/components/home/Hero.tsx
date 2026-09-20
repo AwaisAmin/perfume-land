@@ -5,10 +5,8 @@ import { motion } from "framer-motion";
 import { ChevronDown, Volume2, VolumeX } from "lucide-react";
 import Button from "@/components/ui/Button";
 
-const HERO_VIDEO_SRC =
-  "https://amanzadaperfumes.com/cdn/shop/videos/c/vp/1a0a6bc5dcc043d3870e3b5d572486d9/1a0a6bc5dcc043d3870e3b5d572486d9.HD-1080p-7.2Mbps-87559037.mp4?v=0";
-const HERO_POSTER =
-  "https://amanzadaperfumes.com/cdn/shop/files/preview_images/1a0a6bc5dcc043d3870e3b5d572486d9.thumbnail.0000000000_400x.jpg?v=1782569664";
+const HERO_VIDEO_SRC = "/videos/haris-bhai-perfume-making.mp4";
+const HERO_POSTER = "/videos/haris-bhai-perfume-making-poster.jpg";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,19 +34,19 @@ export default function Hero() {
       {/* Poster is a plain CSS background so it always paints instantly,
           independent of whether the (large) video has buffered yet. */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-position-[72%_center] sm:bg-center"
         style={{ backgroundImage: `url(${HERO_POSTER})` }}
       />
 
       <video
         ref={videoRef}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+        className={`absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-center transition-opacity duration-700 ${
           videoReady ? "opacity-100" : "opacity-0"
         }`}
         src={HERO_VIDEO_SRC}
         poster={HERO_POSTER}
         autoPlay
-        muted
+        muted={muted}
         loop
         playsInline
         preload="auto"
@@ -61,7 +59,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 flex max-w-2xl flex-col items-center gap-6 px-6 text-center"
+        className="absolute bottom-20 z-10 flex max-w-2xl flex-col items-center gap-6 px-6 text-center"
       >
         <Button href="/collections" variant="solid">
           Discover the Collection

@@ -40,12 +40,12 @@ export default function BeforeAfter() {
           }}
         >
           {/* For Him (base layer, full width) */}
-          <div className="absolute inset-0 overflow-hidden rounded-md bg-cream-200">
+          <div className="absolute inset-0 overflow-hidden rounded-md bg-[#77544f]">
             <Image
               src={beforeAfterImages.him}
               alt=""
               fill
-              className="object-cover"
+              className="object-contain p-3 sm:p-8"
               sizes="(max-width: 1259px) 100vw, 1260px"
             />
             <div className="absolute bottom-5 left-5 flex flex-col items-start gap-3 sm:bottom-10 sm:left-10">
@@ -63,7 +63,7 @@ export default function BeforeAfter() {
               src={beforeAfterImages.her}
               alt=""
               fill
-              className="object-cover"
+              className="object-contain p-3 sm:p-8"
               sizes="(max-width: 1259px) 100vw, 1260px"
             />
             <div className="absolute right-5 bottom-5 flex flex-col items-end gap-3 text-right sm:right-10 sm:bottom-10">

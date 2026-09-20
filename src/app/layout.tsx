@@ -21,7 +21,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Amanzada Land | Luxury Perfume Impressions",
+  title: "Haris Bhai Perfumes | Luxury Perfume Impressions",
   description:
     "Your ultimate destination for a global array of brand impressions - a perfumed heaven, all under one roof.",
 };
