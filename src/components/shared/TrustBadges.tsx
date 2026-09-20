@@ -1,4 +1,4 @@
-import { Headphones, Plane, ShieldCheck } from "lucide-react";
+import { Headphones, ShieldCheck, Truck } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import Reveal from "@/components/ui/Reveal";
 import { whatsappUrl } from "@/data/branches";
@@ -22,9 +22,9 @@ const whatsappLink = (
 
 const badges: Badge[] = [
   {
-    icon: Plane,
-    title: "International Shipping",
-    description: "Worldwide shipping - customs and duties excluded",
+    icon: Truck,
+    title: "Nationwide Delivery",
+    description: "Delivered anywhere in Pakistan",
   },
   {
     icon: Headphones,

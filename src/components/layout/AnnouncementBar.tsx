@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const messages = ["Free Delivery Over Rs 500", "Worldwide Shipping"];
+const messages = ["Free Delivery Over Rs 500", "Delivery Across Pakistan"];
 
 export default function AnnouncementBar() {
   const [index, setIndex] = useState(0);
