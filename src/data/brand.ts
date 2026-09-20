@@ -3,9 +3,7 @@ export type ColumnItem = {
   body: string;
 };
 
-import { bottleImage } from "@/data/products";
-
-export const journeyImage = bottleImage;
+export const journeyImage = "/brand/haris-about.png";
 
 // Shared across the homepage "About Us" section and the About page — the
 // same three values are repeated in both places.

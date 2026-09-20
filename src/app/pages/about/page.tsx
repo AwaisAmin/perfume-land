@@ -22,11 +22,11 @@ export default function AboutPage() {
           <Reveal className="relative aspect-4/5 overflow-hidden rounded-md">
             <Image
               src={journeyImage}
-              alt=""
+              alt="Haris Ali Rasheed behind the counter at Hariss Bhai Perfumes in Lahore"
               fill
-              className="object-contain p-6 sm:p-10"
+              className="object-cover"
               sizes="(max-width: 767px) 100vw, 60vw"
-              priority
+              preload
             />
           </Reveal>
 

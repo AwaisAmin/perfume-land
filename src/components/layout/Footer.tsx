@@ -1,20 +1,9 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import { countrySelector } from "@/data/nav";
+import { ArrowUpRight, MapPin, MessageCircle } from "lucide-react";
+import { brandImpressionsGroups } from "@/data/nav";
 import { branches, whatsappNumber, whatsappUrl } from "@/data/branches";
 import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
-
-const infoLinks = [
-  { label: "FAQ", href: "/pages/faq" },
-  { label: "SHIPPING & RETURNS", href: "/pages/shipping-returns" },
-  { label: "TERMS OF SERVICE", href: "/pages/terms-of-service" },
-  { label: "PRIVACY POLICY", href: "/pages/privacy-policy" },
-];
 
 const socialLinks = [
   {
@@ -69,154 +58,87 @@ const socialLinks = [
   },
 ];
 
-const paymentBadges = [
-  { label: "AMEX", bg: "#0071CE", fg: "#ffffff" },
-  { label: "APPLE PAY", bg: "#000000", fg: "#ffffff" },
-  { label: "DINERS", bg: "#0079BE", fg: "#ffffff" },
-  { label: "DISCOVER", bg: "#F16521", fg: "#ffffff" },
-  { label: "G PAY", bg: "#ffffff", fg: "#3c4043" },
-  { label: "JCB", bg: "#0e4c96", fg: "#ffffff" },
-  { label: "MASTERCARD", bg: "#16130d", fg: "#ffffff" },
-  { label: "VISA", bg: "#1a1f71", fg: "#ffffff" },
-];
-
 export default function Footer() {
-  const [countryOpen, setCountryOpen] = useState(false);
-
   return (
-    <footer className="bg-forest-900 text-cream-100">
-      {/* Matches the reference site's actual computed footer spacing
-          exactly: pt-112px/pb-48px, and a single 48px gap between every
-          row (columns, social icons, bottom bar) — it has no border
-          anywhere in or around it, so none is added here either. */}
-      <div className="container-app flex flex-col gap-12 pt-28 pb-12">
-        <Link href="/" aria-label="Haris Bhai Perfumes home" className="flex w-fit items-center gap-4">
-          <Logo />
-          <span className="text-sm font-semibold tracking-wide">Haris Bhai Perfumes</span>
-        </Link>
-        {/* Content-sized columns spread with space-between (not a stretched
-            50/50 grid) — matches the reference's --footer-content-justify-
-            items: space-between, so the gap grows on wide screens instead
-            of the columns themselves. */}
-        <div className="flex flex-col flex-wrap gap-10 sm:flex-row sm:justify-between">
-          <div className="flex flex-col gap-4 sm:gap-5">
-            <p className="text-xs font-normal uppercase tracking-[0.18em] text-cream-100">
-              Contact Us
-            </p>
-            <div className="flex flex-col gap-5 text-sm text-cream-100/70">
-              {branches.map((branch) =>
-                branch.mapUrl ? (
-                  <a
-                    key={branch.name}
-                    href={branch.mapUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="underline decoration-cream-100/30 underline-offset-2 hover:text-cream-50"
-                  >
-                    {branch.address}
-                  </a>
-                ) : (
-                  <p key={branch.name}>{branch.address}</p>
-                ),
-              )}
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-cream-50"
-              >
-                {whatsappNumber}
-              </a>
-              <p>info@amanzadaperfumes.com</p>
+    <footer className="border-t border-cream-100/10 bg-forest-900 text-cream-100">
+      <div className="container-app">
+        <div className="flex flex-col gap-6 border-b border-cream-100/15 py-10 sm:flex-row sm:items-center sm:justify-between">
+          <div className="max-w-xl">
+            <p className="text-xs uppercase tracking-[0.18em] text-gold-400">A fragrance that feels like you</p>
+            <h2 className="mt-3 text-2xl sm:text-3xl">Let&apos;s find your next favourite.</h2>
+            <p className="mt-3 text-sm leading-7 text-cream-100/70">Tell us the scents you love. We&apos;ll help you choose a blend, a refill or an everyday signature.</p>
+          </div>
+          <a href={whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex w-fit shrink-0 items-center justify-center gap-3 rounded-sm bg-gold-400 px-6 py-4 text-sm font-semibold text-forest-950 transition-colors hover:bg-gold-100">
+            <MessageCircle size={18} aria-hidden="true" /> Ask Hariss Bhai <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+
+        <div className="grid gap-x-10 gap-y-10 py-12 sm:grid-cols-2 xl:grid-cols-[1.3fr_1fr_0.8fr_1.2fr]">
+          <div>
+            <Link href="/" aria-label="Hariss Bhai Perfumes home" className="inline-flex items-center gap-3">
+              <Logo />
+              <span className="text-base font-semibold">Hariss Bhai Perfumes</span>
+            </Link>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-cream-100/70">From our counter in Lahore to your doorstep. Perfumes, oils and designer-inspired blends, mixed and filled by hand for the way you like to wear them.</p>
+            <p className="mt-5 text-xs uppercase tracking-widest text-gold-400">Blended in Lahore &middot; Shipped across Pakistan</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {socialLinks.map((social) => (
+                <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="flex h-11 w-11 items-center justify-center rounded-full border border-cream-100/20 text-cream-100/80 transition-colors hover:border-gold-400 hover:text-gold-400">
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 sm:gap-5">
-            <p className="text-xs font-normal uppercase tracking-[0.18em] text-cream-100">
-              Information
-            </p>
-            <ul className="flex flex-col gap-2.5 text-sm text-cream-100/70">
-              {infoLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-cream-50">
-                    {link.label}
-                  </Link>
-                </li>
+          <nav aria-label="Footer collections">
+            <h2 className="text-xs uppercase tracking-[0.18em] text-gold-400">Explore the Collection</h2>
+            <ul className="mt-5 space-y-3 text-sm text-cream-100/75">
+              <li><Link href="/collections/signature-collection" className="inline-block py-1 hover:text-cream-50">Signature Collection</Link></li>
+              {brandImpressionsGroups[0].links.map((link) => (
+                <li key={link.href}><Link href={link.href} className="inline-block py-1 hover:text-cream-50">{link.label}</Link></li>
               ))}
+              <li><Link href="/collections/standard-collection-oil" className="inline-block py-1 hover:text-cream-50">Perfume Oils</Link></li>
+              <li><Link href="/collections/standard-collection-interior-perfumes" className="inline-block py-1 hover:text-cream-50">Interior Perfumes</Link></li>
+              <li><Link href="/collections" className="inline-block py-1 text-gold-400 hover:text-cream-50">Shop All Collections &rarr;</Link></li>
             </ul>
+          </nav>
+
+          <nav aria-label="Footer help and information">
+            <h2 className="text-xs uppercase tracking-[0.18em] text-gold-400">Here to Help</h2>
+            <ul className="mt-5 space-y-3 text-sm text-cream-100/75">
+              <li><Link href="/pages/about" className="inline-block py-1 hover:text-cream-50">Our Story</Link></li>
+              <li><Link href="/pages/contact" className="inline-block py-1 hover:text-cream-50">Contact Us</Link></li>
+              <li><Link href="/search" className="inline-block py-1 hover:text-cream-50">Find a Fragrance</Link></li>
+              <li><a href={whatsappUrl} target="_blank" rel="noreferrer" className="inline-block py-1 hover:text-cream-50">Custom Blends & Refills</a></li>
+              <li><a href={whatsappUrl} target="_blank" rel="noreferrer" className="inline-block py-1 hover:text-cream-50">Order & Delivery Help</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <h2 className="text-xs uppercase tracking-[0.18em] text-gold-400">Visit Our Counters</h2>
+            <div className="mt-5 space-y-5 text-sm">
+              {branches.map((branch) => (
+                <div key={branch.name} className="flex items-start gap-3">
+                  <MapPin size={18} className="mt-1 shrink-0 text-gold-400" aria-hidden="true" />
+                  <div>
+                    <p className="font-medium">{branch.name}</p>
+                    <p className="mt-1 leading-6 text-cream-100/70">{branch.address}</p>
+                    {branch.mapUrl && <a href={branch.mapUrl} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 py-1 text-xs text-gold-400 hover:text-cream-50">Get directions <ArrowUpRight size={13} aria-hidden="true" /></a>}
+                  </div>
+                </div>
+              ))}
+              <div className="border-t border-cream-100/15 pt-5">
+                <p className="text-xs text-cream-100/60">WhatsApp for orders & enquiries</p>
+                <a href={whatsappUrl} target="_blank" rel="noreferrer" className="mt-2 inline-block text-base font-medium hover:text-gold-400">{whatsappNumber}</a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="flex gap-8">
-          {socialLinks.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={social.label}
-              className="text-cream-100/70 transition-colors hover:text-cream-50"
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setCountryOpen((open) => !open)}
-              aria-expanded={countryOpen}
-              className="flex cursor-pointer items-center gap-2 text-xs uppercase tracking-widest text-cream-100/70 hover:text-cream-50"
-            >
-              <Flag code="pk" className="h-3.5 w-5 rounded-xs" />
-              Pakistan (PKR Rs)
-              <ChevronDown size={10} className={countryOpen ? "rotate-180 transition-transform" : "transition-transform"} />
-            </button>
-
-            <AnimatePresence>
-              {countryOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.18 }}
-                  className="absolute bottom-full left-0 z-10 mb-2 max-h-80 w-64 overflow-y-auto rounded-md border border-cream-50/10 bg-forest-900 p-2 shadow-lg"
-                >
-                  {countrySelector.map((c) => (
-                    <button
-                      key={c.code}
-                      type="button"
-                      onClick={() => setCountryOpen(false)}
-                      className="flex w-full cursor-pointer items-center gap-2.5 rounded px-3 py-2 text-left text-sm text-cream-50/50 transition-colors hover:text-cream-50"
-                    >
-                      <Flag code={c.code} className="h-3.5 w-5 shrink-0 rounded-[1px]" />
-                      <span>
-                        {c.label} <span className="whitespace-nowrap">(PKR Rs)</span>
-                      </span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <p className="text-xs text-cream-100/50">
-            © {new Date().getFullYear()} - Haris Bhai Perfumes
-          </p>
-
-          <ul className="flex flex-wrap items-center gap-2">
-            {paymentBadges.map((badge) => (
-              <li
-                key={badge.label}
-                style={{ background: badge.bg, color: badge.fg }}
-                className="flex h-6 items-center rounded-xs px-2 text-[9px] font-semibold tracking-wide"
-              >
-                {badge.label}
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col gap-4 border-t border-cream-100/15 py-6 text-xs text-cream-100/60 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {new Date().getFullYear()} Hariss Bhai Perfumes. All rights reserved.</p>
+          <p className="flex items-center gap-2"><Flag code="pk" className="h-3.5 w-5 rounded-xs" /> Pakistan &middot; PKR Rs</p>
+          <p>Made with care. Worn with character.</p>
         </div>
       </div>
     </footer>
