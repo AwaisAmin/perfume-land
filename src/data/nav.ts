@@ -27,37 +27,6 @@ export const brandImpressionsGroups: NavGroup[] = [
   },
 ];
 
-// The store only settles in PKR, so every market shows the same currency —
-// this is a country/shipping-region picker, not a currency switcher.
-export const countrySelector: { code: string; label: string }[] = [
-  { code: "au", label: "Australia" },
-  { code: "at", label: "Austria" },
-  { code: "bh", label: "Bahrain" },
-  { code: "be", label: "Belgium" },
-  { code: "bg", label: "Bulgaria" },
-  { code: "ca", label: "Canada" },
-  { code: "hr", label: "Croatia" },
-  { code: "cy", label: "Cyprus" },
-  { code: "cz", label: "Czechia" },
-  { code: "dk", label: "Denmark" },
-  { code: "ee", label: "Estonia" },
-  { code: "fr", label: "France" },
-  { code: "de", label: "Germany" },
-  { code: "ie", label: "Ireland" },
-  { code: "kw", label: "Kuwait" },
-  { code: "my", label: "Malaysia" },
-  { code: "mu", label: "Mauritius" },
-  { code: "nl", label: "Netherlands" },
-  { code: "om", label: "Oman" },
-  { code: "qa", label: "Qatar" },
-  { code: "sa", label: "Saudi Arabia" },
-  { code: "za", label: "South Africa" },
-  { code: "se", label: "Sweden" },
-  { code: "ae", label: "United Arab Emirates" },
-  { code: "gb", label: "United Kingdom" },
-  { code: "us", label: "United States" },
-];
-
 // Top-level primary navigation, left to right, matching the live site order.
 export const primaryNavStart: NavLink[] = [
   { label: "Home", href: "/" },

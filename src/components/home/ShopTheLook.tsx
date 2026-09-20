@@ -19,7 +19,7 @@ export default function ShopTheLook() {
       <div className="container-app">
         <Reveal className="flex flex-col items-center gap-3 text-center">
           <p className="text-xs font-normal uppercase tracking-[0.18em] text-forest-900">
-            made in dubai
+            blended in lahore
           </p>
           <h2 className="text-fluid-h2 font-normal text-forest-900">Signature Fragrances</h2>
         </Reveal>

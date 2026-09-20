@@ -12,6 +12,15 @@ import { formatPrice } from "@/lib/currency";
 // live cart drawer's free-shipping message uses the same real threshold.
 const FREE_SHIPPING_THRESHOLD = 500;
 
+// Every product image ships with the app. A cart saved by an older build
+// can still hold a remote URL, and next/image refuses hosts it has not been
+// configured for, so anything non-local falls back to the bottle artwork.
+function cartImage(item: { handle: string; image?: string }) {
+  const known = productImages.get(item.handle);
+  if (known) return known;
+  return item.image?.startsWith("/") ? item.image : bottleImage;
+}
+
 // Use current catalogue photography even for carts saved before an image update.
 const productImages = new Map(
   collections.flatMap((collection) => collection.products.map((product) => [product.handle, product.image] as const)),
@@ -71,7 +80,7 @@ export default function CartDrawer() {
                       className="relative h-30 w-24 shrink-0 bg-cream-100"
                     >
                       {item.image && (
-                        <Image src={productImages.get(item.handle) ?? (item.image?.startsWith("https://amanzadaperfumes.com/") ? bottleImage : item.image)} alt={item.title} fill className="object-contain p-2" sizes="96px" />
+                        <Image src={cartImage(item)} alt={item.title} fill className="object-contain p-2" sizes="96px" />
                       )}
                     </Link>
 

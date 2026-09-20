@@ -144,7 +144,7 @@ export const collections: Collection[] = [
     // page's dynamic [handle] route alike.
     id: "signature",
     handle: "signature-collection",
-    kicker: "made in dubai",
+    kicker: "blended in lahore",
     title: "Signature Fragrances",
     pageTitle: "Signature Collection",
     heroImage: bottleImage,

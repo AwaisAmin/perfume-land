@@ -5,10 +5,9 @@ import { preload } from "react-dom";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, ChevronRight, Menu, Search, ShoppingBag, X } from "lucide-react";
+import { ChevronRight, Menu, Search, ShoppingBag, X } from "lucide-react";
 import {
   brandImpressionsGroups,
-  countrySelector,
   primaryNavEnd,
   primaryNavStart,
 } from "@/data/nav";
@@ -21,7 +20,7 @@ import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
 import MobileDrawer from "./MobileDrawer";
 
-type MenuKey = "brand" | "country" | null;
+type MenuKey = "brand" | null;
 
 // Every collection page's hero banner is a large hotlinked image with no
 // local caching, so navigating straight to it shows a flash of the hero's
@@ -176,42 +175,12 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center justify-self-end gap-5 sm:gap-6">
-          <div className="relative hidden sm:block">
-            <button
-              type="button"
-              onClick={() => setOpenMenu((m) => (m === "country" ? null : "country"))}
-              className={`flex items-center gap-1.5 text-sm font-semibold uppercase tracking-widest ${iconButtonClass}`}
-            >
-              <Flag code="pk" className="h-4 w-5.5 shrink-0 rounded-[1px]" />
-              PKR
-              <span className="text-xs opacity-60">Rs</span>
-              <ChevronDown size={13} />
-            </button>
-
-            <AnimatePresence>
-              {openMenu === "country" && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.18 }}
-                  className="absolute right-0 top-full z-10 mt-2 max-h-80 w-64 overflow-y-auto rounded-md border border-cream-50/10 bg-forest-900 p-2 shadow-lg"
-                >
-                  {countrySelector.map((c) => (
-                    <button
-                      key={c.code}
-                      type="button"
-                      className="flex w-full cursor-pointer items-center gap-2.5 rounded px-3 py-2 text-left text-sm text-cream-50/50 transition-colors hover:text-cream-50"
-                    >
-                      <Flag code={c.code} className="h-3.5 w-5 shrink-0 rounded-[1px]" />
-                      <span>
-                        {c.label} <span className="whitespace-nowrap">(PKR Rs)</span>
-                      </span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+          {/* The shop delivers within Pakistan only, so this is a plain
+              currency/market label rather than a picker. */}
+          <div className="hidden items-center gap-1.5 text-sm font-semibold uppercase tracking-widest sm:flex">
+            <Flag code="pk" className="h-4 w-5.5 shrink-0 rounded-[1px]" />
+            PKR
+            <span className="text-xs opacity-60">Rs</span>
           </div>
 
           <button
