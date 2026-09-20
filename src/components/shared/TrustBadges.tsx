@@ -1,6 +1,7 @@
 import { Headphones, Plane, ShieldCheck } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import Reveal from "@/components/ui/Reveal";
+import { whatsappUrl } from "@/data/branches";
 
 type Badge = {
   icon: ComponentType<{ size?: number; strokeWidth?: number }>;
@@ -10,7 +11,9 @@ type Badge = {
 
 const whatsappLink = (
   <a
-    href="tel:+971551871965"
+    href={whatsappUrl}
+    target="_blank"
+    rel="noreferrer"
     className="underline decoration-ink/30 underline-offset-2 hover:text-ink"
   >
     WhatsApp

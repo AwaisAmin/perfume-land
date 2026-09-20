@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { countrySelector } from "@/data/nav";
+import { branches, whatsappNumber, whatsappUrl } from "@/data/branches";
 import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
 
@@ -18,7 +19,7 @@ const infoLinks = [
 const socialLinks = [
   {
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/harissbhaiperfumer/",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" strokeWidth="1.6" />
@@ -29,7 +30,7 @@ const socialLinks = [
   },
   {
     label: "YouTube",
-    href: "https://youtube.com",
+    href: "https://www.youtube.com/@HarissBhaiPerfumer",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="2" y="5.5" width="20" height="13" rx="4" stroke="currentColor" strokeWidth="1.6" />
@@ -39,7 +40,7 @@ const socialLinks = [
   },
   {
     label: "TikTok",
-    href: "https://tiktok.com",
+    href: "https://www.tiktok.com/@harissbhaiperfumer",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path
@@ -51,7 +52,7 @@ const socialLinks = [
   },
   {
     label: "WhatsApp",
-    href: "tel:+971551871965",
+    href: whatsappUrl,
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path
@@ -103,13 +104,29 @@ export default function Footer() {
               Contact Us
             </p>
             <div className="flex flex-col gap-5 text-sm text-cream-100/70">
-              <Link
-                href="/pages/amanzada-store-locations-in-uae"
-                className="underline decoration-cream-100/30 underline-offset-2 hover:text-cream-50"
+              {branches.map((branch) =>
+                branch.mapUrl ? (
+                  <a
+                    key={branch.name}
+                    href={branch.mapUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline decoration-cream-100/30 underline-offset-2 hover:text-cream-50"
+                  >
+                    {branch.address}
+                  </a>
+                ) : (
+                  <p key={branch.name}>{branch.address}</p>
+                ),
+              )}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-cream-50"
               >
-                Haris Bhai Perfumes Store Locations UAE
-              </Link>
-              <p>+971 55 187 1965</p>
+                {whatsappNumber}
+              </a>
               <p>info@amanzadaperfumes.com</p>
             </div>
           </div>
