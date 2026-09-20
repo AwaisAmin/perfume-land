@@ -2,26 +2,21 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, User, X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import { useState } from "react";
 import {
   brandImpressionsGroups,
   primaryNavEnd,
   primaryNavStart,
-  worldwideLinks,
 } from "@/data/nav";
 import Logo from "@/components/ui/Logo";
 
 type MobileDrawerProps = {
   open: boolean;
   onClose: () => void;
-  /** Closes the drawer and opens the header's Login popover — the live
-   *  site drops the desktop header's Login button below `md`, moving it
-   *  into this drawer's own footer instead. */
-  onLoginClick: () => void;
 };
 
-export default function MobileDrawer({ open, onClose, onLoginClick }: MobileDrawerProps) {
+export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   return (
@@ -120,57 +115,7 @@ export default function MobileDrawer({ open, onClose, onLoginClick }: MobileDraw
                   {link.label}
                 </Link>
               ))}
-
-              <div className="border-b border-cream-50/10">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setOpenGroup((g) => (g === "worldwide" ? null : "worldwide"))
-                  }
-                  className="flex w-full items-center justify-between py-4 text-sm font-semibold uppercase tracking-widest"
-                >
-                  World Wide
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform ${openGroup === "worldwide" ? "rotate-180" : ""}`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {openGroup === "worldwide" && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <ul className="flex flex-col gap-3 pb-4 pl-3">
-                        {worldwideLinks.map((link) => (
-                          <li key={link.href}>
-                            <Link
-                              href={link.href}
-                              onClick={onClose}
-                              className="text-sm text-cream-100/70"
-                            >
-                              <span className="mr-1.5 text-[10px] font-semibold">{link.code}</span>
-                              {link.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
             </nav>
-
-            <button
-              type="button"
-              onClick={onLoginClick}
-              className="mt-auto flex cursor-pointer items-center gap-2.5 border-t border-cream-50/10 px-6 py-5 text-sm font-semibold uppercase tracking-widest"
-            >
-              <User size={18} />
-              Login
-            </button>
           </motion.div>
         </>
       )}

@@ -27,18 +27,6 @@ export const brandImpressionsGroups: NavGroup[] = [
   },
 ];
 
-export const worldwideLinks: { code: string; label: string; slug: string; href: string }[] = [
-  { code: "ZA", label: "South Africa", slug: "south-africa", href: "/pages/world-wide/south-africa" },
-  { code: "MY", label: "Malaysia", slug: "malaysia", href: "/pages/world-wide/malaysia" },
-  { code: "SE", label: "Sweden", slug: "sweden", href: "/pages/world-wide/sweden" },
-  { code: "MU", label: "Mauritius", slug: "mauritius", href: "/pages/world-wide/mauritius" },
-  { code: "GB", label: "United Kingdom", slug: "united-kingdom", href: "/pages/world-wide/united-kingdom" },
-  { code: "CA", label: "Canada", slug: "canada", href: "/pages/world-wide/canada" },
-  { code: "OM", label: "Oman", slug: "oman", href: "/pages/world-wide/oman" },
-  { code: "LK", label: "Sri Lanka", slug: "sri-lanka", href: "/pages/world-wide/sri-lanka" },
-  { code: "MV", label: "Maldives", slug: "maldives", href: "/pages/world-wide/maldives" },
-];
-
 // The store only settles in PKR, so every market shows the same currency —
 // this is a country/shipping-region picker, not a currency switcher.
 export const countrySelector: { code: string; label: string }[] = [
