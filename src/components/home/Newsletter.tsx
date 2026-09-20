@@ -53,7 +53,7 @@ export default function Newsletter() {
             type="submit"
             className="shrink-0 rounded-none bg-forest-900 px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-cream-100 transition hover:bg-forest-950"
           >
-            {submitted ? "Thanks!" : "Subscribe"}
+            {submitted ? "Not available yet" : "Subscribe"}
           </button>
         </form>
       </div>

@@ -92,7 +92,7 @@ export default function ContactForm({
             type="submit"
             className="w-full cursor-pointer rounded-none bg-forest-900 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-cream-100 transition-colors hover:bg-forest-950"
           >
-            {submitted ? "Thanks — we'll be in touch!" : "Send message"}
+            {submitted ? "Message not sent — please contact us on WhatsApp" : "Send message"}
           </button>
         </form>
       </div>

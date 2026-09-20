@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { Product } from "@/lib/types";
+import { restoreCart, safeQuantity } from "@/lib/cart-validation";
 
 export type CartItem = {
   handle: string;
@@ -51,7 +52,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      if (stored) setItems(JSON.parse(stored));
+      if (stored && stored.length <= 100000) setItems(restoreCart(JSON.parse(stored)));
     } catch {
       // ignore — private browsing, corrupted value, etc.
     }
@@ -68,11 +69,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, hydrated]);
 
   const addItem = (product: Product, quantity: number) => {
+    quantity = safeQuantity(quantity);
+    if (!quantity || product.inStock === false) return;
     setItems((current) => {
       const existing = current.find((item) => item.handle === product.handle);
       if (existing) {
         return current.map((item) =>
-          item.handle === product.handle ? { ...item, quantity: item.quantity + quantity } : item,
+          item.handle === product.handle ? { ...item, quantity: safeQuantity(item.quantity + quantity) } : item,
         );
       }
       return [
@@ -95,6 +98,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const updateQuantity = (handle: string, quantity: number) => {
+    quantity = safeQuantity(quantity);
     if (quantity < 1) {
       removeItem(handle);
       return;
