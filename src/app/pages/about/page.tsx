@@ -19,7 +19,7 @@ export default function AboutPage() {
             original — confirmed by measuring both sites at 1440px: their
             image was 655×814, ours was 905×1131 before this fix. */}
         <div className="container-app mx-auto grid max-w-311.5 items-center gap-10 md:grid-cols-[1fr_375px] md:gap-30">
-          <Reveal className="relative aspect-4/5 overflow-hidden rounded-md">
+          <Reveal immediate className="relative aspect-4/5 overflow-hidden rounded-md">
             <Image
               src={journeyImage}
               alt="Haris Ali Rasheed behind the counter at Hariss Bhai Perfumes in Lahore"
@@ -30,7 +30,7 @@ export default function AboutPage() {
             />
           </Reveal>
 
-          <Reveal delay={0.1} className="flex flex-col items-start gap-5">
+          <Reveal immediate className="flex flex-col items-start gap-5">
             <div>
               <p className="text-xs font-normal uppercase tracking-[0.18em] text-cream-100">
                 Our Story

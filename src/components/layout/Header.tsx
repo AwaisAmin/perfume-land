@@ -129,13 +129,13 @@ export default function Header() {
     closeSearch();
   };
 
-  // Header persists across client-side navigations (it lives in the root
-  // layout), so this runs once per visit, well before any collection page
-  // is actually reached — covering every entry point (menu clicks, "View
-  // all" buttons, back/forward, a pasted link), not just menu hovers.
+  // Preloading every collection hero cost a few hundred KB on pages that
+  // never show one, so it now waits until the visitor actually opens the
+  // collections menu — still ahead of the click, but paid for only by
+  // people heading that way.
   useEffect(() => {
-    preloadCollectionHeroes();
-  }, []);
+    if (openMenu === "brand") preloadCollectionHeroes();
+  }, [openMenu]);
 
   // Publish the header's real (responsive) height so the hero below can pull
   // itself up underneath it and overlay it transparently, instead of the

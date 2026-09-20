@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 
 type CollectionHeroProps = {
@@ -15,14 +12,6 @@ type CollectionHeroProps = {
  * collection, current or future.
  */
 export default function CollectionHero({ title, image }: CollectionHeroProps) {
-  // These banners are large hotlinked images with no local caching, so how
-  // long they take to arrive varies — sometimes near-instant (already
-  // cached from a hover-preload), sometimes not. Rather than chase that
-  // timing, fade the image in once it actually finishes loading: fast
-  // loads fade too quickly to notice, slow ones read as an intentional
-  // reveal instead of a flash of the plain forest-900 fallback.
-  const [loaded, setLoaded] = useState(false);
-
   return (
     // Pulled up by the header's own height (same technique as the homepage
     // Hero) so the banner starts at the very top of the page and the
@@ -33,17 +22,22 @@ export default function CollectionHero({ title, image }: CollectionHeroProps) {
     // 833px @2000 — both match width / 2.4 exactly).
     <section
       className="relative flex w-full min-h-80 aspect-1942/809 items-center justify-center overflow-hidden bg-forest-900"
-      style={{ marginTop: "calc(-1 * var(--header-height, 84px))" }}
+      style={{ marginTop: "calc(-1 * var(--header-height))" }}
     >
+      {/* The banner is this page's largest paint, so it is marked priority
+          and shown as soon as it decodes. It used to fade in over 700ms
+          once loaded, from back when these were hotlinked and arrived at
+          unpredictable times; they ship with the app now, and the fade only
+          delayed the paint it was meant to smooth over. */}
       {image && (
         <Image
           src={image}
           alt={title}
           fill
           priority
-          className={`object-contain object-right p-8 sm:px-20 transition-opacity duration-700 ease-out ${loaded ? "opacity-100" : "opacity-0"}`}
+          fetchPriority="high"
+          className="object-contain object-right p-8 sm:px-20"
           sizes="100vw"
-          onLoad={() => setLoaded(true)}
         />
       )}
       <div className="absolute inset-0 bg-ink/30" />

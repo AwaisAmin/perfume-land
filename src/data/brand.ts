@@ -3,7 +3,7 @@ export type ColumnItem = {
   body: string;
 };
 
-export const journeyImage = "/brand/haris-about.png";
+export const journeyImage = "/brand/haris-about.webp";
 
 // Shared across the homepage "About Us" section and the About page — the
 // same three values are repeated in both places.

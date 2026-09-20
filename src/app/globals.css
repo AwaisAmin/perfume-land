@@ -18,8 +18,25 @@
   --color-cream-200: #e8e1d4;
   --color-ink: #1c1c1a;
 
-  --header-height: 84px;
+  /* Header.tsx republishes the exact measured height once it mounts, but
+     the first paint happens before that. These defaults are the real
+     rendered heights at each breakpoint, so the hero that pulls itself up
+     under the header lands in the right place straight away instead of
+     jumping when the script runs. */
+  --header-height: 104px;
   --announcement-height: 40px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 120px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 160px;
+  }
 }
 
 @theme inline {

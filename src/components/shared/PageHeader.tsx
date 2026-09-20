@@ -14,7 +14,7 @@ type PageHeaderProps = {
 export default function PageHeader({ children, className = "" }: PageHeaderProps) {
   return (
     <div className="border-y border-cream-50/10 bg-forest-900 py-16">
-      <Reveal className={`container-app text-center ${className}`}>{children}</Reveal>
+      <Reveal immediate className={`container-app text-center ${className}`}>{children}</Reveal>
     </div>
   );
 }

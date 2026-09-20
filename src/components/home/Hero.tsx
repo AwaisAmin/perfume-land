@@ -1,17 +1,54 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronDown, Volume2, VolumeX } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 const HERO_VIDEO_SRC = "/videos/haris-bhai-perfume-making.mp4";
-const HERO_POSTER = "/videos/haris-bhai-perfume-making-poster.jpg";
+const HERO_POSTER = "/videos/haris-bhai-perfume-making-poster.webp";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [videoReady, setVideoReady] = useState(false);
+  // The film is by far the heaviest asset on the site. The poster already
+  // fills the hero, so the video is only fetched once the page has finished
+  // loading everything else — that keeps it off the critical path and out of
+  // the running for LCP, instead of holding up the first paint.
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    // Respect an explicit request for less motion or less data, and don't
+    // spend a phone's data budget on a decorative loop over a slow link.
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      connection?.saveData ||
+      (connection?.effectiveType && /(^|-)2g$/.test(connection.effectiveType))
+    ) {
+      return;
+    }
+
+    // The film is 11MB. On a phone that is somebody's data plan spent on a
+    // decorative loop, and it would take over as the largest paint long
+    // after the poster has already filled the hero — so phones keep the
+    // poster and only wider screens load the film.
+    if (!window.matchMedia("(min-width: 768px)").matches) return;
+
+    const start = () => setVideoSrc(HERO_VIDEO_SRC);
+    if (document.readyState === "complete") {
+      start();
+      return;
+    }
+    window.addEventListener("load", start, { once: true });
+    return () => window.removeEventListener("load", start);
+  }, []);
 
   const scrollToNext = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
@@ -31,11 +68,18 @@ export default function Hero() {
         marginTop: "calc(-1 * var(--header-height, 132px))",
       }}
     >
-      {/* Poster is a plain CSS background so it always paints instantly,
-          independent of whether the (large) video has buffered yet. */}
-      <div
-        className="absolute inset-0 bg-cover bg-position-[72%_center] sm:bg-center"
-        style={{ backgroundImage: `url(${HERO_POSTER})` }}
+      {/* The poster carries the hero on its own until the film arrives, so
+          it is this page's largest paint and is loaded first. Going through
+          next/image (rather than a CSS background) means a phone is served a
+          phone-sized frame instead of the full 1920px one. */}
+      <Image
+        src={HERO_POSTER}
+        alt=""
+        fill
+        priority
+        fetchPriority="high"
+        sizes="100vw"
+        className="object-cover object-[72%_center] sm:object-center"
       />
 
       <video
@@ -43,13 +87,12 @@ export default function Hero() {
         className={`absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-center transition-opacity duration-700 ${
           videoReady ? "opacity-100" : "opacity-0"
         }`}
-        src={HERO_VIDEO_SRC}
-        poster={HERO_POSTER}
+        src={videoSrc}
         autoPlay
         muted={muted}
         loop
         playsInline
-        preload="auto"
+        preload="none"
         onCanPlay={() => setVideoReady(true)}
         onError={() => setVideoReady(false)}
       />
