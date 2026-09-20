@@ -8,24 +8,34 @@ import { bottleImage } from "@/data/products";
 export const journeyImage = bottleImage;
 
 // Shared across the homepage "About Us" section and the About page — the
-// reference site repeats this exact content in both places.
+// same three values are repeated in both places.
 export const brandValues: ColumnItem[] = [
   {
-    title: "Craftsmanship",
-    body: "Every fragrance is meticulously composed using traditional and modern techniques.",
+    title: "Blended to Order",
+    body: "Nothing is filled from a warehouse. Every bottle is mixed in the shop, for the person who asked for it.",
   },
   {
-    title: "Authenticity",
-    body: "We source only the finest, ethically harvested raw materials from around the world.",
+    title: "Honest Impressions",
+    body: "We never pass our work off as the original. These are impressions — built to smell like the fragrances you love.",
   },
   {
-    title: "Timelessness",
-    body: "Our creations are designed to transcend trends and become lasting companions.",
+    title: "Fair Prices",
+    body: "A designer scent should not cost a month's salary. You pay for the oil in the bottle, not the name on it.",
   },
 ];
 
-export const brandLeaders: ColumnItem[] = [
-  { title: "Haseeb Amanzada", body: "Founder & CEO" },
-  { title: "Saleem Amanzada", body: "COO & Co-Founder" },
-  { title: "Rashid Amanzada", body: "CMO & Brand Director" },
+// What the shop actually does, shown as the About page's three columns.
+export const brandCraft: ColumnItem[] = [
+  {
+    title: "Custom Blending",
+    body: "Tell us the note you want more of — sweeter, woodier, longer-lasting — and it is mixed in front of you.",
+  },
+  {
+    title: "Refills",
+    body: "Bring back a bottle you already love, in any size, and have it filled again instead of replacing it.",
+  },
+  {
+    title: "Impressions",
+    body: "Our own take on the designer fragrances people ask for most, in spray, oil and interior form.",
+  },
 ];

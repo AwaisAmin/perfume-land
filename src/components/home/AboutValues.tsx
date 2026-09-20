@@ -7,7 +7,7 @@ export default function AboutValues() {
       tone="forest"
       heading="About Us"
       intro={[
-        "Haris Bhai Perfumes crafts timeless fragrances with finest ingredients, blending tradition and modern artistry into every scent.",
+        "Hariss Bhai Perfumes is a perfume counter in Bahria Town, Lahore, where every bottle is blended, adjusted and filled by hand — and now shipped across Pakistan.",
       ]}
       items={brandValues}
     />

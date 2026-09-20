@@ -3,12 +3,12 @@ import Reveal from "@/components/ui/Reveal";
 import MultiColumnSection from "@/components/shared/MultiColumnSection";
 import ContactForm from "@/components/shared/ContactForm";
 import TrustBadges from "@/components/shared/TrustBadges";
-import { brandLeaders, brandValues, journeyImage } from "@/data/brand";
+import { brandCraft, brandValues, journeyImage } from "@/data/brand";
 
 export default function AboutPage() {
   return (
     <>
-      {/* "The Goal" — the only genuinely new hero-style section; everything
+      {/* "Our Story" — the only genuinely new hero-style section; everything
           below it is reused (About Us' values pattern, Suggest a Fragrance,
           trust badges). */}
       <section className="text-fluid-section-gap border-y border-cream-50/10 bg-forest-900 text-cream-100">
@@ -33,26 +33,32 @@ export default function AboutPage() {
           <Reveal delay={0.1} className="flex flex-col items-start gap-5">
             <div>
               <p className="text-xs font-normal uppercase tracking-[0.18em] text-cream-100">
-                Our Journey
+                Our Story
               </p>
-              <h2 className="text-fluid-h2 mt-4 font-normal text-cream-100">The Goal</h2>
+              <h2 className="text-fluid-h2 mt-4 font-normal text-cream-100">
+                A Counter in Lahore
+              </h2>
             </div>
 
             <p className="text-cream-100">
-              Our journey began in Dubai, but our vision has always been global.
+              Hariss Bhai Perfumes is a perfume counter in Bahria Town, Lahore, run by
+              Haris Ali Rasheed — the Hariss Bhai people come in and ask for by name.
             </p>
             <p className="text-cream-100">
-              Our goal is to open Haris Bhai Perfumes stores in as many cities and countries as possible,
-              making our fragrances easily accessible to people around the world. We want
-              customers everywhere to experience Haris Bhai Perfumes, discover our products, and enjoy
-              quality fragrances at fair prices.
+              The work is simple and it happens in front of you. You name the fragrance
+              you are after, or bring in the empty bottle you have been refilling for
+              years, and it is blended and filled at the counter. If you want it sweeter,
+              woodier or heavier, we adjust it there and then — which is something a
+              sealed box can never do.
             </p>
             <p className="text-cream-100">
-              Step by step, store by store, and country by country, we are building a global
-              fragrance brand.
+              What started as a shop counter now reaches far past it. The blending gets
+              filmed and posted, and the orders come back from people who have never set
+              foot in Lahore — a fragrance they smelled once abroad, a bottle they cannot
+              find here any more, a note they want dialled up.
             </p>
             <p className="font-semibold text-cream-100">
-              From Dubai to the world, our journey has just started.
+              Same counter, same hands, now shipping across Pakistan.
             </p>
           </Reveal>
         </div>
@@ -60,13 +66,13 @@ export default function AboutPage() {
 
       <MultiColumnSection
         tone="white"
-        kicker="Meet Our Leaders"
-        heading="Our Leaders"
+        kicker="What We Do"
+        heading="Three Ways to Leave With a Bottle"
         intro={[
-          "At Haris Bhai Perfumes, we believe everyone deserves to experience luxury fragrances at a fair price.",
-          "Founded by Haseeb Amanzada and later joined by Saleem Amanzada and Rashid Amanzada, our family run brand continues to grow with one mission: to improve our quality and make beautiful fragrances accessible to everyone.",
+          "We believe a good fragrance should not be something you save for one night a year.",
+          "The shop is built around that: blend something new, refill what you already own, or pick an impression of a designer scent you like — across sprays, perfume oils and interior perfumes.",
         ]}
-        items={brandLeaders}
+        items={brandCraft}
       />
 
       <MultiColumnSection tone="gold" items={brandValues} />
