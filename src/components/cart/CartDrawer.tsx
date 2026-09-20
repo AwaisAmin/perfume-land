@@ -6,8 +6,9 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus, X } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
+import { formatPrice } from "@/lib/currency";
 
-// Matches the announcement bar's own "Free Delivery Over AED 500" — the
+// Matches the announcement bar's own "Free Delivery Over Rs 500" — the
 // live cart drawer's free-shipping message uses the same real threshold.
 const FREE_SHIPPING_THRESHOLD = 500;
 
@@ -51,7 +52,7 @@ export default function CartDrawer() {
             {items.length > 0 && (
               <p className="border-b border-ink/10 px-6 py-4 text-[13px] text-ink/60">
                 {remaining > 0
-                  ? `Spend AED ${remaining.toFixed(2)} more and get free shipping!`
+                  ? `Spend ${formatPrice(remaining)} more and get free shipping!`
                   : "You are eligible for free shipping."}
               </p>
             )}
@@ -82,7 +83,7 @@ export default function CartDrawer() {
                       >
                         {item.title}
                       </Link>
-                      <span className="text-sm text-ink/60">Dhs. {item.price.toFixed(2)}</span>
+                      <span className="text-sm text-ink/60">{formatPrice(item.price)}</span>
                       {item.size && <span className="text-xs uppercase text-ink/40">{item.size}</span>}
 
                       <div className="mt-1 flex items-center gap-4">
@@ -128,7 +129,7 @@ export default function CartDrawer() {
                   className="flex w-full cursor-pointer items-center justify-between bg-forest-900 px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-cream-50 transition-colors hover:bg-forest-950"
                 >
                   <span>Checkout</span>
-                  <span>Dhs. {subtotal.toFixed(2)}</span>
+                  <span>{formatPrice(subtotal)}</span>
                 </button>
               </div>
             )}

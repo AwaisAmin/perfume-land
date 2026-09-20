@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Plus } from "lucide-react";
 import ProductImage from "@/components/ui/ProductImage";
+import { formatPrice } from "@/lib/currency";
 import type { Product } from "@/lib/types";
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -44,11 +45,11 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
         <div className="font-heading flex items-baseline gap-2 text-xs uppercase tracking-[0.18em]">
           <span className="text-gold-600">
-            {product.compareAtPrice ? "From " : ""}Dhs. {product.price.toFixed(2)}
+            {product.compareAtPrice ? "From " : ""}{formatPrice(product.price)}
           </span>
           {product.compareAtPrice && (
             <span className="text-ink/40 line-through">
-              Dhs. {product.compareAtPrice.toFixed(2)}
+              {formatPrice(product.compareAtPrice)}
             </span>
           )}
         </div>

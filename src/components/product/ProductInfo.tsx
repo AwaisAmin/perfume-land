@@ -3,6 +3,7 @@
 import { useState } from "react";
 import QuantityStepper from "@/components/ui/QuantityStepper";
 import { useCart } from "@/lib/cart-context";
+import { formatPrice } from "@/lib/currency";
 import type { Product } from "@/lib/types";
 
 // The live site caps the stock bar's fill at this count — a product with
@@ -39,9 +40,9 @@ export default function ProductInfo({ product }: { product: Product }) {
       </h1>
 
       <div className="flex items-baseline gap-3">
-        <span className="text-lg text-gold-600">Dhs. {product.price.toFixed(2)}</span>
+        <span className="text-lg text-gold-600">{formatPrice(product.price)}</span>
         {product.compareAtPrice && (
-          <span className="text-sm text-ink/40 line-through">Dhs. {product.compareAtPrice.toFixed(2)}</span>
+          <span className="text-sm text-ink/40 line-through">{formatPrice(product.compareAtPrice)}</span>
         )}
       </div>
 

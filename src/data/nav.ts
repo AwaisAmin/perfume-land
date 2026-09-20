@@ -39,7 +39,7 @@ export const worldwideLinks: { code: string; label: string; slug: string; href: 
   { code: "MV", label: "Maldives", slug: "maldives", href: "/pages/world-wide/maldives" },
 ];
 
-// The store only settles in AED, so every market shows the same currency —
+// The store only settles in PKR, so every market shows the same currency —
 // this is a country/shipping-region picker, not a currency switcher.
 export const countrySelector: { code: string; label: string }[] = [
   { code: "au", label: "Australia" },

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import { shopTheLookGroups } from "@/data/products";
+import { formatPrice } from "@/lib/currency";
 
 export default function ShopTheLook() {
   const [active, setActive] = useState(0);
@@ -79,7 +80,7 @@ export default function ShopTheLook() {
             </div>
 
             <p className="text-xs font-normal uppercase tracking-[0.18em] text-forest-900">{item.title}</p>
-            <p className="text-sm text-gold-600">Dhs. {item.price.toFixed(2)}</p>
+            <p className="text-sm text-gold-600">{formatPrice(item.price)}</p>
 
             <Button href={`/products/${item.handle}`}>View Product</Button>
 

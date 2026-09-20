@@ -175,9 +175,9 @@ export default function Header() {
               onClick={() => setOpenMenu((m) => (m === "country" ? null : "country"))}
               className={`flex items-center gap-1.5 text-sm font-semibold uppercase tracking-widest ${iconButtonClass}`}
             >
-              <Flag code="ae" className="h-4 w-5.5 shrink-0 rounded-[1px]" />
-              AED
-              <span className="text-xs opacity-60">د.إ</span>
+              <Flag code="pk" className="h-4 w-5.5 shrink-0 rounded-[1px]" />
+              PKR
+              <span className="text-xs opacity-60">Rs</span>
               <ChevronDown size={13} />
             </button>
 
@@ -198,7 +198,7 @@ export default function Header() {
                     >
                       <Flag code={c.code} className="h-3.5 w-5 shrink-0 rounded-[1px]" />
                       <span>
-                        {c.label} <span className="whitespace-nowrap">(AED د.إ)</span>
+                        {c.label} <span className="whitespace-nowrap">(PKR Rs)</span>
                       </span>
                     </button>
                   ))}

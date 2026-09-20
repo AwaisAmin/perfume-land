@@ -4,6 +4,7 @@ import { useState } from "react";
 import ProductImage from "@/components/ui/ProductImage";
 import QuantityStepper from "@/components/ui/QuantityStepper";
 import Reveal from "@/components/ui/Reveal";
+import { formatPrice } from "@/lib/currency";
 import type { FeaturedProductData } from "@/lib/types";
 
 export default function FeaturedProduct({ product }: { product: FeaturedProductData }) {
@@ -48,10 +49,10 @@ export default function FeaturedProduct({ product }: { product: FeaturedProductD
             <h3 className="text-fluid-h2 font-normal text-forest-900">{product.title}</h3>
 
             <div className="flex items-baseline gap-3 text-lg">
-              <span className="font-bold text-gold-600">Dhs. {variant.price.toFixed(2)}</span>
+              <span className="font-bold text-gold-600">{formatPrice(variant.price)}</span>
               {variant.compareAtPrice && (
                 <span className="text-ink/40 line-through">
-                  Dhs. {variant.compareAtPrice.toFixed(2)}
+                  {formatPrice(variant.compareAtPrice)}
                 </span>
               )}
             </div>

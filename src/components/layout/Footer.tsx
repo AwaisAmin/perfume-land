@@ -153,8 +153,8 @@ export default function Footer() {
               aria-expanded={countryOpen}
               className="flex cursor-pointer items-center gap-2 text-xs uppercase tracking-widest text-cream-100/70 hover:text-cream-50"
             >
-              <Flag code="ae" className="h-3.5 w-5 rounded-xs" />
-              United Arab Emirates (AED د.إ)
+              <Flag code="pk" className="h-3.5 w-5 rounded-xs" />
+              Pakistan (PKR Rs)
               <ChevronDown size={10} className={countryOpen ? "rotate-180 transition-transform" : "transition-transform"} />
             </button>
 
@@ -176,7 +176,7 @@ export default function Footer() {
                     >
                       <Flag code={c.code} className="h-3.5 w-5 shrink-0 rounded-[1px]" />
                       <span>
-                        {c.label} <span className="whitespace-nowrap">(AED د.إ)</span>
+                        {c.label} <span className="whitespace-nowrap">(PKR Rs)</span>
                       </span>
                     </button>
                   ))}

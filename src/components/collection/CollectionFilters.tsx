@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
+import { CURRENCY_LABEL } from "@/lib/currency";
 
 export type GenderCount = { value: string; label: string; count: number };
 
@@ -108,7 +109,7 @@ export default function CollectionFilters({
 
           <div className="flex items-center gap-3 text-sm text-ink/70">
             <label className="flex items-center gap-1 rounded-sm border border-ink/15 px-3 py-2">
-              <span className="text-ink/40">Dhs.</span>
+              <span className="text-ink/40">{CURRENCY_LABEL}</span>
               <input
                 type="number"
                 aria-label="From price"
@@ -121,7 +122,7 @@ export default function CollectionFilters({
             </label>
             <span className="text-ink/40">to</span>
             <label className="flex items-center gap-1 rounded-sm border border-ink/15 px-3 py-2">
-              <span className="text-ink/40">Dhs.</span>
+              <span className="text-ink/40">{CURRENCY_LABEL}</span>
               <input
                 type="number"
                 aria-label="To price"
