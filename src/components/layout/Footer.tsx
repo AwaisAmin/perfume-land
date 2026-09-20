@@ -138,7 +138,15 @@ export default function Footer() {
         <div className="flex flex-col gap-4 border-t border-cream-100/15 py-6 text-xs text-cream-100/60 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Hariss Bhai Perfumes. All rights reserved.</p>
           <p className="flex items-center gap-2"><Flag code="pk" className="h-3.5 w-5 rounded-xs" /> Pakistan &middot; PKR Rs</p>
-          <p>Made with care. Worn with character.</p>
+          <p>
+            Website by{" "}
+            <a
+              href="https://wellsoftsolutions.com"
+              className="inline-block py-1 font-medium text-gold-400 underline decoration-gold-400/40 underline-offset-4 transition-colors hover:text-cream-50 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
+            >
+              Wellsoft Solutions
+            </a>
+          </p>
         </div>
       </div>
     </footer>
