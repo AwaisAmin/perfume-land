@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Claude/MCP config (contains secrets) and tool output
+.mcp.json
+.playwright-mcp/
