@@ -4,13 +4,36 @@ import { useState } from "react";
 import ProductImage from "@/components/ui/ProductImage";
 import QuantityStepper from "@/components/ui/QuantityStepper";
 import Reveal from "@/components/ui/Reveal";
-import { formatPrice } from "@/lib/currency";
-import type { FeaturedProductData } from "@/lib/types";
+import type { FeaturedProductData, Product, SiteContent } from "@/lib/types";
+import { useCart } from "@/lib/cart-context";
+import { useFormatPrice } from "@/lib/site-data-context";
 
-export default function FeaturedProduct({ product }: { product: FeaturedProductData }) {
-  const [variantIndex, setVariantIndex] = useState(0);
+type FeaturedProductProps = {
+  product: FeaturedProductData;
+  texts: SiteContent["home"]["featuredProduct"];
+  /** The catalog product this section shows (for adding to the cart). */
+  source: Product | undefined;
+  /** Catalog variant id for each entry of product.variants (null = not purchasable). */
+  variantIds: (string | null)[];
+};
+
+export default function FeaturedProduct({ product, texts, source, variantIds }: FeaturedProductProps) {
+  const { addItem } = useCart();
+  const formatPrice = useFormatPrice();
+  const catalogVariantAt = (i: number) => source?.variants.find((v) => v.id === variantIds[i]);
+  // Only a catalog variant that exists and is out of stock is disabled; an
+  // option the catalog does not have (yet) stays selectable, Add to Cart is off.
+  const isSoldOut = (i: number) => catalogVariantAt(i)?.inStock === false;
+  const [variantIndex, setVariantIndex] = useState(() => {
+    const first = product.variants.findIndex((_, i) => source?.variants.find((v) => v.id === variantIds[i])?.inStock !== false);
+    return first >= 0 ? first : 0;
+  });
   const [quantity, setQuantity] = useState(1);
   const variant = product.variants[variantIndex];
+  const catalogVariant = catalogVariantAt(variantIndex);
+  const compareAtPrice =
+    variant?.compareAtPrice !== undefined && variant.compareAtPrice > variant.price ? variant.compareAtPrice : undefined;
+  const canAdd = Boolean(source && catalogVariant?.inStock && source.inStock !== false);
 
   return (
     <section className="text-fluid-section-gap border-y border-ink/10 bg-cream-50">
@@ -23,9 +46,9 @@ export default function FeaturedProduct({ product }: { product: FeaturedProductD
       <div className="container-app mx-auto max-w-339">
         <Reveal className="text-center">
           <p className="text-xs font-normal uppercase tracking-[0.18em] text-forest-900">
-            Our Selection
+            {texts.kicker}
           </p>
-          <h2 className="text-fluid-h2 mt-2 font-normal text-forest-900">Product of the Week</h2>
+          <h2 className="text-fluid-h2 mt-2 font-normal text-forest-900">{texts.heading}</h2>
         </Reveal>
 
         {/* image:content is a 0.55/0.45 split with the content column
@@ -50,9 +73,9 @@ export default function FeaturedProduct({ product }: { product: FeaturedProductD
 
             <div className="flex items-baseline gap-3 text-lg">
               <span className="font-bold text-gold-600">{formatPrice(variant.price)}</span>
-              {variant.compareAtPrice && (
+              {compareAtPrice !== undefined && (
                 <span className="text-ink/40 line-through">
-                  {formatPrice(variant.compareAtPrice)}
+                  {formatPrice(compareAtPrice)}
                 </span>
               )}
             </div>
@@ -62,7 +85,7 @@ export default function FeaturedProduct({ product }: { product: FeaturedProductD
             <p className="max-w-md text-ink/70">{product.description}</p>
 
             <div className="flex flex-col items-start gap-2">
-              <span className="text-sm">Size:</span>
+              <span className="text-sm">{texts.sizeLabel}</span>
               <div className="flex flex-wrap gap-2.5">
                 {product.variants.map((v, i) => (
                   <button
@@ -70,10 +93,13 @@ export default function FeaturedProduct({ product }: { product: FeaturedProductD
                     type="button"
                     onClick={() => setVariantIndex(i)}
                     aria-pressed={i === variantIndex}
-                    className={`min-w-10 cursor-pointer rounded-sm border px-3.5 py-2 text-sm transition-colors ${
-                      i === variantIndex
-                        ? "border-ink text-ink"
-                        : "border-ink/15 text-ink/40 hover:border-ink/40"
+                    disabled={isSoldOut(i)}
+                    className={`min-w-10 rounded-sm border px-3.5 py-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-900 ${
+                      isSoldOut(i)
+                        ? "cursor-not-allowed border-ink/10 text-ink/25 line-through"
+                        : i === variantIndex
+                          ? "cursor-pointer border-ink text-ink"
+                          : "cursor-pointer border-ink/15 text-ink/40 hover:border-ink/40"
                     }`}
                   >
                     {v.size}
@@ -86,9 +112,13 @@ export default function FeaturedProduct({ product }: { product: FeaturedProductD
 
             <button
               type="button"
-              className="w-full cursor-pointer rounded-sm bg-forest-900 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-cream-50 transition-colors hover:bg-forest-950"
+              disabled={!canAdd}
+              onClick={() => {
+                if (source && catalogVariant) addItem(source, catalogVariant, quantity);
+              }}
+              className="w-full cursor-pointer rounded-sm bg-forest-900 disabled:cursor-not-allowed disabled:opacity-50 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-cream-50 transition-colors hover:bg-forest-950"
             >
-              Add to Cart
+              {texts.addToCart}
             </button>
           </Reveal>
         </div>

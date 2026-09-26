@@ -1,4 +1,4 @@
-import type { Collection, FeaturedProductData, Product } from "@/lib/types";
+import type { Collection, FeaturedProductData, Product, Variant, VariantSize } from "@/lib/types";
 
 export type ShopTheLookItem = {
   handle: string;
@@ -41,6 +41,8 @@ type ProductInput = {
   description?: string;
   size?: string;
   stockCount?: number;
+  /** Extra variants after the default one (built from price/size above). */
+  extraVariants?: Omit<Variant, "id">[];
 };
 
 function product({
@@ -55,10 +57,16 @@ function product({
   description,
   size = "50ml",
   stockCount = 85,
+  extraVariants = [],
 }: ProductInput): Product {
   autoId += 1;
+  const id = `product-${autoId}`;
+  const variants: Variant[] = [
+    { type: "Perfume" as const, size: size as VariantSize, price, compareAtPrice, inStock },
+    ...extraVariants,
+  ].map((variant, index) => ({ id: `${id}-v${index + 1}`, ...variant }));
   return {
-    id: `product-${autoId}`,
+    id,
     handle: handle ?? title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
     title,
     kicker,
@@ -70,6 +78,7 @@ function product({
     description,
     size,
     stockCount,
+    variants,
   };
 }
 
@@ -126,7 +135,7 @@ export const collections: Collection[] = [
     pageTitle: "Exclusive Collection",
     heroImage: bottleImage,
     products: [
-      product({ description: "A warm musk-style fragrance with earthy nuances, soft woods and a powdery finish. Rounded and comforting with a traditional attar character.", title: "Musk Ul Hind", price: 140, compareAtPrice: 775, image: PRODUCT_IMAGE.impression }),
+      product({ description: "A warm musk-style fragrance with earthy nuances, soft woods and a powdery finish. Rounded and comforting with a traditional attar character.", title: "Musk Ul Hind", price: 140, compareAtPrice: 775, image: PRODUCT_IMAGE.impression, extraVariants: [{ type: "Perfume", size: "100ml", price: 180, compareAtPrice: 840, inStock: true }] }),
       product({ description: "A romantic floral character with rose-like softness, fresh petals and a gently sweet musky finish. Graceful for daytime and special moments.", title: "Miss Dior", price: 140, compareAtPrice: 724, image: PRODUCT_IMAGE.impression }),
       product({ description: "A sophisticated fruity floral character with dark berry sweetness, delicate rose-like touches and a warm vanilla woody finish. Elegant for day or evening.", title: "Si Armani", price: 140, compareAtPrice: 635, image: PRODUCT_IMAGE.impression }),
       product({ description: "A soft floral musk fragrance with delicate petal-like sweetness and a warm powdery finish. A gentle, graceful scent with a traditional attar feel.", handle: "husn-e-yusuf", title: "حسن یوسف", price: 140, compareAtPrice: 674, image: PRODUCT_IMAGE.impression }),
@@ -300,8 +309,5 @@ export const featuredProduct: FeaturedProductData = {
   title: featured.title,
   description: featured.description!,
   image: featured.image,
-  variants: [
-    { size: "50ml", price: featured.price, compareAtPrice: featured.compareAtPrice },
-    { size: "100ml", price: 180, compareAtPrice: 840 },
-  ],
+  variants: featured.variants.map(({ size, price, compareAtPrice }) => ({ size, price, compareAtPrice })),
 };

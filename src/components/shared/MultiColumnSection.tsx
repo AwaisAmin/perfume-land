@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Reveal from "@/components/ui/Reveal";
-import type { ColumnItem } from "@/data/brand";
+import type { ColumnItem } from "@/lib/types";
 
 type Tone = "forest" | "white" | "gold";
 

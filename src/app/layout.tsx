@@ -7,6 +7,8 @@ import Footer from "@/components/layout/Footer";
 import FloatingChat from "@/components/layout/FloatingChat";
 import CartDrawer from "@/components/cart/CartDrawer";
 import { CartProvider } from "@/lib/cart-context";
+import { getSiteData, toClientSiteData } from "@/lib/site-data";
+import { SiteDataProvider } from "@/lib/site-data-context";
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -20,27 +22,29 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "Haris Bhai Perfumes | Luxury Perfume Impressions",
-  description:
-    "Your ultimate destination for a global array of brand impressions - a perfumed heaven, all under one roof.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo } = (await getSiteData()).content;
+  return { title: seo.title, description: seo.description };
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const siteData = toClientSiteData(await getSiteData());
   return (
     <html
       lang="en"
       className={`${nunitoSans.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-cream-50 text-ink">
-        <CartProvider>
-          <AnnouncementBar />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <FloatingChat />
-          <CartDrawer />
-        </CartProvider>
+        <SiteDataProvider value={siteData}>
+          <CartProvider>
+            <AnnouncementBar />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <FloatingChat />
+            <CartDrawer />
+          </CartProvider>
+        </SiteDataProvider>
       </body>
     </html>
   );

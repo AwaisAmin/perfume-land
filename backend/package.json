@@ -1,0 +1,29 @@
+{
+  "name": "perfume-land-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Backend + admin CRM for Haris Bhai Perfumes",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "migrate": "node src/db/migrate.js",
+    "seed": "node src/db/seed.js",
+    "create-admin": "node src/db/create-admin.js",
+    "test": "node --import ./test/setup.js --test --test-concurrency=1 --experimental-test-coverage test/*.test.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "multer": "^2.0.1",
+    "mysql2": "^3.11.4",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  }
+}

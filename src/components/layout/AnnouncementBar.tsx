@@ -3,19 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const messages = ["Free Delivery Over Rs 500", "Delivery Across Pakistan"];
+import { useSiteData } from "@/lib/site-data-context";
 
 export default function AnnouncementBar() {
+  const { announcements: messages } = useSiteData();
   const [index, setIndex] = useState(0);
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (messages.length < 2) return;
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % messages.length);
     }, 3000);
     return () => clearInterval(id);
-  }, []);
+  }, [messages.length]);
 
   // Publish this bar's height so the full-screen hero below can subtract it
   // and still fill exactly one viewport together with the header.
@@ -32,6 +33,7 @@ export default function AnnouncementBar() {
   }, []);
 
   const go = (dir: 1 | -1) => {
+    if (messages.length === 0) return;
     setIndex((i) => (i + dir + messages.length) % messages.length);
   };
 
@@ -62,7 +64,7 @@ export default function AnnouncementBar() {
             transition={{ duration: 0.35 }}
             className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.12em]"
           >
-            {messages[index]}
+            {messages[index % Math.max(1, messages.length)]}
           </motion.p>
         </AnimatePresence>
 

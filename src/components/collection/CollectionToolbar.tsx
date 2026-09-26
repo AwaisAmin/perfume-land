@@ -4,15 +4,18 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Grid2x2, LayoutGrid, List } from "lucide-react";
 import type { GridLayout } from "./ProductGrid";
+import { useSiteData } from "@/lib/site-data-context";
+import type { SiteContent } from "@/lib/types";
 
 export type SortOption = "featured" | "title-asc" | "title-desc" | "price-asc" | "price-desc";
 
-const sortLabels: Record<SortOption, string> = {
-  featured: "Featured",
-  "title-asc": "Alphabetically, A-Z",
-  "title-desc": "Alphabetically, Z-A",
-  "price-asc": "Price, low to high",
-  "price-desc": "Price, high to low",
+// Internal sort values stay in code; their display names come from content.
+const sortKeys: Record<SortOption, keyof SiteContent["collectionPage"]["sortOptions"]> = {
+  featured: "featured",
+  "title-asc": "titleAsc",
+  "title-desc": "titleDesc",
+  "price-asc": "priceAsc",
+  "price-desc": "priceDesc",
 };
 
 type CollectionToolbarProps = {
@@ -31,6 +34,7 @@ export default function CollectionToolbar({
   onSortChange,
 }: CollectionToolbarProps) {
   const [sortOpen, setSortOpen] = useState(false);
+  const t = useSiteData().content.collectionPage;
 
   return (
     // No items-center / no vertical padding on the row itself — matches
@@ -45,9 +49,9 @@ export default function CollectionToolbar({
       <div className="flex items-center gap-3 border-r border-ink/10 px-7.5">
         {(
           [
-            { value: "large", icon: Grid2x2, label: "Switch to larger product images" },
-            { value: "medium", icon: LayoutGrid, label: "Switch to smaller product images" },
-            { value: "compact", icon: List, label: "Switch to compact product images" },
+            { value: "large", icon: Grid2x2, label: t.layoutLarge },
+            { value: "medium", icon: LayoutGrid, label: t.layoutMedium },
+            { value: "compact", icon: List, label: t.layoutCompact },
           ] as const
         ).map((option) => (
           <button
@@ -66,7 +70,7 @@ export default function CollectionToolbar({
       </div>
 
       <p className="flex items-center text-xs font-normal uppercase tracking-[2.16px] text-ink/65">
-        {count} {count === 1 ? "product" : "products"}
+        {count} {count === 1 ? t.productSingular : t.productPlural}
       </p>
 
       {/* Matches the live site's sort control exactly: a 1px left border
@@ -80,7 +84,7 @@ export default function CollectionToolbar({
           aria-expanded={sortOpen}
           className="flex cursor-pointer items-center gap-2.5 text-[11px] font-normal uppercase tracking-[1.98px] text-ink"
         >
-          Sort by
+          {t.sortBy}
           <ChevronDown size={10} className={sortOpen ? "rotate-180 transition-transform" : "transition-transform"} />
         </button>
 
@@ -100,7 +104,7 @@ export default function CollectionToolbar({
                 transition={{ duration: 0.18 }}
                 className="absolute top-full right-0 z-20 grid w-48 gap-3 bg-forest-900 p-6"
               >
-                {(Object.keys(sortLabels) as SortOption[]).map((option) => (
+                {(Object.keys(sortKeys) as SortOption[]).map((option) => (
                   <button
                     key={option}
                     type="button"
@@ -112,7 +116,7 @@ export default function CollectionToolbar({
                       sort === option ? "text-cream-50" : "text-cream-50/65"
                     }`}
                   >
-                    {sortLabels[option]}
+                    {t.sortOptions[sortKeys[option]]}
                   </button>
                 ))}
               </motion.div>

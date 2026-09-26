@@ -1,13 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
-
-const badges = [
-  { label: "Best Sellers", href: "/collections/best-sellers" },
-  { label: "New Arrival", href: "/collections/new-arrivals" },
-  { label: "Premium Collection", href: "/collections/premium-collection" },
-  { label: "Exclusive Collection", href: "/collections/exclusive-collection" },
-  { label: "Standard Collection", href: "/collections/standard-collection" },
-];
+import type { LinkContent } from "@/lib/types";
 
 // A subtle triangular-grid texture behind the label, built from three
 // overlapping line directions instead of an image asset.
@@ -19,12 +12,12 @@ const hexPatternStyle = {
   ].join(", "),
 };
 
-export default function MediaGrid() {
+export default function MediaGrid({ heading, items: badges }: { heading: string; items: LinkContent[] }) {
   return (
     <section className="text-fluid-section-gap">
       <div className="container-app">
         <Reveal className="text-center">
-          <h2 className="text-fluid-h2 font-normal text-forest-900">Curated For You</h2>
+          <h2 className="text-fluid-h2 font-normal text-forest-900">{heading}</h2>
         </Reveal>
 
         <div className="mt-12 flex flex-wrap items-start justify-center gap-x-6 gap-y-8 sm:gap-x-44">

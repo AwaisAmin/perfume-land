@@ -4,14 +4,17 @@ import { useState } from "react";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
-import { shopTheLookGroups } from "@/data/products";
-import { formatPrice } from "@/lib/currency";
+import type { ShopTheLookGroup, SiteContent } from "@/lib/types";
+import { useFormatPrice } from "@/lib/site-data-context";
 
-export default function ShopTheLook() {
+type ShopTheLookProps = { group: ShopTheLookGroup; texts: SiteContent["home"]["shopTheLook"] };
+
+export default function ShopTheLook({ group, texts }: ShopTheLookProps) {
   const [active, setActive] = useState(0);
+  const formatPrice = useFormatPrice();
   // Only one look exists today, but the data is an array so a second one
   // (e.g. your own custom photo) is just another entry — see products.ts.
-  const { items } = shopTheLookGroups[0];
+  const { items } = group;
   const item = items[active];
 
   return (
@@ -19,9 +22,9 @@ export default function ShopTheLook() {
       <div className="container-app">
         <Reveal className="flex flex-col items-center gap-3 text-center">
           <p className="text-xs font-normal uppercase tracking-[0.18em] text-forest-900">
-            blended in lahore
+            {texts.kicker}
           </p>
-          <h2 className="text-fluid-h2 font-normal text-forest-900">Signature Fragrances</h2>
+          <h2 className="text-fluid-h2 font-normal text-forest-900">{texts.heading}</h2>
         </Reveal>
 
         {/* The reference site caps this row to 980px and centers it — even
@@ -82,7 +85,7 @@ export default function ShopTheLook() {
             <p className="text-xs font-normal uppercase tracking-[0.18em] text-forest-900">{item.title}</p>
             <p className="text-sm text-gold-600">{formatPrice(item.price)}</p>
 
-            <Button href={`/products/${item.handle}`}>View Product</Button>
+            <Button href={`/products/${item.handle}`}>{texts.buttonLabel}</Button>
 
             <div className="mt-1 flex items-center gap-2">
               {items.map((hotspot, i) => (

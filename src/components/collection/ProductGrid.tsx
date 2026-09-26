@@ -1,4 +1,7 @@
+"use client";
+
 import ProductCard from "@/components/home/ProductCard";
+import { useSiteData } from "@/lib/site-data-context";
 import type { Product } from "@/lib/types";
 
 export type GridLayout = "large" | "medium" | "compact";
@@ -26,10 +29,11 @@ type ProductGridProps = {
  * static list for a real API call later is a change to the caller only.
  */
 export default function ProductGrid({ products, layout = "medium" }: ProductGridProps) {
+  const { noMatches } = useSiteData().content.collectionPage;
   if (products.length === 0) {
     return (
       <p className="py-20 text-center text-sm text-ink/60">
-        No products match the selected filters.
+        {noMatches}
       </p>
     );
   }

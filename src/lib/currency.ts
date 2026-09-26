@@ -5,6 +5,6 @@
 export const CURRENCY_LABEL = "Rs";
 
 /** "Rs 1,500" — rupees are quoted whole, so no decimal places. */
-export function formatPrice(amount: number): string {
-  return `${CURRENCY_LABEL} ${Math.round(amount).toLocaleString("en-PK")}`;
+export function formatPrice(amount: number, label: string = CURRENCY_LABEL): string {
+  return `${label} ${Math.round(amount).toLocaleString("en-PK")}`;
 }

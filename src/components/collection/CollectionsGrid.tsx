@@ -9,7 +9,9 @@ import type { Collection } from "@/lib/types";
  * rather than importing the data itself, so this stays reusable if a
  * future page needs a different subset (e.g. "featured" vs "all").
  */
-export default function CollectionsGrid({ collections }: { collections: Collection[] }) {
+type CollectionsGridProps = { collections: Collection[]; labels: { productSingular: string; productPlural: string } };
+
+export default function CollectionsGrid({ collections, labels }: CollectionsGridProps) {
   return (
     <div className="py-10 lg:py-16">
       <div className="container-app">
@@ -32,7 +34,7 @@ export default function CollectionsGrid({ collections }: { collections: Collecti
                   {collection.pageTitle ?? collection.title}
                 </h3>
                 <p className="text-sm text-forest-900">
-                  {collection.products.length} {collection.products.length === 1 ? "Product" : "Products"}
+                  {collection.products.length} {collection.products.length === 1 ? labels.productSingular : labels.productPlural}
                 </p>
               </div>
             </Link>

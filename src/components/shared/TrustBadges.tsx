@@ -1,7 +1,8 @@
 import { Headphones, ShieldCheck, Truck } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import Reveal from "@/components/ui/Reveal";
-import { whatsappUrl } from "@/data/branches";
+import { getSiteData } from "@/lib/site-data";
+import { whatsappUrlFor, type SiteContent, type TrustBadgeIcon } from "@/lib/types";
 
 type Badge = {
   icon: ComponentType<{ size?: number; strokeWidth?: number }>;
@@ -9,40 +10,37 @@ type Badge = {
   description: ReactNode;
 };
 
-const whatsappLink = (
+const whatsappLinkFor = (whatsappUrl: string, label: string) => (
   <a
     href={whatsappUrl}
     target="_blank"
     rel="noreferrer"
     className="underline decoration-ink/30 underline-offset-2 hover:text-ink"
   >
-    WhatsApp
+    {label}
   </a>
 );
 
-const badges: Badge[] = [
-  {
-    icon: Truck,
-    title: "Nationwide Delivery",
-    description: "Delivered anywhere in Pakistan",
-  },
-  {
-    icon: Headphones,
-    title: "Customer Service",
-    description: <>Get in touch through {whatsappLink}</>,
-  },
-  {
-    icon: ShieldCheck,
-    title: "Secure Payment",
-    description: "Your payment information is processed securely.",
-  },
-];
+const ICONS: Record<TrustBadgeIcon, Badge["icon"]> = { truck: Truck, headphones: Headphones, shield: ShieldCheck };
+
+const badgesFor = (items: SiteContent["trustBadges"], whatsappUrl: string): Badge[] =>
+  items.map((item) => ({
+    icon: ICONS[item.icon],
+    title: item.title,
+    description: item.whatsappLinkLabel ? (
+      <>{item.description} {whatsappLinkFor(whatsappUrl, item.whatsappLinkLabel)}</>
+    ) : (
+      item.description
+    ),
+  }));
 
 /**
  * The reference site's three-icon trust-badges row — a standalone,
  * page-agnostic section so it can be reused anywhere via a plain import.
  */
-export default function TrustBadges() {
+export default async function TrustBadges() {
+  const { contact, content } = await getSiteData();
+  const badges = badgesFor(content.trustBadges, whatsappUrlFor(contact.whatsappNumber));
   return (
     <section className="text-fluid-section-gap-tight border-y border-ink/10 bg-cream-50">
       {/* The reference site doesn't stretch these across 3 equal columns —

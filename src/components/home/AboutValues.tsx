@@ -1,14 +1,15 @@
 import MultiColumnSection from "@/components/shared/MultiColumnSection";
-import { brandValues } from "@/data/brand";
+import { getSiteData } from "@/lib/site-data";
 
-export default function AboutValues() {
+export default async function AboutValues() {
+  const { brand, content } = await getSiteData();
+  const { brandValues } = brand;
+  const { heading, intro } = content.home.aboutValues;
   return (
     <MultiColumnSection
       tone="forest"
-      heading="About Us"
-      intro={[
-        "Hariss Bhai Perfumes is a perfume counter in Bahria Town, Lahore, where every bottle is blended, adjusted and filled by hand — and now shipped across Pakistan.",
-      ]}
+      heading={heading}
+      intro={intro}
       items={brandValues}
     />
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-import { CURRENCY_LABEL } from "@/lib/currency";
+import { useSiteData } from "@/lib/site-data-context";
 
 export type GenderCount = { value: string; label: string; count: number };
 
@@ -45,13 +45,15 @@ export default function CollectionFilters({
   onGenderToggle,
 }: CollectionFiltersProps) {
   const [min, max] = priceBounds;
+  const { collectionPage: t, header } = useSiteData().content;
+  const CURRENCY_LABEL = header.currencySymbol;
 
   return (
     <div
       className="md:sticky"
       style={{ top: "calc(var(--toolbar-height, 65px) + 1rem)" }}
     >
-      <FilterSection title="Availability">
+      <FilterSection title={t.availabilityHeading}>
         <label className="flex cursor-pointer items-center gap-3 text-sm text-ink/70">
           <span
             role="switch"
@@ -67,11 +69,11 @@ export default function CollectionFilters({
               }`}
             />
           </span>
-          In stock only
+          {t.inStockOnly}
         </label>
       </FilterSection>
 
-      <FilterSection title="Price">
+      <FilterSection title={t.priceHeading}>
         <div className="flex flex-col gap-4">
           <div className="relative h-1 rounded-full bg-ink/10">
             <div
@@ -83,7 +85,7 @@ export default function CollectionFilters({
             />
             <input
               type="range"
-              aria-label="Minimum price"
+              aria-label={t.minPriceLabel}
               min={min}
               max={max}
               value={priceRange[0]}
@@ -95,7 +97,7 @@ export default function CollectionFilters({
             />
             <input
               type="range"
-              aria-label="Maximum price"
+              aria-label={t.maxPriceLabel}
               min={min}
               max={max}
               value={priceRange[1]}
@@ -112,7 +114,7 @@ export default function CollectionFilters({
               <span className="text-ink/40">{CURRENCY_LABEL}</span>
               <input
                 type="number"
-                aria-label="From price"
+                aria-label={t.fromPriceLabel}
                 min={min}
                 max={priceRange[1]}
                 value={priceRange[0]}
@@ -120,12 +122,12 @@ export default function CollectionFilters({
                 className="w-12 bg-transparent outline-none"
               />
             </label>
-            <span className="text-ink/40">to</span>
+            <span className="text-ink/40">{t.priceRangeSeparator}</span>
             <label className="flex items-center gap-1 rounded-sm border border-ink/15 px-3 py-2">
               <span className="text-ink/40">{CURRENCY_LABEL}</span>
               <input
                 type="number"
-                aria-label="To price"
+                aria-label={t.toPriceLabel}
                 min={priceRange[0]}
                 max={max}
                 value={priceRange[1]}
@@ -137,7 +139,7 @@ export default function CollectionFilters({
         </div>
       </FilterSection>
 
-      <FilterSection title="Gender">
+      <FilterSection title={t.genderHeading}>
         <div className="flex flex-col gap-2.5">
           {genders.map((g) => (
             <label

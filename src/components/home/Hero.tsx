@@ -6,10 +6,9 @@ import { motion } from "framer-motion";
 import { ChevronDown, Volume2, VolumeX } from "lucide-react";
 import Button from "@/components/ui/Button";
 
-const HERO_VIDEO_SRC = "/videos/haris-bhai-perfume-making.mp4";
-const HERO_POSTER = "/videos/haris-bhai-perfume-making-poster.webp";
+type HeroProps = { videoSrc: string; posterSrc: string; ctaLabel: string; ctaHref: string };
 
-export default function Hero() {
+export default function Hero({ videoSrc: HERO_VIDEO_SRC, posterSrc: HERO_POSTER, ctaLabel, ctaHref }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [videoReady, setVideoReady] = useState(false);
@@ -48,7 +47,7 @@ export default function Hero() {
     }
     window.addEventListener("load", start, { once: true });
     return () => window.removeEventListener("load", start);
-  }, []);
+  }, [HERO_VIDEO_SRC]);
 
   const scrollToNext = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
@@ -104,8 +103,8 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="absolute bottom-20 z-10 flex max-w-2xl flex-col items-center gap-6 px-6 text-center"
       >
-        <Button href="/collections" variant="solid">
-          Discover the Collection
+        <Button href={ctaHref} variant="solid">
+          {ctaLabel}
         </Button>
       </motion.div>
 

@@ -6,15 +6,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, Menu, Search, ShoppingBag, X } from "lucide-react";
-import {
-  brandImpressionsGroups,
-  primaryNavEnd,
-  primaryNavStart,
-} from "@/data/nav";
-import { collections } from "@/data/products";
 import { useCart } from "@/lib/cart-context";
-import { formatPrice } from "@/lib/currency";
 import { searchProducts } from "@/lib/search";
+import { useFormatPrice, useSiteData } from "@/lib/site-data-context";
+import { listingPrice, type Collection } from "@/lib/types";
 import ProductImage from "@/components/ui/ProductImage";
 import Flag from "@/components/ui/Flag";
 import Logo from "@/components/ui/Logo";
@@ -28,7 +23,7 @@ type MenuKey = "brand" | null;
 // off the fetch as soon as the user hovers the nav link (well before the
 // click/route-change) gives it a head start so it's usually already in the
 // browser cache by the time the new page mounts.
-function preloadCollectionHeroes() {
+function preloadCollectionHeroes(collections: Collection[]) {
   for (const collection of collections) {
     if (collection.heroImage) {
       preload(collection.heroImage, { as: "image" });
@@ -86,6 +81,10 @@ export default function Header() {
   const [hovered, setHovered] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const { itemCount, openCart } = useCart();
+  const { collections, nav, content } = useSiteData();
+  const texts = content.header;
+  const formatPrice = useFormatPrice();
+  const { brandImpressionsGroups, primaryNavEnd, primaryNavStart } = nav;
   // Only pages with a dark hero banner directly beneath the header (the
   // homepage, and every collection page's CollectionHero) can have it
   // overlay transparently — every other page needs the solid background
@@ -115,7 +114,7 @@ export default function Header() {
 
   // Capped so the dropdown stays a preview — the full list lives on
   // /search, which the form's submit (and "View all results") navigates to.
-  const searchResults = searchQuery.trim() === "" ? [] : searchProducts(searchQuery, 6);
+  const searchResults = searchQuery.trim() === "" ? [] : searchProducts(collections, searchQuery, 6);
 
   const closeSearch = () => {
     setSearchOpen(false);
@@ -134,8 +133,8 @@ export default function Header() {
   // collections menu — still ahead of the click, but paid for only by
   // people heading that way.
   useEffect(() => {
-    if (openMenu === "brand") preloadCollectionHeroes();
-  }, [openMenu]);
+    if (openMenu === "brand") preloadCollectionHeroes(collections);
+  }, [openMenu, collections]);
 
   // Publish the header's real (responsive) height so the hero below can pull
   // itself up underneath it and overlay it transparently, instead of the
@@ -179,8 +178,8 @@ export default function Header() {
               currency/market label rather than a picker. */}
           <div className="hidden items-center gap-1.5 text-sm font-semibold uppercase tracking-widest sm:flex">
             <Flag code="pk" className="h-4 w-5.5 shrink-0 rounded-[1px]" />
-            PKR
-            <span className="text-xs opacity-60">Rs</span>
+            {texts.currencyCode}
+            <span className="text-xs opacity-60">{texts.currencySymbol}</span>
           </div>
 
           <button
@@ -228,7 +227,7 @@ export default function Header() {
             href={link.href}
             onMouseEnter={() => {
               setOpenMenu(null);
-              if (link.href === "/collections/signature-collection") preloadCollectionHeroes();
+              if (link.href === "/collections/signature-collection") preloadCollectionHeroes(collections);
             }}
           >
             {link.label}
@@ -239,11 +238,11 @@ export default function Header() {
           className="relative"
           onMouseEnter={() => {
             setOpenMenu("brand");
-            preloadCollectionHeroes();
+            preloadCollectionHeroes(collections);
           }}
         >
           <NavItem href="/collections/standard-collection" active={openMenu === "brand"}>
-            Brand Impressions
+            {texts.brandImpressionsLabel}
           </NavItem>
 
           {/* When the mega-menu is open, the indicator widens to match the
@@ -345,7 +344,7 @@ export default function Header() {
                 onKeyDown={(e) => {
                   if (e.key === "Escape") closeSearch();
                 }}
-                placeholder="Search for..."
+                placeholder={texts.searchPlaceholder}
                 aria-label="Search products"
                 className="w-full bg-transparent text-lg outline-none placeholder:text-cream-50/40"
               />
@@ -387,7 +386,7 @@ export default function Header() {
                               </span>
                             </span>
                             <span className="shrink-0 text-sm text-gold-400">
-                              {formatPrice(product.price)}
+                              {formatPrice(listingPrice(product).price)}
                             </span>
                           </Link>
                         </li>
@@ -399,7 +398,7 @@ export default function Header() {
                       onClick={submitSearch}
                       className="mt-4 w-full cursor-pointer border-t border-cream-50/10 pt-4 text-sm font-semibold uppercase tracking-widest text-cream-50 hover:text-cream-50/70"
                     >
-                      View all results
+                      {texts.viewAllResults}
                     </button>
                   </>
                 )}

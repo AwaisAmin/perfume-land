@@ -1,0 +1,1920 @@
+{
+  "collections": [
+    {
+      "id": "standard",
+      "handle": "standard-collection",
+      "kicker": "brand impressions",
+      "title": "Standard Collection",
+      "pageTitle": "Standard Collection",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-1",
+          "handle": "mukhalat-oud",
+          "title": "Mukhalat Oud",
+          "price": 80,
+          "compareAtPrice": 744,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A rich oriental blend with a deep oud character, warm amber and soft musky sweetness. A welcoming scent for evenings and special occasions.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-1-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 80,
+              "compareAtPrice": 744,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-2",
+          "handle": "spice-bomb",
+          "title": "Spice Bomb",
+          "price": 80,
+          "compareAtPrice": 754,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "An expressive spicy scent with peppery warmth, a tobacco-like richness and a smooth woody finish. Bold and cosy for cooler evenings.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-2-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 80,
+              "compareAtPrice": 754,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-3",
+          "handle": "oud-ul-shams",
+          "title": "Oud Ul Shams",
+          "price": 80,
+          "compareAtPrice": 647,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A radiant oud-style fragrance pairing resinous woods with golden amber warmth and a gentle touch of spice. Rich, rounded and inviting.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-3-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 80,
+              "compareAtPrice": 647,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-4",
+          "handle": "allure-sports",
+          "title": "Allure Sports",
+          "price": 80,
+          "compareAtPrice": 684,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A lively citrus and fresh-air character softened by clean musk and creamy woods. An easygoing choice for active days.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-4-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 80,
+              "compareAtPrice": 684,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-5",
+          "handle": "cigar",
+          "title": "Cigar",
+          "price": 80,
+          "compareAtPrice": 622,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A warm tobacco-style fragrance with aromatic spice, dry woods and a mellow amber finish. Classic, distinctive and suited to evening wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-5-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 80,
+              "compareAtPrice": 622,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-6",
+          "handle": "oud-isphan",
+          "title": "Oud Isphan",
+          "price": 80,
+          "compareAtPrice": 609,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A lush rose-and-oud character with earthy depth and a warm resinous finish. A rich floral woody scent for special occasions.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-6-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 80,
+              "compareAtPrice": 609,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "premium",
+      "handle": "premium-collection",
+      "kicker": "brand impressions",
+      "title": "Premium Collection",
+      "pageTitle": "Premium Collection",
+      "heroImage": "/products/premium/gold-transparent.webp",
+      "products": [
+        {
+          "id": "product-7",
+          "handle": "sky-blue",
+          "title": "Sky Blue",
+          "price": 180,
+          "compareAtPrice": 674,
+          "image": "/products/premium/gold-transparent.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "An airy fresh fragrance with a bright citrus feel, cool aquatic touches and a soft musky base. Light and uplifting for everyday wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-7-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 180,
+              "compareAtPrice": 674,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-8",
+          "handle": "polo-sports",
+          "title": "polo Sports",
+          "price": 180,
+          "compareAtPrice": 633,
+          "image": "/products/premium/sapphire-transparent.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A crisp sporty scent blending a citrus-like freshness with green aromatic touches and clean woods. Refreshing for casual daytime wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-8-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 180,
+              "compareAtPrice": 633,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-9",
+          "handle": "icon",
+          "title": "Icon",
+          "price": 180,
+          "compareAtPrice": 718,
+          "image": "/products/premium/onyx-transparent.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "An elegant woody aromatic character with bright citrus, peppery spice and a smooth earthy finish. Polished enough for both work and evenings.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-9-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 180,
+              "compareAtPrice": 718,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-10",
+          "handle": "sauvage",
+          "title": "Sauvage",
+          "price": 180,
+          "compareAtPrice": 694,
+          "image": "/products/premium/ruby-transparent.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A vibrant fresh spicy scent with a bergamot-like brightness, peppery energy and an ambery woody base. Confident and versatile.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-10-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 180,
+              "compareAtPrice": 694,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-11",
+          "handle": "silk-musk",
+          "title": "Silk Musk",
+          "price": 180,
+          "compareAtPrice": 651,
+          "image": "/products/premium/emerald-transparent.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A gentle clean musk fragrance with a powdery softness and subtle creamy warmth. Smooth and understated for everyday comfort.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-11-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 180,
+              "compareAtPrice": 651,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-12",
+          "handle": "joop-jump",
+          "title": "Joop Jump",
+          "price": 180,
+          "compareAtPrice": 673,
+          "image": "/products/premium/crystal-transparent.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A breezy aromatic scent with sparkling citrus, cool green freshness and a softly sweet musky finish. Relaxed and playful.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-12-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 180,
+              "compareAtPrice": 673,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exclusive",
+      "handle": "exclusive-collection",
+      "kicker": "brand impressions",
+      "title": "Exclusive Collection",
+      "pageTitle": "Exclusive Collection",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-13",
+          "handle": "musk-ul-hind",
+          "title": "Musk Ul Hind",
+          "price": 140,
+          "compareAtPrice": 775,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A warm musk-style fragrance with earthy nuances, soft woods and a powdery finish. Rounded and comforting with a traditional attar character.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-13-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 140,
+              "compareAtPrice": 775,
+              "inStock": true
+            },
+            {
+              "id": "product-13-v2",
+              "type": "Perfume",
+              "size": "100ml",
+              "price": 180,
+              "compareAtPrice": 840,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-14",
+          "handle": "miss-dior",
+          "title": "Miss Dior",
+          "price": 140,
+          "compareAtPrice": 724,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A romantic floral character with rose-like softness, fresh petals and a gently sweet musky finish. Graceful for daytime and special moments.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-14-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 140,
+              "compareAtPrice": 724,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-15",
+          "handle": "si-armani",
+          "title": "Si Armani",
+          "price": 140,
+          "compareAtPrice": 635,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A sophisticated fruity floral character with dark berry sweetness, delicate rose-like touches and a warm vanilla woody finish. Elegant for day or evening.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-15-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 140,
+              "compareAtPrice": 635,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-16",
+          "handle": "husn-e-yusuf",
+          "title": "حسن یوسف",
+          "price": 140,
+          "compareAtPrice": 674,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A soft floral musk fragrance with delicate petal-like sweetness and a warm powdery finish. A gentle, graceful scent with a traditional attar feel.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-16-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 140,
+              "compareAtPrice": 674,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-17",
+          "handle": "shalis-blue",
+          "title": "Shalis Blue",
+          "price": 140,
+          "compareAtPrice": 764,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A fresh fruity aromatic character with cool green touches and a soft woody musky finish. Bright and relaxed for daily wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-17-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 140,
+              "compareAtPrice": 764,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-18",
+          "handle": "fabulous-oud",
+          "title": "Fabulous Oud",
+          "price": 140,
+          "compareAtPrice": 607,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A plush oud-style scent with smooth smoky woods, warm amber and a softly spicy edge. Rich and enveloping for evening wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-18-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 140,
+              "compareAtPrice": 607,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "signature",
+      "handle": "signature-collection",
+      "kicker": "blended in lahore",
+      "title": "Signature Fragrances",
+      "pageTitle": "Signature Collection",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-19",
+          "handle": "silver-scent",
+          "title": "Silver Scent",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A bold aromatic fragrance with a bright fruity opening, lively spice and a warm woody finish. Distinctive and expressive.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-19-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 280,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-20",
+          "handle": "harare",
+          "title": "Harare",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A warm woody fragrance with an amber-like glow, gentle spice and a soft musky finish. An inviting character for relaxed evenings.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-20-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 280,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-21",
+          "handle": "cool-women",
+          "title": "Cool Women",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "women",
+          "inStock": true,
+          "description": "A light aquatic floral character with fresh watery touches, delicate petals and clean musk. Breezy and refreshing for warm days.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-21-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 280,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-22",
+          "handle": "oud",
+          "title": "عود",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A deep oud-style fragrance with smoky wood, resinous warmth and an earthy finish. A traditional woody character for those who enjoy rich scents.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-22-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 280,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-23",
+          "handle": "motia",
+          "title": "موتیا",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A jasmine-style floral fragrance with lush white petals, gentle green freshness and a soft sweet finish. Familiar, graceful and beautifully floral.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-23-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 280,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-24",
+          "handle": "1million-lady",
+          "title": "1Million Lady",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A bright fruity floral character with honey-like sweetness, white flowers and warm woods. Glamorous and playful for evening occasions.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-24-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 280,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oil",
+      "handle": "standard-collection-oil",
+      "kicker": "concentrated oils",
+      "title": "Standard Collection Oil",
+      "pageTitle": "Standard Collection Oil",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-25",
+          "handle": "zam-zam",
+          "title": "زم زم",
+          "price": 45,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A delicate fresh musk fragrance with soft floral touches and a light powdery finish. Clean and understated for everyday wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-25-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 45,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-26",
+          "handle": "rose",
+          "title": "Rose",
+          "price": 45,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A petal-rich rose character balancing dewy freshness with gentle floral sweetness. Soft musk rounds out this timeless floral scent.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-26-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 45,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-27",
+          "handle": "aseel",
+          "title": "Aseel",
+          "price": 45,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A warm oriental character with gentle spice, soft florals and a smooth woody musk base. Rounded and welcoming with a traditional feel.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-27-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 45,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-28",
+          "handle": "soft-mist",
+          "title": "Soft Mist",
+          "price": 45,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "An airy blend of clean musk, delicate floral touches and gentle powdery warmth. A soft scent for relaxed everyday moments.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-28-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 45,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-29",
+          "handle": "gilaf-e-kaaba",
+          "title": "Gilaf E Kaaba",
+          "price": 45,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A rich oriental woody character with an oud-like depth, rose-like softness and a warm musky finish. Evocative and enveloping.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-29-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 45,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-30",
+          "handle": "still",
+          "title": "Still",
+          "price": 45,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A quiet floral character with a fresh tea-like opening, delicate white flowers and soft musk. Light and elegant for daytime wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-30-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 45,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "premium-oil",
+      "handle": "premium-collection-oil",
+      "kicker": "concentrated oils",
+      "title": "Premium Collection Oil",
+      "pageTitle": "Premium Collection Oil",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-31",
+          "handle": "oud-wood",
+          "title": "Oud Wood",
+          "price": 85,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A smooth woody scent with an oud-like character, dry spice and creamy sandalwood warmth. Refined and understated with a softly sweet finish.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-31-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 85,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-32",
+          "handle": "the-one",
+          "title": "The One",
+          "price": 85,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A warm spicy character with a bright opening, tobacco-like richness and a smooth amber woody finish. Inviting for evenings and special occasions.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-32-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 85,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-33",
+          "handle": "weekend-bb",
+          "title": "Weekend BB",
+          "price": 85,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A relaxed fresh scent with citrus-like brightness, soft green touches and gentle woods. Easy to wear on casual days.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-33-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 85,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-34",
+          "handle": "janat-firdos",
+          "title": "Janat Firdos",
+          "price": 85,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A traditional green floral character with soft herbal freshness, sweet petals and a warm musky base. Rich yet comforting.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-34-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 85,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-35",
+          "handle": "hugo-boss",
+          "title": "Hugo Boss",
+          "price": 85,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A clean aromatic woody character with fresh fruity touches, gentle spice and a smooth warm base. Versatile for work and everyday wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-35-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 85,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-36",
+          "handle": "aventus-absolu",
+          "title": "Aventus Absolu",
+          "price": 85,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A rich fruity woody character with a bright citrus edge, dark fruit-like depth and dry spicy woods. A confident scent for evening wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-36-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 85,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exclusive-oil",
+      "handle": "exclusive-collection-oil",
+      "kicker": "concentrated oils",
+      "title": "Exclusive Collection Oil",
+      "pageTitle": "Exclusive Collection Oil",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-37",
+          "handle": "estee-lauder",
+          "title": "Estee Lauder",
+          "price": 65,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "An elegant floral-style scent with a full bouquet character, gentle sweetness and a warm woody finish. Classic and graceful.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-37-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 65,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-38",
+          "handle": "joop",
+          "title": "Joop",
+          "price": 65,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A bold sweet oriental character with soft florals, warm spice and a vanilla-like finish. Rich and expressive for cooler evenings.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-38-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 65,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-39",
+          "handle": "cc-1872",
+          "title": "CC-1872",
+          "price": 65,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A refined citrus aromatic character with green freshness, gentle spice and polished woods. Crisp and elegant for daytime wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-39-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 65,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-40",
+          "handle": "blue-jeans",
+          "title": "Blue Jeans",
+          "price": 65,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A lively citrus aromatic scent with soft lavender-like touches, dry woods and a gently sweet finish. Casual and easygoing.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-40-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 65,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-41",
+          "handle": "armani-code",
+          "title": "Armani code",
+          "price": 65,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A smooth evening scent with bright citrus touches, warm spice and a softly sweet tonka-like base. Elegant and inviting.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-41-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 65,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-42",
+          "handle": "strong-you",
+          "title": "Strong you",
+          "price": 65,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A cosy sweet spicy character with aromatic freshness, toasted warmth and a vanilla-like finish. Rounded and comforting for cooler days.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-42-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 65,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interior",
+      "handle": "standard-collection-interior-perfumes",
+      "kicker": "for your space",
+      "title": "Standard Collection Interior Perfumes",
+      "pageTitle": "Standard Collection Interior Perfumes",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-43",
+          "handle": "alika",
+          "title": "Alika",
+          "price": 150,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A gentle fruity floral character with bright freshness, soft petals and a clean musky finish. Cheerful and easy to wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-43-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 150,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-44",
+          "handle": "boss-orange",
+          "title": "Boss Orange",
+          "price": 150,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A warm relaxed scent with juicy fruit-like touches, mellow spice and soft creamy woods. An inviting choice for casual wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-44-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 150,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-45",
+          "handle": "fahrenheit",
+          "title": "Fahrenheit",
+          "price": 150,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A distinctive woody leather character with a green violet-like freshness and warm spicy depth. Bold and memorable.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-45-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 150,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-46",
+          "handle": "kouos",
+          "title": "Kouos",
+          "price": 150,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A powerful aromatic character with herbal freshness, warm spice and a deep musky woody finish. A classic style with a bold presence.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-46-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 150,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-47",
+          "handle": "safari",
+          "title": "Safari",
+          "price": 150,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A green aromatic scent with bright citrus touches, dry woods and a warm earthy finish. Classic and adventurous in character.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-47-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 150,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-48",
+          "handle": "one",
+          "title": "One",
+          "price": 150,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A light fresh fragrance with citrus-like sparkle, soft green touches and clean musk. Balanced and easygoing for everyday wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-48-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 150,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "premium-interior",
+      "handle": "premium-collection-interior-perfumes",
+      "kicker": "for your space",
+      "title": "Premium Collection Interior Perfumes",
+      "pageTitle": "Premium Collection Interior Perfumes",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-49",
+          "handle": "dunhil-black",
+          "title": "Dunhil Black",
+          "price": 200,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A crisp woody aromatic character with green freshness, gentle spice and a smooth musky base. Understated and versatile.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-49-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 200,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-50",
+          "handle": "terre-d",
+          "title": "Terre D",
+          "price": 200,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "An earthy woody character with a bitter citrus freshness, peppery warmth and a dry mineral-like finish. Refined and grounded.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-50-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 200,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-51",
+          "handle": "lost-cherry",
+          "title": "Lost Cherry",
+          "price": 200,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A rich cherry-style fragrance with almond-like sweetness, soft florals and warm woods. Playful and indulgent for evenings.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-51-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 200,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-52",
+          "handle": "gucci-rush",
+          "title": "Gucci Rush",
+          "price": 200,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A vibrant fruity floral character with creamy sweetness, warm spice and a soft earthy finish. Bold and expressive.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-52-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 200,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-53",
+          "handle": "wisal",
+          "title": "Wisal",
+          "price": 200,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A warm floral musk character with rose-like softness, gentle spice and smooth woods. Elegant and welcoming with an oriental feel.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-53-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 200,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-54",
+          "handle": "wanted",
+          "title": "Wanted",
+          "price": 200,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A lively fresh spicy scent with a bright citrus feel, aromatic warmth and a sweet woody finish. Confident and energetic.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-54-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 200,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exclusive-interior",
+      "handle": "exclusive-collection-interior-perfumes",
+      "kicker": "for your space",
+      "title": "Exclusive Collection Interior Perfumes",
+      "pageTitle": "Exclusive Collection Interior Perfumes",
+      "heroImage": "/products/haris-bhai-bottle-filled.webp",
+      "products": [
+        {
+          "id": "product-55",
+          "handle": "megamare",
+          "title": "Megamare",
+          "price": 175,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A deep marine character with salty freshness, sea-breeze touches and an ambery musky finish. Atmospheric and distinctive.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-55-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 175,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-56",
+          "handle": "tuscan-leather",
+          "title": "Tuscan Leather",
+          "price": 175,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A rich leather-style fragrance with a fruity sweetness, smoky warmth and dry woods. Bold and refined for evening wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-56-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 175,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-57",
+          "handle": "bb-london",
+          "title": "BB London",
+          "price": 175,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A cosy spicy woody character with tobacco-like warmth, soft sweetness and a resinous finish. Inviting for cooler weather.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-57-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 175,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-58",
+          "handle": "ultra-male",
+          "title": "Ultra Male",
+          "price": 200,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A sweet fruity aromatic character with pear-like brightness, lavender-like freshness and warm vanilla depth. Playful and bold for evenings.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-58-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 200,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-59",
+          "handle": "adventure",
+          "title": "Adventure",
+          "price": 175,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A fresh woody spicy character with citrus-like brightness, aromatic touches and an earthy finish. Lively and easygoing.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-59-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 175,
+              "inStock": true
+            }
+          ]
+        },
+        {
+          "id": "product-60",
+          "handle": "1881",
+          "title": "1881",
+          "price": 175,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "gender": "unisex",
+          "inStock": true,
+          "description": "A classic fresh woody character with green aromatic touches, gentle spice and a soft earthy finish. Balanced and comfortable for daily wear.",
+          "size": "50ml",
+          "stockCount": 85,
+          "variants": [
+            {
+              "id": "product-60-v1",
+              "type": "Perfume",
+              "size": "50ml",
+              "price": 175,
+              "inStock": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "featuredProduct": {
+    "handle": "musk-ul-hind",
+    "title": "Musk Ul Hind",
+    "description": "A warm musk-style fragrance with earthy nuances, soft woods and a powdery finish. Rounded and comforting with a traditional attar character.",
+    "image": "/products/haris-bhai-bottle-filled.webp",
+    "variants": [
+      {
+        "size": "50ml",
+        "price": 140,
+        "compareAtPrice": 775
+      },
+      {
+        "size": "100ml",
+        "price": 180,
+        "compareAtPrice": 840
+      }
+    ]
+  },
+  "shopTheLookGroups": [
+    {
+      "image": "/products/haris-bhai-bottle-filled.webp",
+      "items": [
+        {
+          "handle": "silver-scent",
+          "title": "Silver Scent",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "top": 52,
+          "left": 12
+        },
+        {
+          "handle": "harare",
+          "title": "Harare",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "top": 52,
+          "left": 31
+        },
+        {
+          "handle": "cool-women",
+          "title": "Cool Women",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "top": 52,
+          "left": 50
+        },
+        {
+          "handle": "oud",
+          "title": "عود",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "top": 52,
+          "left": 69
+        },
+        {
+          "handle": "motia",
+          "title": "موتیا",
+          "price": 280,
+          "image": "/products/haris-bhai-bottle-filled.webp",
+          "top": 52,
+          "left": 88
+        }
+      ]
+    }
+  ],
+  "beforeAfterImages": {
+    "him": "/products/haris-bhai-bottle-filled.webp",
+    "her": "/products/haris-bhai-bottle-filled.webp"
+  },
+  "bottleImage": "/products/haris-bhai-bottle-filled.webp",
+  "brand": {
+    "journeyImage": "/brand/haris-about.webp",
+    "brandValues": [
+      {
+        "title": "Blended to Order",
+        "body": "Nothing is filled from a warehouse. Every bottle is mixed in the shop, for the person who asked for it."
+      },
+      {
+        "title": "Honest Impressions",
+        "body": "We never pass our work off as the original. These are impressions — built to smell like the fragrances you love."
+      },
+      {
+        "title": "Fair Prices",
+        "body": "A designer scent should not cost a month's salary. You pay for the oil in the bottle, not the name on it."
+      }
+    ],
+    "brandCraft": [
+      {
+        "title": "Custom Blending",
+        "body": "Tell us the note you want more of — sweeter, woodier, longer-lasting — and it is mixed in front of you."
+      },
+      {
+        "title": "Refills",
+        "body": "Bring back a bottle you already love, in any size, and have it filled again instead of replacing it."
+      },
+      {
+        "title": "Impressions",
+        "body": "Our own take on the designer fragrances people ask for most, in spray, oil and interior form."
+      }
+    ]
+  },
+  "contact": {
+    "whatsappNumber": "+92 321 1128481",
+    "orderWhatsappNumber": "+92 321 1128481",
+    "branches": [
+      {
+        "name": "Bahria Town",
+        "address": "Bahria Town, Lahore",
+        "mapUrl": "https://www.google.com/maps/place/Hariss+Bhai+Perfumes/@31.358676,74.1843781,17z/data=!3m1!4b1!4m6!3m5!1s0x3918ff00421c7059:0x3fdc3a909da3b42f!8m2!3d31.358676!4d74.186953!16s%2Fg%2F11nps7drtp"
+      },
+      {
+        "name": "Shah Alam Market",
+        "address": "Shah Alam Market, Lahore"
+      }
+    ]
+  },
+  "nav": {
+    "brandImpressionsGroups": [
+      {
+        "title": "Perfumes",
+        "links": [
+          {
+            "label": "Standard Collection",
+            "href": "/collections/standard-collection"
+          },
+          {
+            "label": "Premium Collection",
+            "href": "/collections/premium-collection"
+          },
+          {
+            "label": "Exclusive Collection",
+            "href": "/collections/exclusive-collection"
+          }
+        ]
+      },
+      {
+        "title": "Perfume Oils",
+        "links": [
+          {
+            "label": "Standard Collection Oil",
+            "href": "/collections/standard-collection-oil"
+          },
+          {
+            "label": "Premium Collection Oil",
+            "href": "/collections/premium-collection-oil"
+          },
+          {
+            "label": "Exclusive Collection Oil",
+            "href": "/collections/exclusive-collection-oil"
+          }
+        ]
+      },
+      {
+        "title": "Interior Perfumes",
+        "links": [
+          {
+            "label": "Standard Collection Interior",
+            "href": "/collections/standard-collection-interior-perfumes"
+          },
+          {
+            "label": "Premium Collection Interior",
+            "href": "/collections/premium-collection-interior-perfumes"
+          },
+          {
+            "label": "Exclusive Collection Interior",
+            "href": "/collections/exclusive-collection-interior-perfumes"
+          }
+        ]
+      }
+    ],
+    "primaryNavStart": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Signature",
+        "href": "/collections/signature-collection"
+      }
+    ],
+    "primaryNavEnd": [
+      {
+        "label": "About",
+        "href": "/pages/about"
+      },
+      {
+        "label": "Contact",
+        "href": "/pages/contact"
+      }
+    ]
+  },
+  "announcements": [
+    "Free Delivery Over Rs 500",
+    "Delivery Across Pakistan"
+  ],
+  "freeShippingThreshold": 500,
+  "content": {
+    "seo": {
+      "title": "Haris Bhai Perfumes | Luxury Perfume Impressions",
+      "description": "Your ultimate destination for a global array of brand impressions - a perfumed heaven, all under one roof."
+    },
+    "header": {
+      "currencyCode": "PKR",
+      "currencySymbol": "Rs",
+      "brandImpressionsLabel": "Brand Impressions",
+      "searchPlaceholder": "Search for...",
+      "viewAllResults": "View all results"
+    },
+    "home": {
+      "hero": {
+        "videoSrc": "/videos/haris-bhai-perfume-making.mp4",
+        "posterSrc": "/videos/haris-bhai-perfume-making-poster.webp",
+        "ctaLabel": "Discover the Collection",
+        "ctaHref": "/collections"
+      },
+      "marqueeGold": "Luxury Scents",
+      "marqueeForest": "Honest Prices",
+      "viewAllLabel": "View all",
+      "mediaGrid": {
+        "heading": "Curated For You",
+        "items": [
+          {
+            "label": "Best Sellers",
+            "href": "/collections"
+          },
+          {
+            "label": "New Arrival",
+            "href": "/collections"
+          },
+          {
+            "label": "Premium Collection",
+            "href": "/collections/premium-collection"
+          },
+          {
+            "label": "Exclusive Collection",
+            "href": "/collections/exclusive-collection"
+          },
+          {
+            "label": "Standard Collection",
+            "href": "/collections/standard-collection"
+          }
+        ]
+      },
+      "shopTheLook": {
+        "kicker": "blended in lahore",
+        "heading": "Signature Fragrances",
+        "buttonLabel": "View Product"
+      },
+      "beforeAfter": {
+        "him": {
+          "label": "For Him",
+          "buttonLabel": "Buy Now",
+          "href": "/collections"
+        },
+        "her": {
+          "label": "For Her",
+          "buttonLabel": "Buy Now",
+          "href": "/collections"
+        }
+      },
+      "featuredProduct": {
+        "kicker": "Our Selection",
+        "heading": "Product of the Week",
+        "sizeLabel": "Size:",
+        "addToCart": "Add to Cart"
+      },
+      "aboutValues": {
+        "heading": "About Us",
+        "intro": [
+          "Hariss Bhai Perfumes is a perfume counter in Bahria Town, Lahore, where every bottle is blended, adjusted and filled by hand — and now shipped across Pakistan."
+        ]
+      },
+      "newsletter": {
+        "kicker": "Keep me updated",
+        "heading": "Newsletter",
+        "body": "Subscribe to receive exclusive previews, private releases, and the art of fragrance.",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "E-mail",
+        "submit": "Subscribe",
+        "submitted": "Not available yet"
+      }
+    },
+    "contactForm": {
+      "kicker": "Can't find your perfect scent? Tell us what you're looking for and we'll bring it to you.",
+      "title": "Suggest a Fragrance",
+      "description": "Please include your WhatsApp number in your message so we can reach out to you with personalized fragrance recommendations.",
+      "nameLabel": "Name",
+      "emailLabel": "E-mail",
+      "messageLabel": "Message",
+      "submit": "Send message",
+      "submitted": "Message not sent — please contact us on WhatsApp"
+    },
+    "trustBadges": [
+      {
+        "icon": "truck",
+        "title": "Nationwide Delivery",
+        "description": "Delivered anywhere in Pakistan",
+        "whatsappLinkLabel": ""
+      },
+      {
+        "icon": "headphones",
+        "title": "Customer Service",
+        "description": "Get in touch through",
+        "whatsappLinkLabel": "WhatsApp"
+      },
+      {
+        "icon": "shield",
+        "title": "Secure Payment",
+        "description": "Your payment information is processed securely.",
+        "whatsappLinkLabel": ""
+      }
+    ],
+    "footer": {
+      "kicker": "A fragrance that feels like you",
+      "heading": "Let's find your next favourite.",
+      "body": "Tell us the scents you love. We'll help you choose a blend, a refill or an everyday signature.",
+      "ctaLabel": "Ask Hariss Bhai",
+      "brandName": "Hariss Bhai Perfumes",
+      "about": "From our counter in Lahore to your doorstep. Perfumes, oils and designer-inspired blends, mixed and filled by hand for the way you like to wear them.",
+      "motto": "Blended in Lahore · Shipped across Pakistan",
+      "socialLinks": [
+        {
+          "platform": "instagram",
+          "label": "Instagram",
+          "href": "https://www.instagram.com/harissbhaiperfumer/"
+        },
+        {
+          "platform": "youtube",
+          "label": "YouTube",
+          "href": "https://www.youtube.com/@HarissBhaiPerfumer"
+        },
+        {
+          "platform": "tiktok",
+          "label": "TikTok",
+          "href": "https://www.tiktok.com/@harissbhaiperfumer"
+        },
+        {
+          "platform": "whatsapp",
+          "label": "WhatsApp",
+          "href": ""
+        }
+      ],
+      "exploreHeading": "Explore the Collection",
+      "exploreLinksStart": [
+        {
+          "label": "Signature Collection",
+          "href": "/collections/signature-collection"
+        }
+      ],
+      "exploreLinksEnd": [
+        {
+          "label": "Perfume Oils",
+          "href": "/collections/standard-collection-oil"
+        },
+        {
+          "label": "Interior Perfumes",
+          "href": "/collections/standard-collection-interior-perfumes"
+        }
+      ],
+      "shopAll": {
+        "label": "Shop All Collections →",
+        "href": "/collections"
+      },
+      "helpHeading": "Here to Help",
+      "helpLinks": [
+        {
+          "label": "Our Story",
+          "href": "/pages/about"
+        },
+        {
+          "label": "Contact Us",
+          "href": "/pages/contact"
+        },
+        {
+          "label": "Find a Fragrance",
+          "href": "/search"
+        }
+      ],
+      "helpWhatsappLinks": [
+        "Custom Blends & Refills",
+        "Order & Delivery Help"
+      ],
+      "countersHeading": "Visit Our Counters",
+      "directionsLabel": "Get directions",
+      "whatsappCaption": "WhatsApp for orders & enquiries",
+      "copyright": "Hariss Bhai Perfumes. All rights reserved.",
+      "marketLabel": "Pakistan · PKR Rs",
+      "creditPrefix": "Website by",
+      "credit": {
+        "label": "Wellsoft Solutions",
+        "href": "https://wellsoftsolutions.com"
+      }
+    },
+    "about": {
+      "imageAlt": "Haris Ali Rasheed behind the counter at Hariss Bhai Perfumes in Lahore",
+      "kicker": "Our Story",
+      "heading": "A Counter in Lahore",
+      "paragraphs": [
+        "Hariss Bhai Perfumes is a perfume counter in Bahria Town, Lahore, run by Haris Ali Rasheed — the Hariss Bhai people come in and ask for by name.",
+        "The work is simple and it happens in front of you. You name the fragrance you are after, or bring in the empty bottle you have been refilling for years, and it is blended and filled at the counter. If you want it sweeter, woodier or heavier, we adjust it there and then — which is something a sealed box can never do.",
+        "What started as a shop counter now reaches far past it. The blending gets filmed and posted, and the orders come back from people who have never set foot in Lahore — a fragrance they smelled once abroad, a bottle they cannot find here any more, a note they want dialled up."
+      ],
+      "closing": "Same counter, same hands, now shipping across Pakistan.",
+      "whatWeDoKicker": "What We Do",
+      "whatWeDoHeading": "Three Ways to Leave With a Bottle",
+      "whatWeDoIntro": [
+        "We believe a good fragrance should not be something you save for one night a year.",
+        "The shop is built around that: blend something new, refill what you already own, or pick an impression of a designer scent you like — across sprays, perfume oils and interior perfumes."
+      ]
+    },
+    "contactPage": {
+      "kicker": "Need assistance?",
+      "title": "Contact Us",
+      "descriptionStart": "To get answers to general questions, check out our",
+      "link": {
+        "label": "FAQ",
+        "href": "/pages/contact"
+      },
+      "descriptionEnd": ". For additional assistance, please complete the form below. Our team will contact you soon."
+    },
+    "collections": {
+      "productSingular": "Product",
+      "productPlural": "Products"
+    },
+    "search": {
+      "metaTitle": "Search",
+      "heading": "Search",
+      "resultSingular": "result",
+      "resultPlural": "results",
+      "countTemplate": "{count} {results} for “{query}”",
+      "emptyPrompt": "Type a fragrance, collection or note in the search bar above.",
+      "noResults": "No products match “{query}”. Try a different spelling, or browse the collections from the menu."
+    },
+    "productCard": {
+      "fromPrefix": "From",
+      "quickAdd": "Quick add"
+    },
+    "collectionPage": {
+      "availabilityHeading": "Availability",
+      "inStockOnly": "In stock only",
+      "priceHeading": "Price",
+      "priceRangeSeparator": "to",
+      "minPriceLabel": "Minimum price",
+      "maxPriceLabel": "Maximum price",
+      "fromPriceLabel": "From price",
+      "toPriceLabel": "To price",
+      "genderHeading": "Gender",
+      "genders": {
+        "unisex": "Unisex",
+        "women": "Women",
+        "men": "Men"
+      },
+      "sortBy": "Sort by",
+      "sortOptions": {
+        "featured": "Featured",
+        "titleAsc": "Alphabetically, A-Z",
+        "titleDesc": "Alphabetically, Z-A",
+        "priceAsc": "Price, low to high",
+        "priceDesc": "Price, high to low"
+      },
+      "productSingular": "product",
+      "productPlural": "products",
+      "layoutLarge": "Switch to larger product images",
+      "layoutMedium": "Switch to smaller product images",
+      "layoutCompact": "Switch to compact product images",
+      "noMatches": "No products match the selected filters."
+    },
+    "product": {
+      "inStockTemplate": "{count} in stock",
+      "soldOut": "Sold out",
+      "sizeLabel": "Size:",
+      "typeLabel": "Type:",
+      "addToCart": "Add to cart",
+      "relatedHeading": "Related Products"
+    },
+    "cart": {
+      "title": "Cart",
+      "freeShippingRemaining": "Spend {amount} more and get free shipping!",
+      "freeShippingReached": "You are eligible for free shipping.",
+      "empty": "Your cart is empty",
+      "remove": "Remove",
+      "taxesNote": "Taxes and shipping calculated at checkout",
+      "checkout": "Checkout"
+    },
+    "checkout": {
+      "heading": "Your details",
+      "intro": "We'll send your order to our team on WhatsApp. Fields marked * are required.",
+      "nameLabel": "Name",
+      "phoneLabel": "Phone",
+      "cityLabel": "City",
+      "addressLabel": "Address",
+      "noteLabel": "Note",
+      "optionalHint": "(optional)",
+      "requiredError": "Please fill in this field.",
+      "phoneError": "Please enter a valid phone number.",
+      "back": "Back to cart",
+      "submit": "Send order on WhatsApp",
+      "sentHeading": "Order opened in WhatsApp",
+      "sentBody": "Press send in WhatsApp to place your order. We'll confirm it with you there.",
+      "clearCart": "Clear cart",
+      "keepCart": "Keep cart",
+      "messageHeading": "New order — Haris Bhai Perfumes",
+      "messageSubtotal": "Subtotal",
+      "messageFreeDelivery": "Free delivery",
+      "messageDeliveryNote": "Delivery charges apply (free over {amount})",
+      "messageCustomer": "Customer"
+    },
+    "floatingChat": {
+      "title": "Haris Bhai Perfumes Assistant",
+      "greeting": "Hi! Ask us about scents, sizes, or delivery — we're happy to help."
+    }
+  }
+}

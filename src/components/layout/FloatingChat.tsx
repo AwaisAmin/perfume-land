@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
+import { useSiteData } from "@/lib/site-data-context";
 
 export default function FloatingChat() {
   const [open, setOpen] = useState(false);
+  const texts = useSiteData().content.floatingChat;
 
   return (
     <div className="fixed bottom-5 right-5 z-50">
@@ -19,7 +21,7 @@ export default function FloatingChat() {
             className="mb-4 w-[300px] overflow-hidden rounded-lg border border-ink/10 bg-cream-50 shadow-xl"
           >
             <div className="flex items-center justify-between bg-forest-900 px-4 py-3 text-cream-50">
-              <p className="text-sm font-semibold">Haris Bhai Perfumes Assistant</p>
+              <p className="text-sm font-semibold">{texts.title}</p>
               <button
                 type="button"
                 aria-label="Close chat"
@@ -30,7 +32,7 @@ export default function FloatingChat() {
               </button>
             </div>
             <div className="flex flex-col gap-3 p-4 text-sm text-ink/70">
-              <p>Hi! Ask us about scents, sizes, or delivery — we&apos;re happy to help.</p>
+              <p>{texts.greeting}</p>
             </div>
           </motion.div>
         )}

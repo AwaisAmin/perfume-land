@@ -5,13 +5,8 @@ import CollectionToolbar, { type SortOption } from "./CollectionToolbar";
 import CollectionFilters from "./CollectionFilters";
 import ProductGrid, { type GridLayout } from "./ProductGrid";
 import Pagination from "./Pagination";
-import type { Product } from "@/lib/types";
-
-const genderLabels: Record<string, string> = {
-  unisex: "Unisex",
-  women: "Women",
-  men: "Men",
-};
+import { listingPrice, type Product } from "@/lib/types";
+import { useSiteData } from "@/lib/site-data-context";
 
 // Matches the live site's own page size (confirmed from a 388-product
 // collection paginating into exactly 9 pages: ceil(388 / 48) = 9).
@@ -25,8 +20,9 @@ const PAGE_SIZE = 48;
  * component (and everything it renders) needs no other change.
  */
 export default function CollectionView({ products }: { products: Product[] }) {
+  const genderLabels: Record<string, string> = useSiteData().content.collectionPage.genders;
   const priceBounds: [number, number] = useMemo(() => {
-    const prices = products.map((p) => p.price);
+    const prices = products.map((p) => listingPrice(p).price);
     return [Math.min(...prices, 0), Math.max(...prices, 0)];
   }, [products]);
 
@@ -66,12 +62,13 @@ export default function CollectionView({ products }: { products: Product[] }) {
       label: genderLabels[value] ?? value,
       count,
     }));
-  }, [products]);
+  }, [products, genderLabels]);
 
   const visibleProducts = useMemo(() => {
     let list = products.filter((p) => {
       if (inStockOnly && p.inStock === false) return false;
-      if (p.price < priceRange[0] || p.price > priceRange[1]) return false;
+      const price = listingPrice(p).price;
+      if (price < priceRange[0] || price > priceRange[1]) return false;
       if (selectedGenders.length > 0 && !selectedGenders.includes(p.gender ?? "unisex")) {
         return false;
       }
@@ -85,9 +82,9 @@ export default function CollectionView({ products }: { products: Product[] }) {
         case "title-desc":
           return b.title.localeCompare(a.title);
         case "price-asc":
-          return a.price - b.price;
+          return listingPrice(a).price - listingPrice(b).price;
         case "price-desc":
-          return b.price - a.price;
+          return listingPrice(b).price - listingPrice(a).price;
         default:
           return 0;
       }

@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Reveal from "@/components/ui/Reveal";
+import type { SiteContent } from "@/lib/types";
 
-export default function Newsletter() {
+export default function Newsletter({ texts }: { texts: SiteContent["home"]["newsletter"] }) {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -12,15 +13,14 @@ export default function Newsletter() {
       <div className="container-app flex flex-col items-center text-center">
         <Reveal className="flex flex-col items-center gap-5">
           <p className="text-xs font-normal uppercase tracking-[0.18em]">
-            Keep me updated
+            {texts.kicker}
           </p>
-          <h2 className="text-fluid-h2 font-normal">Newsletter</h2>
+          <h2 className="text-fluid-h2 font-normal">{texts.heading}</h2>
           {/* No wrap-forcing max-width here — the reference site's copy
               runs on a single line at this length; max-w-md was narrower
               than the text needed, forcing an unwanted second line. */}
           <p className="max-w-xl text-cream-50/90">
-            Subscribe to receive exclusive previews, private releases, and the
-            art of fragrance.
+            {texts.body}
           </p>
         </Reveal>
 
@@ -35,13 +35,13 @@ export default function Newsletter() {
           }}
         >
           <label htmlFor="newsletter-email" className="sr-only">
-            E-mail
+            {texts.emailLabel}
           </label>
           <input
             id="newsletter-email"
             type="email"
             required
-            placeholder="E-mail"
+            placeholder={texts.emailPlaceholder}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-none border border-cream-50/40 bg-transparent px-5 py-3 text-sm text-cream-50 placeholder:text-cream-50/70 focus:border-cream-50 focus:outline-none"
@@ -53,7 +53,7 @@ export default function Newsletter() {
             type="submit"
             className="shrink-0 rounded-none bg-forest-900 px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-cream-100 transition hover:bg-forest-950"
           >
-            {submitted ? "Not available yet" : "Subscribe"}
+            {submitted ? texts.submitted : texts.submit}
           </button>
         </form>
       </div>

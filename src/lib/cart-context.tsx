@@ -1,26 +1,22 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import type { Product } from "@/lib/types";
-import { restoreCart, safeQuantity } from "@/lib/cart-validation";
+import type { Product, Variant } from "@/lib/types";
+import { cartLine, restoreCart, safeQuantity, type SafeCartItem } from "@/lib/cart-validation";
+import { useSiteData } from "@/lib/site-data-context";
 
-export type CartItem = {
-  handle: string;
-  title: string;
-  price: number;
-  image?: string;
-  size?: string;
-  quantity: number;
-};
+export type CartItem = SafeCartItem;
 
 type CartContextValue = {
   items: CartItem[];
   isOpen: boolean;
   itemCount: number;
   subtotal: number;
-  addItem: (product: Product, quantity: number) => void;
-  removeItem: (handle: string) => void;
-  updateQuantity: (handle: string, quantity: number) => void;
+  addItem: (product: Product, variant: Variant, quantity: number) => void;
+  /** Lines are identified by `item.key` (product handle + variant id). */
+  removeItem: (key: string) => void;
+  updateQuantity: (key: string, quantity: number) => void;
+  clearCart: () => void;
   openCart: () => void;
   closeCart: () => void;
 };
@@ -43,6 +39,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // this, both effects run on mount and the save effect's stale closure
   // overwrites whatever was just read from storage with `[]`.
   const [hydrated, setHydrated] = useState(false);
+  const { collections } = useSiteData();
 
   useEffect(() => {
     // localStorage doesn't exist during SSR, so it can't be read in a lazy
@@ -52,12 +49,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      if (stored && stored.length <= 100000) setItems(restoreCart(JSON.parse(stored)));
+      if (stored && stored.length <= 100000) setItems(restoreCart(JSON.parse(stored), collections));
     } catch {
       // ignore — private browsing, corrupted value, etc.
     }
     setHydrated(true);
-  }, []);
+  }, [collections]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -68,42 +65,34 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [items, hydrated]);
 
-  const addItem = (product: Product, quantity: number) => {
+  const addItem = (product: Product, variant: Variant, quantity: number) => {
     quantity = safeQuantity(quantity);
-    if (!quantity || product.inStock === false) return;
+    if (!quantity || product.inStock === false || !variant.inStock) return;
+    if (!product.variants.some((v) => v.id === variant.id)) return;
+    const line = cartLine(product, variant, quantity);
     setItems((current) => {
-      const existing = current.find((item) => item.handle === product.handle);
+      const existing = current.find((item) => item.key === line.key);
       if (existing) {
         return current.map((item) =>
-          item.handle === product.handle ? { ...item, quantity: safeQuantity(item.quantity + quantity) } : item,
+          item.key === line.key ? { ...item, quantity: safeQuantity(item.quantity + quantity) } : item,
         );
       }
-      return [
-        ...current,
-        {
-          handle: product.handle,
-          title: product.title,
-          price: product.price,
-          image: product.image,
-          size: product.size,
-          quantity,
-        },
-      ];
+      return [...current, line];
     });
     setIsOpen(true);
   };
 
-  const removeItem = (handle: string) => {
-    setItems((current) => current.filter((item) => item.handle !== handle));
+  const removeItem = (key: string) => {
+    setItems((current) => current.filter((item) => item.key !== key));
   };
 
-  const updateQuantity = (handle: string, quantity: number) => {
+  const updateQuantity = (key: string, quantity: number) => {
     quantity = safeQuantity(quantity);
     if (quantity < 1) {
-      removeItem(handle);
+      removeItem(key);
       return;
     }
-    setItems((current) => current.map((item) => (item.handle === handle ? { ...item, quantity } : item)));
+    setItems((current) => current.map((item) => (item.key === key ? { ...item, quantity } : item)));
   };
 
   const itemCount = useMemo(() => items.reduce((sum, item) => sum + item.quantity, 0), [items]);
@@ -119,6 +108,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         addItem,
         removeItem,
         updateQuantity,
+        clearCart: () => setItems([]),
         openCart: () => setIsOpen(true),
         closeCart: () => setIsOpen(false),
       }}

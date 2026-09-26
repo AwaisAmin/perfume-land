@@ -3,9 +3,12 @@ import Reveal from "@/components/ui/Reveal";
 import MultiColumnSection from "@/components/shared/MultiColumnSection";
 import ContactForm from "@/components/shared/ContactForm";
 import TrustBadges from "@/components/shared/TrustBadges";
-import { brandCraft, brandValues, journeyImage } from "@/data/brand";
+import { getSiteData } from "@/lib/site-data";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { brand, content } = await getSiteData();
+  const { brandCraft, brandValues, journeyImage } = brand;
+  const texts = content.about;
   return (
     <>
       {/* "Our Story" — the only genuinely new hero-style section; everything
@@ -22,7 +25,7 @@ export default function AboutPage() {
           <Reveal immediate className="relative aspect-4/5 overflow-hidden rounded-md">
             <Image
               src={journeyImage}
-              alt="Haris Ali Rasheed behind the counter at Hariss Bhai Perfumes in Lahore"
+              alt={texts.imageAlt}
               fill
               className="object-cover"
               sizes="(max-width: 767px) 100vw, 60vw"
@@ -33,32 +36,20 @@ export default function AboutPage() {
           <Reveal immediate className="flex flex-col items-start gap-5">
             <div>
               <p className="text-xs font-normal uppercase tracking-[0.18em] text-cream-100">
-                Our Story
+                {texts.kicker}
               </p>
               <h2 className="text-fluid-h2 mt-4 font-normal text-cream-100">
-                A Counter in Lahore
+                {texts.heading}
               </h2>
             </div>
 
-            <p className="text-cream-100">
-              Hariss Bhai Perfumes is a perfume counter in Bahria Town, Lahore, run by
-              Haris Ali Rasheed — the Hariss Bhai people come in and ask for by name.
-            </p>
-            <p className="text-cream-100">
-              The work is simple and it happens in front of you. You name the fragrance
-              you are after, or bring in the empty bottle you have been refilling for
-              years, and it is blended and filled at the counter. If you want it sweeter,
-              woodier or heavier, we adjust it there and then — which is something a
-              sealed box can never do.
-            </p>
-            <p className="text-cream-100">
-              What started as a shop counter now reaches far past it. The blending gets
-              filmed and posted, and the orders come back from people who have never set
-              foot in Lahore — a fragrance they smelled once abroad, a bottle they cannot
-              find here any more, a note they want dialled up.
-            </p>
+            {texts.paragraphs.map((paragraph, i) => (
+              <p key={i} className="text-cream-100">
+                {paragraph}
+              </p>
+            ))}
             <p className="font-semibold text-cream-100">
-              Same counter, same hands, now shipping across Pakistan.
+              {texts.closing}
             </p>
           </Reveal>
         </div>
@@ -66,12 +57,9 @@ export default function AboutPage() {
 
       <MultiColumnSection
         tone="white"
-        kicker="What We Do"
-        heading="Three Ways to Leave With a Bottle"
-        intro={[
-          "We believe a good fragrance should not be something you save for one night a year.",
-          "The shop is built around that: blend something new, refill what you already own, or pick an impression of a designer scent you like — across sprays, perfume oils and interior perfumes.",
-        ]}
+        kicker={texts.whatWeDoKicker}
+        heading={texts.whatWeDoHeading}
+        intro={texts.whatWeDoIntro}
         items={brandCraft}
       />
 

@@ -1,0 +1,7 @@
+node_modules
+.env
+.env.test
+.revalidate-secret.local
+uploads/*
+!uploads/.gitkeep
+.admin-local-credentials.txt

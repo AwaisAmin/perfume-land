@@ -1,7 +1,7 @@
 import CollectionsGrid from "@/components/collection/CollectionsGrid";
 import ContactForm from "@/components/shared/ContactForm";
 import TrustBadges from "@/components/shared/TrustBadges";
-import { collections } from "@/data/products";
+import { getSiteData } from "@/lib/site-data";
 
 // The live site's "/collections" index isn't every collection in the
 // store — it's a hand-picked set of four (Exclusive, Standard, Premium,
@@ -13,14 +13,15 @@ const FEATURED_HANDLES = [
   "signature-collection",
 ];
 
-export default function CollectionsIndexPage() {
+export default async function CollectionsIndexPage() {
+  const { collections, content } = await getSiteData();
   const featured = FEATURED_HANDLES.map((handle) =>
     collections.find((c) => c.handle === handle),
   ).filter((c) => c !== undefined);
 
   return (
     <>
-      <CollectionsGrid collections={featured} />
+      <CollectionsGrid collections={featured} labels={content.collections} />
 
       <ContactForm />
       <TrustBadges />

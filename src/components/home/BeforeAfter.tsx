@@ -5,9 +5,11 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
-import { beforeAfterImages } from "@/data/products";
+import type { SiteContent } from "@/lib/types";
 
-export default function BeforeAfter() {
+type BeforeAfterProps = { images: { him: string; her: string }; texts: SiteContent["home"]["beforeAfter"] };
+
+export default function BeforeAfter({ images: beforeAfterImages, texts }: BeforeAfterProps) {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
@@ -49,8 +51,8 @@ export default function BeforeAfter() {
               sizes="(max-width: 1259px) 100vw, 1260px"
             />
             <div className="absolute bottom-5 left-5 flex flex-col items-start gap-3 sm:bottom-10 sm:left-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cream-50">For Him</p>
-              <Button href="/products/for-him">Buy Now</Button>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cream-50">{texts.him.label}</p>
+              <Button href={texts.him.href}>{texts.him.buttonLabel}</Button>
             </div>
           </div>
 
@@ -67,8 +69,8 @@ export default function BeforeAfter() {
               sizes="(max-width: 1259px) 100vw, 1260px"
             />
             <div className="absolute right-5 bottom-5 flex flex-col items-end gap-3 text-right sm:right-10 sm:bottom-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cream-50">For Her</p>
-              <Button href="/products/for-her">Buy Now</Button>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cream-50">{texts.her.label}</p>
+              <Button href={texts.her.href}>{texts.her.buttonLabel}</Button>
             </div>
           </div>
 

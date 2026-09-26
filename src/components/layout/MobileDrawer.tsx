@@ -4,11 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, X } from "lucide-react";
 import { useState } from "react";
-import {
-  brandImpressionsGroups,
-  primaryNavEnd,
-  primaryNavStart,
-} from "@/data/nav";
+import { useSiteData } from "@/lib/site-data-context";
 import Logo from "@/components/ui/Logo";
 
 type MobileDrawerProps = {
@@ -18,6 +14,8 @@ type MobileDrawerProps = {
 
 export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const { nav, content } = useSiteData();
+  const { brandImpressionsGroups, primaryNavEnd, primaryNavStart } = nav;
 
   return (
     <AnimatePresence>
@@ -64,7 +62,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
                   }
                   className="flex w-full items-center justify-between py-4 text-sm font-semibold uppercase tracking-widest"
                 >
-                  Brand Impressions
+                  {content.header.brandImpressionsLabel}
                   <ChevronDown
                     size={16}
                     className={`transition-transform ${openGroup === "brand" ? "rotate-180" : ""}`}

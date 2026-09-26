@@ -1,10 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { Plus } from "lucide-react";
 import ProductImage from "@/components/ui/ProductImage";
-import { formatPrice } from "@/lib/currency";
-import type { Product } from "@/lib/types";
+import { listingPrice, type Product } from "@/lib/types";
+import { useFormatPrice, useSiteData } from "@/lib/site-data-context";
 
 export default function ProductCard({ product }: { product: Product }) {
+  const { fromPrefix, quickAdd } = useSiteData().content.productCard;
+  const formatPrice = useFormatPrice();
+  const { price, compareAtPrice, varies } = listingPrice(product);
+  // "From" when the variants differ in price, and (as before) whenever a sale price is shown.
+  const showFrom = varies || compareAtPrice !== undefined;
   return (
     <div className="group">
       {/* No rounding/clipping here — the live site's product image box has
@@ -26,7 +33,7 @@ export default function ProductCard({ product }: { product: Product }) {
             just this button keeps the two independent. */}
         <button
           type="button"
-          aria-label="Quick add"
+          aria-label={quickAdd}
           className="group/quickadd absolute bottom-2 right-2 flex h-8 w-8 cursor-pointer items-center justify-center bg-cream-50 text-ink opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"
         >
           <Plus
@@ -45,11 +52,11 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
         <div className="font-heading flex items-baseline gap-2 text-xs uppercase tracking-[0.18em]">
           <span className="text-gold-600">
-            {product.compareAtPrice ? "From " : ""}{formatPrice(product.price)}
+            {showFrom ? `${fromPrefix} ` : ""}{formatPrice(price)}
           </span>
-          {product.compareAtPrice && (
+          {compareAtPrice !== undefined && (
             <span className="text-ink/40 line-through">
-              {formatPrice(product.compareAtPrice)}
+              {formatPrice(compareAtPrice)}
             </span>
           )}
         </div>

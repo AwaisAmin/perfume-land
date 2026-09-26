@@ -4,9 +4,14 @@ import ProductInfo from "@/components/product/ProductInfo";
 import RelatedProducts from "@/components/product/RelatedProducts";
 import ContactForm from "@/components/shared/ContactForm";
 import TrustBadges from "@/components/shared/TrustBadges";
-import { collections } from "@/data/products";
+import { getSiteData } from "@/lib/site-data";
 
-export function generateStaticParams() {
+// Products added in the CRM after the build render on first visit (then
+// cached); unknown or deleted handles hit notFound() below.
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const { collections } = await getSiteData();
   return collections.flatMap((collection) => collection.products.map((p) => ({ handle: p.handle })));
 }
 
@@ -16,6 +21,7 @@ export default async function ProductPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
+  const { collections, content } = await getSiteData();
 
   const collection = collections.find((c) => c.products.some((p) => p.handle === handle));
   const product = collection?.products.find((p) => p.handle === handle);
@@ -41,12 +47,12 @@ export default async function ProductPage({
         <div className="grid items-start gap-10 md:grid-cols-[0.65fr_0.35fr] md:gap-20">
           <ProductGallery product={product} />
           <div className="md:sticky md:top-5">
-            <ProductInfo product={product} />
+            <ProductInfo product={product} texts={content.product} />
           </div>
         </div>
       </div>
 
-      <RelatedProducts products={relatedProducts} />
+      <RelatedProducts products={relatedProducts} heading={content.product.relatedHeading} />
 
       <ContactForm />
       <TrustBadges />

@@ -15,8 +15,11 @@ Reply in **Roman Urdu** with simple words. Code, comments, commit messages stay 
 ## What this project is
 
 Online perfume shop "Haris Bhai Perfumes — Luxury Perfume Impressions" (site title in `src/app/layout.tsx`).
-Next.js 16 (App Router) + React 19 + Tailwind CSS 4 + framer-motion. No backend/database yet:
-the catalog is static data in `src/data/products.ts`.
+Next.js 16 (App Router) + React 19 + Tailwind CSS 4 + framer-motion. All content (collections,
+products + variants, texts, media, settings) comes from the Node.js backend in `backend/`
+(Express + MySQL, admin CRM at `/admin`) via `GET /api/public/site`. `src/data/*.ts` is the
+bundled fallback (and the source of `backend/src/db/seed-data.json`) — the site renders from it
+if the API is down. Checkout sends the order to WhatsApp (no payments).
 
 Main pages: home (`/`), collections (`/collections`, `/collections/[handle]`), product
 (`/products/[handle]`), search (`/search`), about (`/pages/about`), contact (`/pages/contact`).
@@ -38,19 +41,25 @@ From `src/app/globals.css` (Tailwind tokens):
 
 ## Project map
 
-- `src/app/` — routes (App Router). `src/app/api/admin/{products,session}` are empty folders (no routes yet).
+- `src/app/` — routes (App Router); `src/app/api/revalidate/route.ts` refreshes the site cache
+  (called by the backend after every CRM save, secret header).
 - `src/components/` — `layout/`, `home/`, `collection/`, `product/`, `cart/`, `search/`, `shared/`, `ui/`
-- `src/data/` — `products.ts`, `brand.ts`, `branches.ts`, `nav.ts`
-- `src/lib/` — cart context, cart validation, currency, search, types
+- `src/data/` — fallback content: `products.ts`, `content.ts` (all storefront texts/media), `brand.ts`, `branches.ts`, `nav.ts`
+- `src/lib/` — `site-data.ts` (API fetch + fallback), `site-data-sanitize.ts`, `site-data-context.tsx`,
+  cart context/validation, `whatsapp-order.ts`, currency, search, types
+- `backend/` — Node API + CRM: `src/` (routes, repositories, db schema/seed/migrate), `admin/` (CRM UI),
+  `test/` (node:test). See `backend/README.md`.
 - `public/` — `brand/`, `products/`, `previews/`, `videos/`
-- `database/` — empty. `output/imagegen/` — generated images.
+- `docs/plans/` — plans and the backend⇄site contract. `output/imagegen/` — generated images.
 
 Commands (npm):
-- Install: `npm install`
-- Preview locally: `npm run dev` → http://localhost:3000
-- Build: `npm run build` (production check: `npm run build && npm start`)
-- Lint: `npm run lint`
-- Tests: TODO — no test runner or test script is set up yet.
+- Local database: XAMPP MySQL (MariaDB) on 127.0.0.1:3306, databases `perfume_land` / `perfume_land_test`.
+- Backend: `npm --prefix backend install`, `npm --prefix backend run migrate`, `... run seed`,
+  `... start` → http://localhost:4000 (CRM: http://localhost:4000/admin), tests: `npm --prefix backend test`.
+- Website: `npm install`, `npm run dev` → http://localhost:3000 (needs `API_URL`,
+  `NEXT_PUBLIC_API_ORIGIN`, `REVALIDATE_SECRET` in `.env.local`; see `.env.example`).
+- Build: `npm run build` (production check: `npm run build && npm start`). Lint: `npm run lint`.
+- If the DB is changed outside the CRM, use the CRM dashboard's "Refresh website" button.
 
 Next.js 16 has breaking changes: read `node_modules/next/dist/docs/` before writing Next code (see `AGENTS.md`).
 

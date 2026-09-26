@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import type { Collection } from "@/lib/types";
 
-export default function FeaturedCollection({ collection }: { collection: Collection }) {
+export default function FeaturedCollection({ collection, viewAllLabel }: { collection: Collection; viewAllLabel: string }) {
   return (
     <section className="text-fluid-section-gap">
       <div className="container-app">
@@ -22,7 +22,7 @@ export default function FeaturedCollection({ collection }: { collection: Collect
 
         <div className="mt-14 flex justify-center">
           <Button href={`/collections/${collection.handle}`} variant="outline">
-            View all
+            {viewAllLabel}
           </Button>
         </div>
       </div>
