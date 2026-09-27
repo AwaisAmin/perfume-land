@@ -80,7 +80,11 @@ export async function renderSettings({ state }) {
       apiPut("/api/admin/settings/announcements", { value: items.filter((v) => v.trim()) })
     );
 
-    return h("section", { class: "card" }, [h("h2", { text: "Announcement bar" }), listWrap, addBtn, btn, errorEl]);
+    const hint = h("p", {
+      class: "field-hint",
+      text: "Tip: write {amount} to show the free shipping threshold, e.g. \"Free Delivery Over {amount}\" — it updates by itself when the threshold changes.",
+    });
+    return h("section", { class: "card" }, [h("h2", { text: "Announcement bar" }), hint, listWrap, addBtn, btn, errorEl]);
   }
 
   function buildShippingSection(initial) {

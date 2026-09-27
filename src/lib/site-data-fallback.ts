@@ -26,7 +26,7 @@ export const fallbackSiteData: SiteData = {
   brand: { journeyImage, brandValues, brandCraft },
   contact: { whatsappNumber, orderWhatsappNumber: whatsappNumber, branches },
   nav: { brandImpressionsGroups, primaryNavStart, primaryNavEnd },
-  announcements: ["Free Delivery Over Rs 500", "Delivery Across Pakistan"],
+  announcements: ["Free Delivery Over {amount}", "Delivery Across Pakistan"],
   freeShippingThreshold: 500,
   content,
   updatedAt: new Date(0).toISOString(),

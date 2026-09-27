@@ -14,7 +14,7 @@ const snapshot = {
   brand: { journeyImage: brand.journeyImage, brandValues: brand.brandValues, brandCraft: brand.brandCraft },
   contact: { whatsappNumber: branches.whatsappNumber, branches: branches.branches },
   nav: { brandImpressionsGroups: nav.brandImpressionsGroups, primaryNavStart: nav.primaryNavStart, primaryNavEnd: nav.primaryNavEnd },
-  announcements: ["Free Delivery Over Rs 500", "Delivery Across Pakistan"],
+  announcements: ["Free Delivery Over {amount}", "Delivery Across Pakistan"],
   freeShippingThreshold: 500,
 };
 writeFileSync(new URL("./seed-data.json", import.meta.url), JSON.stringify(snapshot, null, 2) + "\n");

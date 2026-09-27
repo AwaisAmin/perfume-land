@@ -3,10 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useSiteData } from "@/lib/site-data-context";
+import { useFormatPrice, useSiteData } from "@/lib/site-data-context";
 
 export default function AnnouncementBar() {
-  const { announcements: messages } = useSiteData();
+  const { announcements, freeShippingThreshold } = useSiteData();
+  const formatPrice = useFormatPrice();
+  // "{amount}" in a CRM announcement always shows the current free-shipping threshold.
+  const messages = announcements.map((m) => m.replaceAll("{amount}", formatPrice(freeShippingThreshold)));
   const [index, setIndex] = useState(0);
   const barRef = useRef<HTMLDivElement>(null);
 

@@ -1597,7 +1597,7 @@
     ]
   },
   "announcements": [
-    "Free Delivery Over Rs 500",
+    "Free Delivery Over {amount}",
     "Delivery Across Pakistan"
   ],
   "freeShippingThreshold": 500,
