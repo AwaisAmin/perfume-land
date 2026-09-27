@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { siteHrefSchema, imagePathSchema, videoPathSchema, externalHttpsLinkSchema } from "./validators.js";
+import { HANDLE_PATTERN } from "./slug.js";
 
 const nonEmpty = (label) => z.string().trim().min(1, `${label} is required.`);
 const list = (schema) => z.array(schema);
@@ -161,7 +162,12 @@ export const contentSchema = z.object({
     descriptionEnd: nonEmpty("Description"),
   }),
 
-  collections: z.object({ productSingular: nonEmpty("Singular label"), productPlural: nonEmpty("Plural label") }),
+  collections: z.object({
+    productSingular: nonEmpty("Singular label"),
+    productPlural: nonEmpty("Plural label"),
+    // Which collections the /collections page lists, in order (optional: the site has a default).
+    indexHandles: z.array(z.string().trim().regex(HANDLE_PATTERN, "Pick a collection.")).optional(),
+  }),
 
   search: z.object({
     metaTitle: nonEmpty("Meta title"),

@@ -74,6 +74,9 @@ export default function ProductInfo({ product, texts }: ProductInfoProps) {
         </div>
       )}
 
+      {product.kicker && (
+        <p className="text-xs font-normal uppercase tracking-[0.18em] text-forest-900">{product.kicker}</p>
+      )}
       <h1 className="text-[22px] leading-[1.5] font-normal tracking-[3.96px] text-ink uppercase">
         {product.title}
       </h1>

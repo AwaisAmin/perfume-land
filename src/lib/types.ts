@@ -253,7 +253,8 @@ export type SiteContent = {
     link: LinkContent;
     descriptionEnd: string;
   };
-  collections: { productSingular: string; productPlural: string };
+  /** `indexHandles`: which collections the /collections page lists, in order. */
+  collections: { productSingular: string; productPlural: string; indexHandles: string[] };
   search: {
     metaTitle: string;
     heading: string;

@@ -149,7 +149,11 @@ export const content: SiteContent = {
     link: { label: "FAQ", href: "/pages/contact" },
     descriptionEnd: ". For additional assistance, please complete the form below. Our team will contact you soon.",
   },
-  collections: { productSingular: "Product", productPlural: "Products" },
+  collections: {
+    productSingular: "Product",
+    productPlural: "Products",
+    indexHandles: ["exclusive-collection", "standard-collection", "premium-collection", "signature-collection"],
+  },
   search: {
     metaTitle: "Search",
     heading: "Search",

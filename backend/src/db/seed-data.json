@@ -1827,7 +1827,13 @@
     },
     "collections": {
       "productSingular": "Product",
-      "productPlural": "Products"
+      "productPlural": "Products",
+      "indexHandles": [
+        "exclusive-collection",
+        "standard-collection",
+        "premium-collection",
+        "signature-collection"
+      ]
     },
     "search": {
       "metaTitle": "Search",

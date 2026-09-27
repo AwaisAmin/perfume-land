@@ -40,6 +40,32 @@ function stringListEditor(list, label) {
   return h("div", {}, [wrap, addBtn]);
 }
 
+// An ordered list of collection handles, each picked from a dropdown.
+function collectionPicker(list, collections) {
+  const wrap = h("div");
+  function draw() {
+    clear(wrap);
+    list.forEach((handle, index) => {
+      const select = h(
+        "select",
+        {},
+        collections.map((c) => h("option", { value: c.handle, text: c.title, selected: c.handle === handle }))
+      );
+      select.addEventListener("change", () => (list[index] = select.value));
+      const removeBtn = h("button", { type: "button", class: "btn btn-secondary", text: "Remove", onclick: () => { list.splice(index, 1); draw(); } });
+      wrap.appendChild(h("div", { class: "toolbar" }, [field(`Collection ${index + 1}`, select), removeBtn]));
+    });
+  }
+  draw();
+  const addBtn = h("button", {
+    type: "button",
+    class: "btn btn-secondary",
+    text: "Add collection",
+    onclick: () => { list.push(collections[0]?.handle ?? ""); draw(); },
+  });
+  return h("div", {}, [wrap, addBtn]);
+}
+
 // A repeatable list of {label, href} links.
 function linkListEditor(list) {
   const wrap = h("div");
@@ -83,6 +109,9 @@ export async function renderSiteContent({ state }) {
   // One shared mutable draft: every section's Save button submits this whole
   // object, since the backend validates+stores `content` as a single key.
   const content = structuredClone(settings.content);
+  const { collections: allCollections } = await apiGet("/api/admin/collections");
+  // Older saved content has no list yet — start from the site's default four.
+  content.collections.indexHandles ??= ["exclusive-collection", "standard-collection", "premium-collection", "signature-collection"];
 
   const root = h("div", {}, [
     h("h1", { text: "Site content" }),
@@ -345,6 +374,8 @@ export async function renderSiteContent({ state }) {
   // --- Collection page ---------------------------------------------
   root.appendChild(
     section("Collection page", [
+      h("h3", { text: "Collections shown on the /collections page (in this order)" }),
+      collectionPicker(content.collections.indexHandles, allCollections),
       textField(content.collections, "productSingular", "Singular label (e.g. \"Product\")"),
       textField(content.collections, "productPlural", "Plural label (e.g. \"Products\")"),
       textField(content.collectionPage, "availabilityHeading", "Availability heading"),
